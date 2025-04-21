@@ -15,6 +15,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 import org.ntqqrev.saltify.BotContext
+import org.ntqqrev.saltify.common.SignResult
 import org.ntqqrev.saltify.packet.SsoResponse
 import org.ntqqrev.saltify.packet.common.SsoReservedFields
 import org.ntqqrev.saltify.packet.common.SsoSecureInfo
@@ -176,7 +177,7 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
 
     @OptIn(ExperimentalSerializationApi::class)
     private suspend fun buildSsoReserved(command: String, payload: ByteArray, sequence: Int): ByteArray {
-        var signResult: SsoSecureInfo? = null
+        var signResult: SignResult? = null
 
         if (signRequiredCommand.contains(command)) {
             signResult = bot.signProvider.sign(command, sequence, payload)
@@ -185,7 +186,11 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
         val ssoReservedFields = SsoReservedFields(
             trace = generateTrace(),
             uid = bot.keystore.uid,
-            secureInfo = signResult,
+            secureInfo = if (signResult != null) SsoSecureInfo(
+                sign = signResult.sign,
+                token = signResult.token,
+                extra = signResult.extra
+            ) else null
         )
 
         return ProtoBuf.encodeToByteArray(ssoReservedFields)
