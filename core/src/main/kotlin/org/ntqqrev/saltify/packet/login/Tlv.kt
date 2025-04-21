@@ -1,9 +1,8 @@
 package org.ntqqrev.saltify.packet.login
 
-import io.ktor.utils.io.core.build
-import io.ktor.utils.io.core.readBytes
-import io.ktor.utils.io.core.writeFully
+import io.ktor.utils.io.core.*
 import kotlinx.io.*
+import kotlinx.io.Buffer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 import org.ntqqrev.saltify.BotContext

@@ -1,11 +1,8 @@
 package org.ntqqrev.saltify.context
 
-import io.ktor.utils.io.core.discard
-import io.ktor.utils.io.core.remaining
-import io.ktor.utils.io.core.writeFully
+import io.ktor.utils.io.core.*
 import kotlinx.io.*
 import kotlinx.io.Buffer
-import kotlinx.io.readByteArray
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 import org.ntqqrev.saltify.BotContext
@@ -13,12 +10,7 @@ import org.ntqqrev.saltify.packet.login.QrCodeState
 import org.ntqqrev.saltify.packet.login.Tlv
 import org.ntqqrev.saltify.packet.login.Tlv543Body
 import org.ntqqrev.saltify.packet.login.TlvQrCode
-import org.ntqqrev.saltify.util.binary.Prefix
-import org.ntqqrev.saltify.util.binary.barrier
-import org.ntqqrev.saltify.util.binary.fromHex
-import org.ntqqrev.saltify.util.binary.readPrefixedBytes
-import org.ntqqrev.saltify.util.binary.readPrefixedString
-import org.ntqqrev.saltify.util.binary.writeBytes
+import org.ntqqrev.saltify.util.binary.*
 import org.ntqqrev.saltify.util.crypto.TEA
 import kotlin.random.Random
 

@@ -1,17 +1,8 @@
 package org.ntqqrev.saltify.util.binary
 
-import io.ktor.utils.io.core.build
-import io.ktor.utils.io.core.writeFully
-import io.ktor.utils.io.core.writePacket
-import io.ktor.utils.io.core.writeText
+import io.ktor.utils.io.core.*
+import kotlinx.io.*
 import kotlinx.io.Buffer
-import kotlinx.io.Sink
-import kotlinx.io.Source
-import kotlinx.io.readByteArray
-import kotlinx.io.readUInt
-import kotlinx.io.readUShort
-import kotlinx.io.writeUInt
-import kotlinx.io.writeUShort
 
 internal fun Sink.writeString(value: String, prefix: Prefix = Prefix.NONE) {
     this.writeLength(value.length.toUInt(), prefix)
