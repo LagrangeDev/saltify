@@ -1,4 +1,4 @@
-package org.ntqqrev.saltify.util.ext
+package org.ntqqrev.saltify.util.binary
 
 import io.ktor.utils.io.core.build
 import io.ktor.utils.io.core.writeFully

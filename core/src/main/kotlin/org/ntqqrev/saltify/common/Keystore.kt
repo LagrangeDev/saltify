@@ -2,7 +2,7 @@ package org.ntqqrev.saltify.common
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
-import org.ntqqrev.saltify.util.ext.toHex
+import org.ntqqrev.saltify.util.binary.toHex
 import kotlin.random.Random
 
 @Serializable

@@ -1,4 +1,4 @@
-package org.ntqqrev.saltify.util.ext
+package org.ntqqrev.saltify.util.binary
 
 /**
  * Describe the length prefix of a data block in a packet.
