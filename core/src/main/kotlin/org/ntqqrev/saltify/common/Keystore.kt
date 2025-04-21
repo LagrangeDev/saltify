@@ -6,7 +6,7 @@ import org.ntqqrev.saltify.util.ext.toHex
 import kotlin.random.Random
 
 @Serializable
-data class Keystore(
+class Keystore(
     @JvmField var uin: Long,
     @JvmField var uid: String,
 
@@ -58,47 +58,5 @@ data class Keystore(
         keySig = null
         exchangeKey = null
         unusualCookies = null
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Keystore
-
-        if (uin != other.uin) return false
-        if (uid != other.uid) return false
-        if (!a2.contentEquals(other.a2)) return false
-        if (!d2.contentEquals(other.d2)) return false
-        if (!d2Key.contentEquals(other.d2Key)) return false
-        if (!tgtgt.contentEquals(other.tgtgt)) return false
-        if (!encryptedA1.contentEquals(other.encryptedA1)) return false
-        if (!noPicSig.contentEquals(other.noPicSig)) return false
-        if (!qrSig.contentEquals(other.qrSig)) return false
-        if (!guid.contentEquals(other.guid)) return false
-        if (deviceName != other.deviceName) return false
-        if (!keySig.contentEquals(other.keySig)) return false
-        if (!exchangeKey.contentEquals(other.exchangeKey)) return false
-        if (unusualCookies != other.unusualCookies) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = uin.hashCode()
-        result = 31 * result + uid.hashCode()
-        result = 31 * result + a2.contentHashCode()
-        result = 31 * result + d2.contentHashCode()
-        result = 31 * result + d2Key.contentHashCode()
-        result = 31 * result + tgtgt.contentHashCode()
-        result = 31 * result + encryptedA1.contentHashCode()
-        result = 31 * result + noPicSig.contentHashCode()
-        result = 31 * result + qrSig.contentHashCode()
-        result = 31 * result + guid.contentHashCode()
-        result = 31 * result + deviceName.hashCode()
-        result = 31 * result + (keySig?.contentHashCode() ?: 0)
-        result = 31 * result + (exchangeKey?.contentHashCode() ?: 0)
-        result = 31 * result + (unusualCookies?.hashCode() ?: 0)
-        return result
     }
 }
