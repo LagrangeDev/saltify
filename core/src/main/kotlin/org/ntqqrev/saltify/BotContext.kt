@@ -1,0 +1,18 @@
+package org.ntqqrev.saltify
+
+import org.ntqqrev.saltify.common.AppInfo
+import org.ntqqrev.saltify.common.Keystore
+import org.ntqqrev.saltify.common.SignProvider
+import org.ntqqrev.saltify.operation.Operation
+
+class BotContext(
+    val appInfo: AppInfo,
+    val keystore: Keystore,
+    val signProvider: SignProvider
+) {
+    suspend fun <T, R> callOperation(operation: Operation<T, R>, payload: T): R {
+        val byteArray = operation.build(this, payload)
+        // TODO: send packet by suspend function
+        return operation.parse(this, byteArray)
+    }
+}
