@@ -99,3 +99,9 @@ class TlvQrCodeD1BodySystem(
     @ProtoNumber(1) val os: String,
     @ProtoNumber(2) val deviceName: String,
 )
+
+@Serializable
+class TlvQrCodeD1ResponseBody(
+    @ProtoNumber(2) val qrCodeUrl: String,
+    @ProtoNumber(3) val qrSig: String,
+)
