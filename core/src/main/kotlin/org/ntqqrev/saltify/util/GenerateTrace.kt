@@ -2,7 +2,7 @@ package org.ntqqrev.saltify.util
 
 private const val HEX = "1234567890abcdef"
 
-fun generateTrace(): String {
+internal fun generateTrace(): String {
     val sb = StringBuilder(55)
 
     sb.append("00") // 2 chars
