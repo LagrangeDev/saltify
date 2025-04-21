@@ -5,6 +5,7 @@ import org.ntqqrev.saltify.common.Keystore
 import org.ntqqrev.saltify.common.SignProvider
 import org.ntqqrev.saltify.context.SsoContext
 import org.ntqqrev.saltify.context.WtLoginContext
+import org.ntqqrev.saltify.operation.NoInputOperation
 import org.ntqqrev.saltify.operation.Operation
 import org.ntqqrev.saltify.util.crypto.ecdh.ECDH
 import org.ntqqrev.saltify.util.crypto.ecdh.EllipticCurve
@@ -30,5 +31,9 @@ class BotContext(
             throw Exception("Error when calling operation: ${resp.retCode} ${resp.extra}")
         }
         return operation.parse(this, byteArray)
+    }
+
+    suspend fun <R> callOperation(operation: NoInputOperation<R>): R {
+        return callOperation(operation, Unit)
     }
 }
