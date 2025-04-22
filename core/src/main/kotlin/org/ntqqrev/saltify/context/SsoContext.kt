@@ -121,8 +121,9 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
             try {
                 val header = input.readByteArray(headerLength)
                 val packetLength = header.readUInt32BE(0)
-                val packet = input.readByteArray(packetLength.toInt())
-                val sso = parseSso(packet)
+                val packet = input.readByteArray(packetLength.toInt() - 4)
+                val service = parseService(packet)
+                val sso = parseSso(service)
                 logger.debug("Received packet '${sso.command}' with sequence ${sso.sequence} (retcode=${sso.retCode})")
                 pending.remove(sso.sequence).also {
                     if (it != null) {

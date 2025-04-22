@@ -25,12 +25,12 @@ class BotContext(
         val byteArray = operation.build(this, payload)
         val resp = ssoContext.sendPacket(
             operation.command,
-            operation.build(this, payload)
+            byteArray
         )
         if (resp.retCode != 0) {
             throw Exception("Error when calling operation: ${resp.retCode} ${resp.extra}")
         }
-        return operation.parse(this, byteArray)
+        return operation.parse(this, resp.response)
     }
 
     suspend fun <R> callOperation(operation: NoInputOperation<R>): R {
