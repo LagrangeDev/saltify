@@ -177,17 +177,3 @@ internal class Tlv(val bot: BotContext) {
     }
 }
 
-@Serializable
-class Tlv543Body(
-    @ProtoNumber(9) val layer1: Tlv543BodyLayer1,
-)
-
-@Serializable
-class Tlv543BodyLayer1(
-    @ProtoNumber(11) val layer2: Tlv543BodyLayer1Layer2,
-)
-
-@Serializable
-class Tlv543BodyLayer1Layer2(
-    @ProtoNumber(1) val uid: String
-)

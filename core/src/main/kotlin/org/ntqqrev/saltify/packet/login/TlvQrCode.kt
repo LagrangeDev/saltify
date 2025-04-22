@@ -57,7 +57,7 @@ internal class TlvQrCode(val bot: BotContext) {
     fun tlvD1() = defineTlv(0xd1u) {
         writeFully(
             TlvQrCodeD1Body(
-                system = TlvQrCodeD1BodySystem(
+                system = TlvQrCodeD1Body.System(
                     os = bot.appInfo.os,
                     deviceName = bot.keystore.deviceName,
                 ),
@@ -80,21 +80,3 @@ internal class TlvQrCode(val bot: BotContext) {
         }
     }
 }
-
-@Serializable
-class TlvQrCodeD1Body(
-    @ProtoNumber(1) val system: TlvQrCodeD1BodySystem,
-    @ProtoNumber(4) val typeBuf: ByteArray,
-)
-
-@Serializable
-class TlvQrCodeD1BodySystem(
-    val os: String,
-    val deviceName: String,
-)
-
-@Serializable
-class TlvQrCodeD1ResponseBody(
-    @ProtoNumber(2) val qrCodeUrl: String,
-    @ProtoNumber(3) val qrSig: String,
-)
