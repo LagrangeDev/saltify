@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import org.ntqqrev.saltify.BotContext
 import org.ntqqrev.saltify.common.Keystore
+import org.ntqqrev.saltify.operation.system.BotOnline
 import org.ntqqrev.saltify.operation.system.DoWtLogin
 import org.ntqqrev.saltify.operation.system.FetchQrCode
 import org.ntqqrev.saltify.operation.system.QueryQrCodeState
@@ -53,5 +54,16 @@ suspend fun main(): Unit = coroutineScope {
         logger.error { "Login failed" }
         return@coroutineScope
     }
-    logger.info { "Credentials retrieved: ${Json.encodeToString(bot.keystore)}" }
+    launch {
+        dataPath.resolve("keystore.json").writeBytes(Json.encodeToString(bot.keystore).toByteArray())
+        logger.info { "Keystore saved to data/keystore.json" }
+    }
+    logger.info { "Credentials retrieved, trying online" }
+
+    val onlineResult = bot.callOperation(BotOnline)
+    if (!onlineResult) {
+        logger.error { "Login failed" }
+        return@coroutineScope
+    }
+    logger.info { "Login successful" }
 }
