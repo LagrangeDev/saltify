@@ -19,13 +19,10 @@ import kotlin.io.path.writeBytes
 private val logger = KotlinLogging.logger {  }
 
 suspend fun main(): Unit = coroutineScope {
-    val signApiUrl = "https://sign.lagrangecore.org/api/sign/30366"
-    val urlSignProvider = UrlSignProvider(signApiUrl)
     val appInfo = urlSignProvider.getAppInfo()
     val bot = BotContext(appInfo!!, Keystore.generateEmptyKeystore(), urlSignProvider)
     bot.ssoContext.connect()
 
-    val dataPath = Path("data")
     if (!dataPath.toFile().exists()) {
         dataPath.toFile().mkdirs()
     }
@@ -55,7 +52,7 @@ suspend fun main(): Unit = coroutineScope {
         return@coroutineScope
     }
     launch {
-        dataPath.resolve("keystore.json").writeBytes(Json.encodeToString(bot.keystore).toByteArray())
+        keystorePath.writeBytes(Json.encodeToString(bot.keystore).toByteArray())
         logger.info { "Keystore saved to data/keystore.json" }
     }
     logger.info { "Credentials retrieved, trying online" }
