@@ -14,8 +14,7 @@ class FetchQrCodeResult(
 object FetchQrCode : NoInputOperation<FetchQrCodeResult> {
     override val command: String = "wtlogin.trans_emp"
 
-    override fun build(bot: BotContext, payload: Unit): ByteArray
-        = bot.wtLoginContext.buildTransEmp0x31()
+    override fun build(bot: BotContext, payload: Unit): ByteArray = bot.wtLoginContext.buildTransEmp0x31()
 
     override fun parse(bot: BotContext, payload: ByteArray): FetchQrCodeResult {
         val response = bot.wtLoginContext.parseTransEmp0x31(payload)

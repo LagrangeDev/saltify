@@ -15,7 +15,7 @@ internal class EllipticCurve(
     fun checkOn(point: EllipticPoint): Boolean {
         return (point.y * point.y - point.x * point.x * point.x - a * point.x - b) % p == BigInteger.ZERO
     }
-    
+
     companion object {
         val secp192k1 = EllipticCurve(
             p = BigInteger("0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFEE37", 16),
@@ -30,7 +30,7 @@ internal class EllipticCurve(
             size = 24,
             packSize = 24
         )
-        
+
         val prime256v1 = EllipticCurve(
             p = BigInteger("0FFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF", 16),
             a = BigInteger("0FFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFC", 16),

@@ -82,7 +82,7 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
         "OidbSvcTrpcTcp.0x6d9_4"
     )
 
-    private val logger = KotlinLogging.logger {  }
+    private val logger = KotlinLogging.logger { }
 
     suspend fun connect() {
         val s = socket.connect(host, port)

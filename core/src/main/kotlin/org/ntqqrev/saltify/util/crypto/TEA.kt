@@ -35,8 +35,10 @@ internal class TEAImpl {
             if (i3 <= 0) {
                 return unsignedInt.toInt().readInt32BE() + unsignedInt2.toInt().readInt32BE()
             }
-            unsignedInt2 = (unsignedInt2 - ((((unsignedInt shl 4) + unsignedInt5) xor (unsignedInt + j2)) xor ((unsignedInt ushr 5) + unsignedInt6))) and fff
-            unsignedInt = (unsignedInt - ((((unsignedInt2 shl 4) + unsignedInt3) xor (unsignedInt2 + j2)) xor ((unsignedInt2 ushr 5) + unsignedInt4))) and fff
+            unsignedInt2 =
+                (unsignedInt2 - ((((unsignedInt shl 4) + unsignedInt5) xor (unsignedInt + j2)) xor ((unsignedInt ushr 5) + unsignedInt6))) and fff
+            unsignedInt =
+                (unsignedInt - ((((unsignedInt2 shl 4) + unsignedInt3) xor (unsignedInt2 + j2)) xor ((unsignedInt2 ushr 5) + unsignedInt4))) and fff
             j2 = (j2 - J_1) and fff
             i3 = i4
         }
@@ -83,8 +85,10 @@ internal class TEAImpl {
                 return unsignedInt.toInt().readInt32BE() + unsignedInt2.toInt().readInt32BE()
             }
             j2 = (j2 + J_1) and fff
-            unsignedInt = (unsignedInt + ((((unsignedInt2 shl 4) + unsignedInt3) xor (unsignedInt2 + j2)) xor ((unsignedInt2 ushr 5) + unsignedInt4))) and fff
-            unsignedInt2 = (unsignedInt2 + ((((unsignedInt shl 4) + unsignedInt5) xor (unsignedInt + j2)) xor ((unsignedInt ushr 5) + unsignedInt6))) and fff
+            unsignedInt =
+                (unsignedInt + ((((unsignedInt2 shl 4) + unsignedInt3) xor (unsignedInt2 + j2)) xor ((unsignedInt2 ushr 5) + unsignedInt4))) and fff
+            unsignedInt2 =
+                (unsignedInt2 + ((((unsignedInt shl 4) + unsignedInt5) xor (unsignedInt + j2)) xor ((unsignedInt ushr 5) + unsignedInt6))) and fff
             i2 = i3
         }
     }

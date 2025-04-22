@@ -135,9 +135,9 @@ internal class WtLoginContext(bot: BotContext) : Context(bot) {
             val tlv119 = tlv119Reader[0x119u]!!
             val array = TEA.decrypt(tlv119, bot.keystore.tgtgt)
             val tlvPack = readTlv(
-     Buffer().apply {
-         write(array, endIndex = 0 + array.size)
-     }
+                Buffer().apply {
+                    write(array, endIndex = 0 + array.size)
+                }
             )
             bot.keystore.apply {
                 d2Key = tlvPack[0x305u]!!

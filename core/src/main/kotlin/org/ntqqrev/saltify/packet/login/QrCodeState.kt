@@ -9,7 +9,8 @@ open class QrCodeState(val value: Byte) {
     data object Canceled : QrCodeState(54)
 
     companion object {
-        fun values(): Array<QrCodeState> = arrayOf(Unknown, Confirmed, CodeExpired, WaitingForScan, WaitingForConfirm, Canceled)
+        fun values(): Array<QrCodeState> =
+            arrayOf(Unknown, Confirmed, CodeExpired, WaitingForScan, WaitingForConfirm, Canceled)
 
         fun valueOf(value: String): QrCodeState = when (value) {
             "Unknown" -> Unknown

@@ -6,9 +6,7 @@ import org.ntqqrev.saltify.operation.NoInputOperation
 object DoWtLogin : NoInputOperation<Boolean> {
     override val command = "wtlogin.login"
 
-    override fun build(bot: BotContext, payload: Unit): ByteArray
-        = bot.wtLoginContext.buildLogin()
+    override fun build(bot: BotContext, payload: Unit): ByteArray = bot.wtLoginContext.buildLogin()
 
-    override fun parse(bot: BotContext, payload: ByteArray): Boolean
-        = bot.wtLoginContext.parseLogin(payload)
+    override fun parse(bot: BotContext, payload: ByteArray): Boolean = bot.wtLoginContext.parseLogin(payload)
 }

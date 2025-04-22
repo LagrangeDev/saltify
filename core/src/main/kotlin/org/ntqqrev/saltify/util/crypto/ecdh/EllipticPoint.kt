@@ -27,11 +27,11 @@ internal class EllipticPoint(
     override fun toString(): String {
         return "EllipticPoint(x=$x, y=$y)"
     }
-    
+
     fun isDefault(): Boolean {
         return x == BigInteger.ZERO && y == BigInteger.ZERO
     }
-    
+
     operator fun unaryMinus(): EllipticPoint {
         return EllipticPoint(-x, -y)
     }
