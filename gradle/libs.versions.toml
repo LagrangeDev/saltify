@@ -9,6 +9,7 @@ kotlinxDatetime = "0.6.1"
 kotlinxSerialization = "1.8.1"
 kotlinxCoroutines = "1.9.0"
 slf4j = "2.0.17"
+logbackClassic = "1.5.18"
 
 [libraries]
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -26,7 +27,7 @@ kotlinxSerializationProtobuf = { module = "org.jetbrains.kotlinx:kotlinx-seriali
 kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 
 slf4jApi = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
-slf4jSimple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+logbackClassic = { module = "ch.qos.logback:logback-classic", version.ref = "logbackClassic" }
 
 # Libraries can be bundled together for easier import
 [bundles]
@@ -45,7 +46,7 @@ kotlinxEcosystem = [
 ]
 slf4j = [
     "slf4jApi",
-    "slf4jSimple"
+    "logbackClassic"
 ]
 
 [plugins]
