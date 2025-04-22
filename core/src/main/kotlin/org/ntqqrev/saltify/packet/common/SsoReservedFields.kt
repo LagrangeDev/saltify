@@ -9,10 +9,3 @@ internal class SsoReservedFields(
     @ProtoNumber(16) val uid: String?,
     @ProtoNumber(24) val secureInfo: SsoSecureInfo?,
 )
-
-@Serializable
-internal class SsoSecureInfo(
-    @ProtoNumber(1) val sign: ByteArray,
-    @ProtoNumber(2) val token: ByteArray,
-    @ProtoNumber(3) val extra: ByteArray,
-)
