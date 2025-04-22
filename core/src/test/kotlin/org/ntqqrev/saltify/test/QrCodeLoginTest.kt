@@ -66,4 +66,6 @@ suspend fun main(): Unit = coroutineScope {
         return@coroutineScope
     }
     logger.info { "Login successful" }
+
+    delay(Long.MAX_VALUE)
 }
