@@ -4,11 +4,10 @@ import io.ktor.utils.io.core.*
 import kotlinx.io.*
 import kotlinx.io.Buffer
 import org.ntqqrev.saltify.BotContext
-import org.ntqqrev.saltify.packet.login.QrCodeState
-import org.ntqqrev.saltify.packet.login.Tlv
-import org.ntqqrev.saltify.packet.login.Tlv543Body
-import org.ntqqrev.saltify.packet.login.TlvQrCode
-import org.ntqqrev.saltify.util.binary.*
+import org.ntqqrev.saltify.util.binary.Prefix
+import org.ntqqrev.saltify.util.binary.barrier
+import org.ntqqrev.saltify.util.binary.fromHex
+import org.ntqqrev.saltify.util.binary.writeBytes
 import org.ntqqrev.saltify.util.crypto.TEA
 import kotlin.random.Random
 
@@ -16,151 +15,7 @@ internal class WtLoginContext(bot: BotContext) : Context(bot) {
     private val ecdhKey =
         "04928D8850673088B343264E0C6BACB8496D697799F37211DEB25BB73906CB089FEA9639B4E0260498B51A992D50813DA8".fromHex()
 
-    fun buildTransEmp0x31(): ByteArray {
-        val tlvPack = TlvQrCode(bot).apply {
-            tlv16()
-            tlv1b()
-            tlv1d()
-            tlv33()
-            tlv35()
-            tlv66()
-            tlvD1()
-        }
-
-        val packet = Buffer().apply {
-            writeUShort(0u)
-            writeUInt(bot.appInfo.appId.toUInt())
-            writeULong(0u) // uin
-            writeBytes(ByteArray(0))
-            writeByte(0)
-            writeBytes(ByteArray(0), Prefix.UINT_16 or Prefix.LENGTH_ONLY)
-            writeBytes(tlvPack.build())
-        }
-
-        return buildCode2DPacket(packet.readByteArray(), 0x31u)
-    }
-
-    fun buildTransEmp0x12(): ByteArray {
-        val packet = Buffer().apply {
-            writeUShort(0u)
-            writeUInt(bot.appInfo.appId.toUInt())
-            writeBytes(bot.keystore.qrSig, Prefix.UINT_16 or Prefix.LENGTH_ONLY)
-            writeULong(0u) // uin
-            writeByte(0)
-            writeBytes(ByteArray(0), Prefix.UINT_16 or Prefix.LENGTH_ONLY)
-            writeUShort(0u)  // actually it is the tlv count, but there is no tlv so 0x0 is used
-        }
-
-        return buildCode2DPacket(packet.readByteArray(), 0x12u)
-    }
-
-    fun buildLogin(): ByteArray {
-        val tlvPack = Tlv(bot).apply {
-            tlv106A2()
-            tlv144()
-            tlv116()
-            tlv142()
-            tlv145()
-            tlv18()
-            tlv141()
-            tlv177()
-            tlv191()
-            tlv100()
-            tlv107()
-            tlv318()
-            tlv16a()
-            tlv166()
-            tlv521()
-        }
-
-        val packet = Buffer().apply {
-            writeUShort(9u) // internal command
-            writeFully(tlvPack.build())
-        }
-
-        return buildWtLogin(packet.readByteArray(), 2064u)
-    }
-
-    fun parseTransEmp0x31(raw: ByteArray): Map<UShort, ByteArray> {
-        val wtlogin = parseWtLogin(raw)
-        val code2d = parseCode2DPacket(wtlogin)
-
-        val reader = Buffer().apply {
-            write(code2d, endIndex = 0 + code2d.size)
-        }
-        reader.discard(1)
-
-        val sig = reader.readPrefixedBytes(Prefix.UINT_16 or Prefix.LENGTH_ONLY)
-        val tlv = readTlv(reader)
-        bot.keystore.qrSig = sig
-
-        return tlv
-    }
-
-    fun parseTransEmp0x12(raw: ByteArray): QrCodeState {
-        val wtlogin = parseWtLogin(raw)
-        val code2d = parseCode2DPacket(wtlogin)
-
-        val reader = Buffer().apply {
-            write(code2d, endIndex = 0 + code2d.size)
-        }
-        val retCode = QrCodeState(reader.readByte())
-        if (retCode.value == QrCodeState.Confirmed.value) {
-            reader.discard(4)
-            bot.keystore.uin = reader.readUInt().toLong()
-            reader.discard(4)
-
-            val tlv = readTlv(reader)
-            bot.keystore.tgtgt = tlv[0x1eu]!!
-            bot.keystore.encryptedA1 = tlv[0x18u]!!
-            bot.keystore.noPicSig = tlv[0x19u]!!
-        }
-
-        return retCode
-    }
-
-    fun parseLogin(raw: ByteArray): Boolean {
-        val wtlogin = parseWtLogin(raw)
-        val reader = Buffer().apply {
-            write(wtlogin, endIndex = 0 + wtlogin.size)
-        }
-
-        val command = reader.readUShort()
-        val state = reader.readUByte()
-        val tlv119Reader = readTlv(reader)
-
-        if (state.toInt() == 0) {
-            val tlv119 = tlv119Reader[0x119u]!!
-            val array = TEA.decrypt(tlv119, bot.keystore.tgtgt)
-            val tlvPack = readTlv(
-                Buffer().apply {
-                    write(array, endIndex = 0 + array.size)
-                }
-            )
-            bot.keystore.apply {
-                d2Key = tlvPack[0x305u]!!
-                uid = tlvPack[0x543u]!!.pb<Tlv543Body>().layer1.layer2.uid
-                a2 = tlvPack[0x10Au]!!
-                d2 = tlvPack[0x143u]!!
-                encryptedA1 = tlvPack[0x106u]!!
-            }
-            return true
-        } else {
-            val array = tlv119Reader[0x146u]!!
-            val tlv146 = Buffer().apply {
-                write(array, endIndex = 0 + array.size)
-            }
-            val state = tlv146.readUInt()
-            val tag = tlv146.readPrefixedString(Prefix.UINT_16 or Prefix.LENGTH_ONLY)
-            val message = tlv146.readPrefixedString(Prefix.UINT_16 or Prefix.LENGTH_ONLY)
-
-            println("Login failed: $state, $tag, $message")
-        }
-
-        return false
-    }
-
-    private fun buildCode2DPacket(tlvPack: ByteArray, command: UShort): ByteArray {
+    fun buildCode2DPacket(tlvPack: ByteArray, command: UShort): ByteArray {
         val newPacket = Buffer().apply {
             writeByte(0x2) // packet Start
             writeUShort((43 + tlvPack.size + 1).toUShort()) // _head_len = 43 + data.size +1
@@ -193,7 +48,7 @@ internal class WtLoginContext(bot: BotContext) : Context(bot) {
         return buildWtLogin(packet.readByteArray(), 2066u)
     }
 
-    private fun parseCode2DPacket(wtlogin: ByteArray): ByteArray {
+    fun parseCode2DPacket(wtlogin: ByteArray): ByteArray {
         val reader = Buffer().apply {
             write(wtlogin, endIndex = 0 + wtlogin.size)
         }
@@ -207,7 +62,7 @@ internal class WtLoginContext(bot: BotContext) : Context(bot) {
         return reader.readByteArray(reader.remaining.toInt())
     }
 
-    private fun buildWtLogin(payload: ByteArray, command: UShort): ByteArray {
+    fun buildWtLogin(payload: ByteArray, command: UShort): ByteArray {
         val encrypted = TEA.encrypt(payload, bot.ecdh192.keyExchange(ecdhKey, true))
         val packet = Buffer()
         packet.writeByte(2)
@@ -231,7 +86,7 @@ internal class WtLoginContext(bot: BotContext) : Context(bot) {
         return packet.readByteArray()
     }
 
-    private fun parseWtLogin(raw: ByteArray): ByteArray {
+    fun parseWtLogin(raw: ByteArray): ByteArray {
         val reader = Buffer().apply {
             write(raw, endIndex = 0 + raw.size)
         }
@@ -264,7 +119,7 @@ internal class WtLoginContext(bot: BotContext) : Context(bot) {
         writeBytes(bot.ecdh192.getPublicKey(true), Prefix.UINT_16 or Prefix.LENGTH_ONLY)
     }.readByteArray()
 
-    private fun readTlv(reader: Buffer): Map<UShort, ByteArray> {
+    fun readTlv(reader: Buffer): Map<UShort, ByteArray> {
         val tlvCount = reader.readUShort()
         val result = mutableMapOf<UShort, ByteArray>()
         for (i in 0 until tlvCount.toInt()) {
