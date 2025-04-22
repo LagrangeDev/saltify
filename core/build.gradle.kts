@@ -14,5 +14,5 @@ dependencies {
     implementation(libs.bundles.ktorEcosystem)
     implementation(libs.bundles.kotlinxEcosystem)
     implementation(libs.kotlinxSerializationProtobuf)
-    implementation(libs.bundles.slf4j)
+    implementation(libs.bundles.logging)
 }

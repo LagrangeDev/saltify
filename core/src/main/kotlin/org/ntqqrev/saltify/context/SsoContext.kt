@@ -1,5 +1,6 @@
 package org.ntqqrev.saltify.context
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
@@ -22,7 +23,6 @@ import org.ntqqrev.saltify.packet.common.SsoSecureInfo
 import org.ntqqrev.saltify.util.binary.*
 import org.ntqqrev.saltify.util.crypto.TEA
 import org.ntqqrev.saltify.util.generateTrace
-import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
 import java.util.zip.InflaterInputStream
 import kotlin.io.use
@@ -82,13 +82,13 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
         "OidbSvcTrpcTcp.0x6d9_4"
     )
 
-    private val logger = LoggerFactory.getLogger(SsoContext::class.java)
+    private val logger = KotlinLogging.logger {  }
 
     suspend fun connect() {
         val s = socket.connect(host, port)
         input = s.openReadChannel()
         output = s.openWriteChannel(autoFlush = true)
-        logger.info("Connected to $host:$port")
+        logger.info { "Connected to $host:$port" }
         connected = true
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -111,7 +111,7 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
         pending[sequence] = deferred
 
         output.writePacket(service)
-        logger.debug("Sent packet '$cmd' with sequence $sequence")
+        logger.debug { "Sent packet '$cmd' with sequence $sequence" }
 
         return deferred.await()
     }
@@ -124,7 +124,7 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
                 val packet = input.readByteArray(packetLength.toInt() - 4)
                 val service = parseService(packet)
                 val sso = parseSso(service)
-                logger.debug("Received packet '${sso.command}' with sequence ${sso.sequence} (retcode=${sso.retCode})")
+                logger.debug { "Received packet '${sso.command}' with sequence ${sso.sequence} (retcode=${sso.retCode})" }
                 pending.remove(sso.sequence).also {
                     if (it != null) {
                         it.complete(sso)
@@ -133,7 +133,7 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
                     }
                 }
             } catch (e: Exception) {
-                logger.error("Error receiving packet", e)
+                logger.error(e) { "Error receiving packet" }
             }
         }
     }

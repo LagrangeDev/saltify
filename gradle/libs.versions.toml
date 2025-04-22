@@ -8,7 +8,7 @@ ktor = "3.1.2"
 kotlinxDatetime = "0.6.1"
 kotlinxSerialization = "1.8.1"
 kotlinxCoroutines = "1.9.0"
-slf4j = "2.0.17"
+kotlinLogging = "7.0.7"
 logbackClassic = "1.5.18"
 
 [libraries]
@@ -26,7 +26,7 @@ kotlinxSerializationJSON = { module = "org.jetbrains.kotlinx:kotlinx-serializati
 kotlinxSerializationProtobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinxSerialization" }
 kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 
-slf4jApi = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+kotlinLogging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
 logbackClassic = { module = "ch.qos.logback:logback-classic", version.ref = "logbackClassic" }
 
 # Libraries can be bundled together for easier import
@@ -44,8 +44,8 @@ kotlinxEcosystem = [
     "kotlinxSerializationJSON",
     "kotlinxCoroutines"
 ]
-slf4j = [
-    "slf4jApi",
+logging = [
+    "kotlinLogging",
     "logbackClassic"
 ]
 
