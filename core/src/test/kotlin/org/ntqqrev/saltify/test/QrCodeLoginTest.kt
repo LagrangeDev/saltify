@@ -4,8 +4,10 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 import org.ntqqrev.saltify.BotContext
 import org.ntqqrev.saltify.common.Keystore
+import org.ntqqrev.saltify.operation.system.DoWtLogin
 import org.ntqqrev.saltify.operation.system.FetchQrCode
 import org.ntqqrev.saltify.operation.system.QueryQrCodeState
 import org.ntqqrev.saltify.packet.login.QrCodeState
@@ -15,7 +17,7 @@ import kotlin.io.path.writeBytes
 
 private val logger = KotlinLogging.logger {  }
 
-suspend fun main() = coroutineScope {
+suspend fun main(): Unit = coroutineScope {
     val signApiUrl = "https://sign.lagrangecore.org/api/sign/30366"
     val urlSignProvider = UrlSignProvider(signApiUrl)
     val appInfo = urlSignProvider.getAppInfo()
@@ -45,4 +47,11 @@ suspend fun main() = coroutineScope {
         delay(3000)
     }
     logger.info { "QR code has been confirmed" }
+
+    val loginSuccess = bot.callOperation(DoWtLogin)
+    if (!loginSuccess) {
+        logger.error { "Login failed" }
+        return@coroutineScope
+    }
+    logger.info { "Credentials retrieved: ${Json.encodeToString(bot.keystore)}" }
 }
