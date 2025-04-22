@@ -3,8 +3,6 @@ package org.ntqqrev.saltify.packet.login
 import io.ktor.utils.io.core.*
 import kotlinx.io.*
 import kotlinx.io.Buffer
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
 import org.ntqqrev.saltify.BotContext
 import org.ntqqrev.saltify.util.binary.*
 
