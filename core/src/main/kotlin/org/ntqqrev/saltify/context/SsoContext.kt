@@ -13,8 +13,6 @@ import kotlinx.io.Buffer
 import kotlinx.io.readByteArray
 import kotlinx.io.readUInt
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.encodeToByteArray
-import kotlinx.serialization.protobuf.ProtoBuf
 import org.ntqqrev.saltify.BotContext
 import org.ntqqrev.saltify.common.SignResult
 import org.ntqqrev.saltify.packet.SsoResponse
@@ -184,7 +182,7 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
             signResult = bot.signProvider.sign(command, sequence, payload)
         }
 
-        val ssoReservedFields = SsoReservedFields(
+        return SsoReservedFields(
             trace = generateTrace(),
             uid = bot.keystore.uid,
             secureInfo = if (signResult != null) SsoSecureInfo(
@@ -192,9 +190,7 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
                 token = signResult.token,
                 extra = signResult.extra
             ) else null
-        )
-
-        return ProtoBuf.encodeToByteArray(ssoReservedFields)
+        ).pb()
     }
 
     private fun parseSso(packet: ByteArray): SsoResponse {

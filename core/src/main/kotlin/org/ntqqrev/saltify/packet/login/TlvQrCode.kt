@@ -4,14 +4,9 @@ import io.ktor.utils.io.core.*
 import kotlinx.io.*
 import kotlinx.io.Buffer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToByteArray
-import kotlinx.serialization.protobuf.ProtoBuf
 import kotlinx.serialization.protobuf.ProtoNumber
 import org.ntqqrev.saltify.BotContext
-import org.ntqqrev.saltify.util.binary.Prefix
-import org.ntqqrev.saltify.util.binary.barrier
-import org.ntqqrev.saltify.util.binary.fromHex
-import org.ntqqrev.saltify.util.binary.writeString
+import org.ntqqrev.saltify.util.binary.*
 
 internal class TlvQrCode(val bot: BotContext) {
 
@@ -61,15 +56,13 @@ internal class TlvQrCode(val bot: BotContext) {
 
     fun tlvD1() = defineTlv(0xd1u) {
         writeFully(
-            ProtoBuf.encodeToByteArray<TlvQrCodeD1Body>(
-                TlvQrCodeD1Body(
-                    system = TlvQrCodeD1BodySystem(
-                        os = bot.appInfo.os,
-                        deviceName = bot.keystore.deviceName,
-                    ),
-                    typeBuf = "3001".fromHex()
-                )
-            )
+            TlvQrCodeD1Body(
+                system = TlvQrCodeD1BodySystem(
+                    os = bot.appInfo.os,
+                    deviceName = bot.keystore.deviceName,
+                ),
+                typeBuf = "3001".fromHex()
+            ).pb()
         )
     }
 

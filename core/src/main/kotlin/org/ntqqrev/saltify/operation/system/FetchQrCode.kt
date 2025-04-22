@@ -1,10 +1,9 @@
 package org.ntqqrev.saltify.operation.system
 
-import kotlinx.serialization.decodeFromByteArray
-import kotlinx.serialization.protobuf.ProtoBuf
 import org.ntqqrev.saltify.BotContext
 import org.ntqqrev.saltify.operation.NoInputOperation
 import org.ntqqrev.saltify.packet.login.TlvQrCodeD1ResponseBody
+import org.ntqqrev.saltify.util.binary.pb
 
 class FetchQrCodeResult(
     val qrCodeUrl: String,
@@ -18,9 +17,7 @@ object FetchQrCode : NoInputOperation<FetchQrCodeResult> {
 
     override fun parse(bot: BotContext, payload: ByteArray): FetchQrCodeResult {
         val response = bot.wtLoginContext.parseTransEmp0x31(payload)
-        val respD1Body = ProtoBuf.decodeFromByteArray<TlvQrCodeD1ResponseBody>(
-            response.getValue(0xD1u)
-        )
+        val respD1Body = response.getValue(0xD1u).pb<TlvQrCodeD1ResponseBody>()
         return FetchQrCodeResult(
             qrCodeUrl = respD1Body.qrCodeUrl,
             qrCodePng = response.getValue(0x17u)

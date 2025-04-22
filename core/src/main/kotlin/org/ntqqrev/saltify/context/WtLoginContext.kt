@@ -3,8 +3,6 @@ package org.ntqqrev.saltify.context
 import io.ktor.utils.io.core.*
 import kotlinx.io.*
 import kotlinx.io.Buffer
-import kotlinx.serialization.decodeFromByteArray
-import kotlinx.serialization.protobuf.ProtoBuf
 import org.ntqqrev.saltify.BotContext
 import org.ntqqrev.saltify.packet.login.QrCodeState
 import org.ntqqrev.saltify.packet.login.Tlv
@@ -141,8 +139,7 @@ internal class WtLoginContext(bot: BotContext) : Context(bot) {
             )
             bot.keystore.apply {
                 d2Key = tlvPack[0x305u]!!
-                uid = ProtoBuf.decodeFromByteArray<Tlv543Body>(tlvPack[0x543u]!!)
-                    .layer1.layer2.uid
+                uid = tlvPack[0x543u]!!.pb<Tlv543Body>().layer1.layer2.uid
                 a2 = tlvPack[0x10Au]!!
                 d2 = tlvPack[0x143u]!!
                 encryptedA1 = tlvPack[0x106u]!!
