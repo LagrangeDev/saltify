@@ -1,7 +1,7 @@
 package org.ntqqrev.saltify.api.event.request
 
 import org.ntqqrev.saltify.api.Context
-import java.time.Instant
+import kotlinx.datetime.Instant
 
 /**
  * Someone requests to join the group.

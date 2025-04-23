@@ -3,7 +3,7 @@ package org.ntqqrev.saltify.api.event.friend
 import org.ntqqrev.saltify.api.Context
 import org.ntqqrev.saltify.api.model.Friend
 import org.ntqqrev.saltify.api.event.Event
-import java.time.Instant
+import kotlinx.datetime.Instant
 
 abstract class AbstractFriendEvent(
     ctx: Context,

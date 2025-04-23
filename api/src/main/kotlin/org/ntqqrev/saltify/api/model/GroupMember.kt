@@ -1,6 +1,6 @@
 package org.ntqqrev.saltify.api.model
 
-import java.time.Instant
+import kotlinx.datetime.Instant
 
 interface GroupMember : User {
     /**

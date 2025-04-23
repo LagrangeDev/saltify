@@ -3,7 +3,7 @@ package org.ntqqrev.saltify.api.event.group
 import org.ntqqrev.saltify.api.Context
 import org.ntqqrev.saltify.api.model.Group
 import org.ntqqrev.saltify.api.event.Event
-import java.time.Instant
+import kotlinx.datetime.Instant
 
 abstract class AbstractGroupEvent(
     ctx: Context,

@@ -10,4 +10,5 @@ kotlin.sourceSets.all {
 
 dependencies {
     compileOnly(libs.kotlinxCoroutines)
+    compileOnly(libs.kotlinxDatetime)
 }

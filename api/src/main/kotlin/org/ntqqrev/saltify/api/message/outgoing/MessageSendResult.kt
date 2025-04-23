@@ -1,7 +1,7 @@
 package org.ntqqrev.saltify.api.message.outgoing
 
 import org.ntqqrev.saltify.api.Entity
-import java.time.Instant
+import kotlinx.datetime.Instant
 
 interface MessageSendResult : Entity {
     /**
@@ -12,5 +12,5 @@ interface MessageSendResult : Entity {
     /**
      * The time when the message was sent.
      */
-    val instant: Instant
+    val time: Instant
 }

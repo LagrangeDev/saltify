@@ -10,4 +10,4 @@ open class MessageReceiveEvent(
      * The message that was received.
      */
     val message: IncomingMessage
-) : AbstractMessageEvent(ctx, message.instant, message.messageId)
+) : AbstractMessageEvent(ctx, message.time, message.messageId)

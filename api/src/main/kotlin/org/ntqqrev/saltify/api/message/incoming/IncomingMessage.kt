@@ -2,7 +2,7 @@ package org.ntqqrev.saltify.api.message.incoming
 
 import org.ntqqrev.saltify.api.Entity
 import org.ntqqrev.saltify.api.message.incoming.segment.Segment
-import java.time.Instant
+import kotlinx.datetime.Instant
 
 interface IncomingMessage : Entity {
     /**
@@ -13,7 +13,7 @@ interface IncomingMessage : Entity {
     /**
      * The time when the message was sent.
      */
-    val instant: Instant
+    val time: Instant
 
     /**
      * The content of the message.

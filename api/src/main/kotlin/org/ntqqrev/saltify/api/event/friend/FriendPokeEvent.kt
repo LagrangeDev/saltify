@@ -2,7 +2,7 @@ package org.ntqqrev.saltify.api.event.friend
 
 import org.ntqqrev.saltify.api.Context
 import org.ntqqrev.saltify.api.model.Friend
-import java.time.Instant
+import kotlinx.datetime.Instant
 
 open class FriendPokeEvent(
     ctx: Context,
