@@ -6,16 +6,6 @@ import org.ntqqrev.saltify.api.model.GroupAnnouncement
 
 interface GroupAction {
     /**
-     * Get all groups.
-     */
-    suspend fun getAllGroups(): Iterable<Group>
-
-    /**
-     * Get a group by its uin.
-     */
-    suspend fun getGroup(groupUin: Long): Group?
-
-    /**
      * Get all group members from a group.
      */
     suspend fun getGroupMembers(groupUin: Long): Iterable<GroupMember>
@@ -44,6 +34,12 @@ interface GroupAction {
      * Set the card of a group member.
      */
     suspend fun setGroupMemberCard(groupUin: Long, memberUin: Long, card: String)
+
+    /**
+     * Set the special title of a group member.
+     * @param title The special title. If it is empty, the special title will be removed.
+     */
+    suspend fun setGroupMemberSpecialTitle(groupUin: Long, memberUin: Long, title: String)
 
     /**
      * Set the group member to be an admin or not.

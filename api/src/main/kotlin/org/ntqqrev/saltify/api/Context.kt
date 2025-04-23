@@ -4,11 +4,12 @@ import org.ntqqrev.saltify.api.action.ContextAction
 import org.ntqqrev.saltify.api.action.GroupAction
 import org.ntqqrev.saltify.api.action.MessageAction
 import org.ntqqrev.saltify.api.action.RequestAction
+import org.ntqqrev.saltify.api.action.UserAction
 
 /**
  * The context object, which represents the bot itself.
  */
-interface Context : ContextAction, MessageAction, GroupAction, RequestAction {
+interface Context : ContextAction, MessageAction, UserAction, GroupAction, RequestAction {
     /**
      * The uin of the bot.
      */

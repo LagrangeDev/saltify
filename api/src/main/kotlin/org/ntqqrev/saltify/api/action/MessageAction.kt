@@ -1,7 +1,5 @@
 package org.ntqqrev.saltify.api.action
 
-import org.ntqqrev.saltify.api.model.Group
-import org.ntqqrev.saltify.api.model.User
 import org.ntqqrev.saltify.api.message.incoming.ForwardedIncomingMessage
 import org.ntqqrev.saltify.api.message.incoming.GroupIncomingMessage
 import org.ntqqrev.saltify.api.message.incoming.IncomingMessage
@@ -51,6 +49,16 @@ interface MessageAction {
      * @return true if the message was recalled successfully, false otherwise.
      */
     suspend fun recallMessage(incomingMessage: IncomingMessage): Boolean
+
+    /**
+     * Send a poke to a user.
+     */
+    suspend fun sendPrivatePoke(userUin: Long)
+
+    /**
+     * Send a poke to a group.
+     */
+    suspend fun sendGroupPoke(groupUin: Long, memberUin: Long)
 
     /**
      * Add / delete a reaction to a **group** message.
