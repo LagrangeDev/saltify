@@ -9,4 +9,5 @@ kotlin.sourceSets.all {
 }
 
 dependencies {
+    compileOnly(libs.kotlinxCoroutines)
 }
