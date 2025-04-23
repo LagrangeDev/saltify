@@ -1,15 +1,11 @@
 package org.ntqqrev.saltify.api
 
-import org.ntqqrev.saltify.api.action.ContextAction
-import org.ntqqrev.saltify.api.action.GroupAction
-import org.ntqqrev.saltify.api.action.MessageAction
-import org.ntqqrev.saltify.api.action.RequestAction
-import org.ntqqrev.saltify.api.action.UserAction
+import org.ntqqrev.saltify.api.action.*
 
 /**
  * The context object, which represents the bot itself.
  */
-interface Context : ContextAction, MessageAction, UserAction, GroupAction, RequestAction {
+interface Context : ContextAction, MessageAction, UserAction, GroupAction, RequestAction, FileAction {
     /**
      * The uin of the bot.
      */
