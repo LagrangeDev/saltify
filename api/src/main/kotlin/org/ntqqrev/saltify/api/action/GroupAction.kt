@@ -1,8 +1,7 @@
 package org.ntqqrev.saltify.api.action
 
-import org.ntqqrev.saltify.api.model.Group
 import org.ntqqrev.saltify.api.model.GroupMember
-import org.ntqqrev.saltify.api.model.GroupAnnouncement
+import org.ntqqrev.saltify.api.model.group.Announcement
 
 interface GroupAction {
     /**
@@ -18,7 +17,7 @@ interface GroupAction {
     /**
      * Get all announcements from a group.
      */
-    suspend fun getGroupAnnouncements(groupUin: Long): List<GroupAnnouncement>
+    suspend fun getGroupAnnouncements(groupUin: Long): List<Announcement>
 
     /**
      * Set the name of a group.

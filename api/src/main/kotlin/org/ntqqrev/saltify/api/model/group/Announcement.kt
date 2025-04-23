@@ -1,8 +1,9 @@
-package org.ntqqrev.saltify.api.model
+package org.ntqqrev.saltify.api.model.group
 
 import kotlinx.datetime.Instant
+import org.ntqqrev.saltify.api.model.Group
 
-interface GroupAnnouncement {
+interface Announcement {
     /**
      * The group the announcement belongs to.
      */
