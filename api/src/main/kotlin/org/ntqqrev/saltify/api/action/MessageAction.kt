@@ -14,12 +14,12 @@ interface MessageAction {
     /**
      * Send a private message to a user.
      */
-    suspend fun sendPrivateMessage(peer: User, builder: PrivateMessageBuilder.() -> Unit): MessageSendResult
+    suspend fun sendPrivateMessage(userUin: Long, builder: PrivateMessageBuilder.() -> Unit): MessageSendResult
 
     /**
      * Send a group message to a group.
      */
-    suspend fun sendGroupMessage(peer: Group, builder: GroupMessageBuilder.() -> Unit): MessageSendResult
+    suspend fun sendGroupMessage(groupUin: Long, builder: GroupMessageBuilder.() -> Unit): MessageSendResult
 
     /**
      * Get a message by its ID.
@@ -29,12 +29,12 @@ interface MessageAction {
     /**
      * Get some history messages from a user, starting from a specific message ID.
      */
-    suspend fun getHistoryPrivateMessage(peer: User, startId: String, count: Int): List<PrivateIncomingMessage>
+    suspend fun getHistoryPrivateMessage(userUin: Long, startId: String, count: Int): List<PrivateIncomingMessage>
 
     /**
      * Get some history messages from a group, starting from a specific message ID.
      */
-    suspend fun getHistoryGroupMessage(peer: Group, startId: String, count: Int): List<GroupIncomingMessage>
+    suspend fun getHistoryGroupMessage(groupUin: Long, startId: String, count: Int): List<GroupIncomingMessage>
 
     /**
      * Get a URL for a resource.
