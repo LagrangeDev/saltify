@@ -7,7 +7,7 @@ interface FileAction {
     /**
      * Upload a file to the specified user.
      */
-    suspend fun uploadPrivateFile(userUin: Long, file: ByteArray): String
+    suspend fun uploadPrivateFile(userUin: Long, file: kotlinx.io.Source): String
 
     /**
      * Get the download URL of a private file.
@@ -18,7 +18,7 @@ interface FileAction {
      * Upload a file to the specified group.
      * @return The uploaded file ID
      */
-    suspend fun uploadGroupFile(groupUin: Long, file: ByteArray, parentFolderId: String = "/"): String
+    suspend fun uploadGroupFile(groupUin: Long, file: kotlinx.io.Source, parentFolderId: String = "/"): String
 
     /**
      * Upload a file to the specified group.

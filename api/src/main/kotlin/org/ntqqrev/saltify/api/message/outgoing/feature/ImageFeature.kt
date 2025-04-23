@@ -6,5 +6,5 @@ interface ImageFeature {
     /**
      * Create an image segment.
      */
-    fun image(raw: ByteArray, subType: ImageSubType?, summary: String?)
+    fun image(raw: kotlinx.io.Source, subType: ImageSubType?, summary: String?)
 }

@@ -4,5 +4,5 @@ interface VideoFeature {
     /**
      * Create a video segment with custom cover (if provided).
      */
-    fun video(raw: ByteArray, cover: ByteArray?)
+    fun video(raw: kotlinx.io.Source, cover: kotlinx.io.Source?)
 }

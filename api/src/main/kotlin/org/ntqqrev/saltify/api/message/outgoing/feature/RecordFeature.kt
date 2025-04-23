@@ -4,5 +4,5 @@ interface RecordFeature {
     /**
      * Create a record segment.
      */
-    fun record(raw: ByteArray)
+    fun record(raw: kotlinx.io.Source)
 }

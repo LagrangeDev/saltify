@@ -9,6 +9,5 @@ kotlin.sourceSets.all {
 }
 
 dependencies {
-    compileOnly(libs.kotlinxCoroutines)
-    compileOnly(libs.kotlinxDatetime)
+    compileOnly(libs.bundles.kotlinxEcosystem)
 }

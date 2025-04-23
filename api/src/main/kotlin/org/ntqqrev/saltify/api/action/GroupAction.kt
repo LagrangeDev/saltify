@@ -27,7 +27,7 @@ interface GroupAction {
     /**
      * Set the avatar of a group.
      */
-    suspend fun setGroupAvatar(groupUin: Long, image: ByteArray)
+    suspend fun setGroupAvatar(groupUin: Long, image: kotlinx.io.Source)
 
     /**
      * Set the card of a group member.
@@ -67,7 +67,7 @@ interface GroupAction {
     /**
      * Send an announcement to a group.
      */
-    suspend fun sendGroupAnnouncement(groupUin: Long, content: String, image: ByteArray?)
+    suspend fun sendGroupAnnouncement(groupUin: Long, content: String, image: kotlinx.io.Source?)
 
     /**
      * Delete an announcement from a group.

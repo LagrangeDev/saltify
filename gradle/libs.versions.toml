@@ -6,6 +6,7 @@
 kotlin = "2.1.20"
 ktor = "3.1.2"
 kotlinxDatetime = "0.6.1"
+kotlinxIOCore = "0.7.0"
 kotlinxSerialization = "1.8.1"
 kotlinxCoroutines = "1.9.0"
 kotlinLogging = "7.0.7"
@@ -25,6 +26,7 @@ kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.r
 kotlinxSerializationJSON = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 kotlinxSerializationProtobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "kotlinxSerialization" }
 kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinxIOCore = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinxIOCore" }
 
 kotlinLogging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
 logbackClassic = { module = "ch.qos.logback:logback-classic", version.ref = "logbackClassic" }
@@ -42,7 +44,8 @@ ktorEcosystem = [
 kotlinxEcosystem = [
     "kotlinxDatetime",
     "kotlinxSerializationJSON",
-    "kotlinxCoroutines"
+    "kotlinxCoroutines",
+    "kotlinxIOCore",
 ]
 logging = [
     "kotlinLogging",
