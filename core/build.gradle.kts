@@ -12,7 +12,10 @@ kotlin.sourceSets.all {
 
 dependencies {
     implementation(libs.bundles.ktorEcosystem)
-    implementation(libs.bundles.kotlinxEcosystem)
     implementation(libs.kotlinxSerializationProtobuf)
-    implementation(libs.bundles.logging)
+
+    compileOnly(libs.bundles.kotlinxEcosystem)
+    compileOnly(libs.kotlinLogging)
+    testImplementation(libs.bundles.kotlinxEcosystem)
+    testImplementation(libs.bundles.logging)
 }
