@@ -1,8 +1,6 @@
-# Saltify
+# saltify-lagrange
 
-A Kotlin Implementation of NTQQ PC Protocol.
-
-The project name comes from the rhythm game _maimai DX_ character, Salt.
+A Kotlin Implementation of NTQQ PC Protocol, integrated into Saltify.
 
 ## Special Thanks
 
