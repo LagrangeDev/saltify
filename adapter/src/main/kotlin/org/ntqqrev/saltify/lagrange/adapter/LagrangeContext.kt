@@ -1,15 +1,19 @@
 package org.ntqqrev.saltify.lagrange.adapter
 
+import kotlinx.coroutines.flow.MutableSharedFlow
+import org.ntqqrev.saltify.api.Environment
 import org.ntqqrev.saltify.api.context.Context
-import org.ntqqrev.saltify.api.context.action.FileAction
-import org.ntqqrev.saltify.api.context.action.GroupAction
-import org.ntqqrev.saltify.api.context.action.MessageAction
-import org.ntqqrev.saltify.api.context.action.RequestAction
-import org.ntqqrev.saltify.api.context.action.UserAction
+import org.ntqqrev.saltify.api.context.action.*
+import org.ntqqrev.saltify.api.context.event.Event
 import org.ntqqrev.saltify.api.context.model.Friend
 import org.ntqqrev.saltify.api.context.model.Group
+import org.ntqqrev.saltify.lagrange.BotContext
 
 class LagrangeContext(
+    val lagrange: BotContext,
+    val init: LagrangeInit,
+    val env: Environment,
+    val channel: MutableSharedFlow<Event>,
     messageActionImpl: MessageAction,
     userActionImpl: UserAction,
     groupActionImpl: GroupAction,
