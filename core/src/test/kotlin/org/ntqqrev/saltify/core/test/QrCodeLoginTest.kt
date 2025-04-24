@@ -1,19 +1,17 @@
-package org.ntqqrev.saltify.test
+package org.ntqqrev.saltify.core.test
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
-import org.ntqqrev.saltify.BotContext
-import org.ntqqrev.saltify.common.Keystore
-import org.ntqqrev.saltify.operation.system.BotOnline
-import org.ntqqrev.saltify.operation.system.DoWtLogin
-import org.ntqqrev.saltify.operation.system.FetchQrCode
-import org.ntqqrev.saltify.operation.system.QueryQrCodeState
-import org.ntqqrev.saltify.packet.login.QrCodeState
-import org.ntqqrev.saltify.util.UrlSignProvider
-import kotlin.io.path.Path
+import org.ntqqrev.saltify.core.BotContext
+import org.ntqqrev.saltify.core.common.Keystore
+import org.ntqqrev.saltify.core.operation.system.BotOnline
+import org.ntqqrev.saltify.core.operation.system.DoWtLogin
+import org.ntqqrev.saltify.core.operation.system.FetchQrCode
+import org.ntqqrev.saltify.core.operation.system.QueryQrCodeState
+import org.ntqqrev.saltify.core.packet.login.QrCodeState
 import kotlin.io.path.writeBytes
 
 private val logger = KotlinLogging.logger {  }

@@ -1,13 +1,13 @@
-package org.ntqqrev.saltify.test
+package org.ntqqrev.saltify.core.test
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
-import org.ntqqrev.saltify.BotContext
-import org.ntqqrev.saltify.common.Keystore
-import org.ntqqrev.saltify.operation.system.BotOnline
+import org.ntqqrev.saltify.core.BotContext
+import org.ntqqrev.saltify.core.common.Keystore
+import org.ntqqrev.saltify.core.operation.system.BotOnline
 
 private val logger = KotlinLogging.logger {  }
 

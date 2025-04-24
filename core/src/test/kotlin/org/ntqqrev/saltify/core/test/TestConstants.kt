@@ -1,6 +1,6 @@
-package org.ntqqrev.saltify.test
+package org.ntqqrev.saltify.core.test
 
-import org.ntqqrev.saltify.util.UrlSignProvider
+import org.ntqqrev.saltify.core.util.UrlSignProvider
 import java.nio.file.Path
 import kotlin.io.path.Path
 
