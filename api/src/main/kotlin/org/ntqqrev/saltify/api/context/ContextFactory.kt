@@ -1,8 +1,8 @@
 package org.ntqqrev.saltify.api.context
 
 import kotlinx.coroutines.flow.MutableSharedFlow
+import org.ntqqrev.saltify.api.Environment
 import org.ntqqrev.saltify.api.context.event.Event
-import kotlin.coroutines.CoroutineContext
 
 interface ContextFactory<T> {
     /**
@@ -14,7 +14,7 @@ interface ContextFactory<T> {
      */
     suspend fun createContext(
         init: T,
-        coroutineContext: CoroutineContext,
+        env: Environment,
         channel: MutableSharedFlow<Event>
     ): Context
 }

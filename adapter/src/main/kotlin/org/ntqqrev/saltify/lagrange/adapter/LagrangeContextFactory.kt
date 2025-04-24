@@ -1,17 +1,16 @@
 package org.ntqqrev.saltify.lagrange.adapter
 
 import kotlinx.coroutines.flow.MutableSharedFlow
-import org.ntqqrev.saltify.api.context.Context
+import org.ntqqrev.saltify.api.Environment
 import org.ntqqrev.saltify.api.context.ContextFactory
 import org.ntqqrev.saltify.api.context.event.Event
-import kotlin.coroutines.CoroutineContext
 
 class LagrangeContextFactory : ContextFactory<LagrangeInit> {
     override suspend fun createContext(
         init: LagrangeInit,
-        coroutineContext: CoroutineContext,
+        env: Environment,
         channel: MutableSharedFlow<Event>
-    ): Context {
+    ): LagrangeContext {
         TODO("Not yet implemented")
     }
 }
