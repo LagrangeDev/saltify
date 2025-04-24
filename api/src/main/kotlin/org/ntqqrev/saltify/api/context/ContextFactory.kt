@@ -10,9 +10,9 @@ interface ContextFactory<T> {
      * All async operations should be done in the given coroutine context.
      * The context may push events to the given channel.
      *
-     * This function is not `suspend`, and should not "start" the context.
+     * This function should not "start" the context.
      */
-    fun createContext(
+    suspend fun createContext(
         init: T,
         coroutineContext: CoroutineContext,
         channel: MutableSharedFlow<Event>
