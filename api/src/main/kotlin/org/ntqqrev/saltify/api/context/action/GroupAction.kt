@@ -8,12 +8,12 @@ interface GroupAction {
     /**
      * Get all group members from a group.
      */
-    suspend fun getGroupMembers(groupUin: Long): Iterable<GroupMember>
+    suspend fun getGroupMembers(groupUin: Long, cacheFirst: Boolean = true): Iterable<GroupMember>
 
     /**
      * Get a group member by its uin.
      */
-    suspend fun getGroupMember(groupUin: Long, memberUin: Long): GroupMember?
+    suspend fun getGroupMember(groupUin: Long, memberUin: Long, cacheFirst: Boolean = true): GroupMember?
 
     /**
      * Get all announcements from a group.

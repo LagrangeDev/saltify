@@ -27,19 +27,19 @@ class LagrangeContext(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getAllFriends(): Iterable<Friend> {
+    override suspend fun getAllFriends(cacheFirst: Boolean): Iterable<Friend> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getFriend(friendUin: Long): Friend? {
+    override suspend fun getFriend(friendUin: Long, cacheFirst: Boolean): Friend? {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getAllGroups(): Iterable<Group> {
+    override suspend fun getAllGroups(cacheFirst: Boolean): Iterable<Group> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroup(groupUin: Long): Group? {
+    override suspend fun getGroup(groupUin: Long, cacheFirst: Boolean): Group? {
         TODO("Not yet implemented")
     }
 

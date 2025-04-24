@@ -12,22 +12,22 @@ interface ContextAction {
     /**
      * Get all friends.
      */
-    suspend fun getAllFriends(): Iterable<Friend>
+    suspend fun getAllFriends(cacheFirst: Boolean = true): Iterable<Friend>
 
     /**
      * Get a friend by its uin.
      */
-    suspend fun getFriend(friendUin: Long): Friend?
+    suspend fun getFriend(friendUin: Long, cacheFirst: Boolean = true): Friend?
 
     /**
      * Get all groups.
      */
-    suspend fun getAllGroups(): Iterable<Group>
+    suspend fun getAllGroups(cacheFirst: Boolean = true): Iterable<Group>
 
     /**
      * Get a group by its uin.
      */
-    suspend fun getGroup(groupUin: Long): Group?
+    suspend fun getGroup(groupUin: Long, cacheFirst: Boolean = true): Group?
 
     /**
      * The stopping logic of the context.
