@@ -12,5 +12,6 @@ plugins {
 
 include(":api")
 include(":core")
+include(":adapter")
 
 rootProject.name = "saltify-lagrange"
