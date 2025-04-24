@@ -1,9 +1,9 @@
 package org.ntqqrev.saltify.lagrange.test
 
 import io.github.oshai.kotlinlogging.KotlinLogging
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.common.Keystore
@@ -16,9 +16,14 @@ import kotlin.io.path.writeBytes
 
 private val logger = KotlinLogging.logger {  }
 
-suspend fun main(): Unit = coroutineScope {
+fun main() = runBlocking(testContext) {
     val appInfo = urlSignProvider.getAppInfo()
-    val bot = BotContext(appInfo!!, Keystore.generateEmptyKeystore(), urlSignProvider)
+    val bot = BotContext(
+        appInfo!!,
+        Keystore.generateEmptyKeystore(),
+        urlSignProvider,
+        coroutineContext
+    )
     bot.ssoContext.connect()
 
     if (!dataPath.toFile().exists()) {
@@ -47,7 +52,7 @@ suspend fun main(): Unit = coroutineScope {
     val loginSuccess = bot.callOperation(DoWtLogin)
     if (!loginSuccess) {
         logger.error { "Login failed" }
-        return@coroutineScope
+        return@runBlocking
     }
     launch {
         keystorePath.writeBytes(Json.encodeToString(bot.keystore).toByteArray())
@@ -58,9 +63,8 @@ suspend fun main(): Unit = coroutineScope {
     val onlineResult = bot.callOperation(BotOnline)
     if (!onlineResult) {
         logger.error { "Login failed" }
-        return@coroutineScope
+        return@runBlocking
     }
     logger.info { "Login successful" }
-
     delay(Long.MAX_VALUE)
 }

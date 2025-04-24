@@ -9,11 +9,13 @@ import org.ntqqrev.saltify.lagrange.operation.NoInputOperation
 import org.ntqqrev.saltify.lagrange.operation.Operation
 import org.ntqqrev.saltify.lagrange.util.crypto.ecdh.ECDH
 import org.ntqqrev.saltify.lagrange.util.crypto.ecdh.EllipticCurve
+import kotlin.coroutines.CoroutineContext
 
 class BotContext(
     val appInfo: AppInfo,
     val keystore: Keystore,
-    val signProvider: SignProvider
+    val signProvider: SignProvider,
+    val parentCoroutineContext: CoroutineContext
 ) {
     internal val ssoContext = SsoContext(this)
     internal val wtLoginContext = WtLoginContext(this)

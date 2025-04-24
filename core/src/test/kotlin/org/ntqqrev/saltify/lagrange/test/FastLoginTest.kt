@@ -1,8 +1,10 @@
 package org.ntqqrev.saltify.lagrange.test
 
 import io.github.oshai.kotlinlogging.KotlinLogging
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import org.ntqqrev.saltify.lagrange.BotContext
@@ -11,22 +13,27 @@ import org.ntqqrev.saltify.lagrange.operation.system.BotOnline
 
 private val logger = KotlinLogging.logger {  }
 
-suspend fun main() = coroutineScope {
+fun main() = runBlocking(testContext) {
     val appInfo = urlSignProvider.getAppInfo()
     val keystoreFile = keystorePath.toFile()
     if (!keystoreFile.exists()) {
         logger.error { "Keystore file not found, please run QrCodeLoginTest first" }
-        return@coroutineScope
+        return@runBlocking
     }
 
     val keystore = Json.decodeFromStream<Keystore>(keystoreFile.inputStream())
-    val bot = BotContext(appInfo!!, keystore, urlSignProvider)
+    val bot = BotContext(
+        appInfo!!,
+        keystore,
+        urlSignProvider,
+        Dispatchers.IO + CoroutineName("FastLoginTest")
+    )
     bot.ssoContext.connect()
 
     val onlineResult = bot.callOperation(BotOnline)
     if (!onlineResult) {
         logger.error { "Login failed" }
-        return@coroutineScope
+        return@runBlocking
     }
     logger.info { "Login successful" }
 

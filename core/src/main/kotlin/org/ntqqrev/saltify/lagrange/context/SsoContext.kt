@@ -7,7 +7,6 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.core.writeFully
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.io.Buffer
 import kotlinx.io.readByteArray
@@ -31,7 +30,7 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
     private val host = "msfwifi.3g.qq.com"
     private val port = 8080
 
-    private val selectorManager = ActorSelectorManager(Dispatchers.IO)
+    private val selectorManager = ActorSelectorManager(bot.parentCoroutineContext)
     private val socket = aSocket(selectorManager).tcp()
     private lateinit var input: ByteReadChannel
     private lateinit var output: ByteWriteChannel
@@ -89,7 +88,7 @@ internal class SsoContext(bot: BotContext) : Context(bot) {
         logger.info { "Connected to $host:$port" }
         connected = true
 
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(bot.parentCoroutineContext).launch {
             handleReceiveLoop()
         }
     }
