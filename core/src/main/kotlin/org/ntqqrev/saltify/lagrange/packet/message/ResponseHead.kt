@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-internal class ResponseHead(
+class ResponseHead(
     val fromUin: Long,
     val fromUid: String?,
     val type: Long,

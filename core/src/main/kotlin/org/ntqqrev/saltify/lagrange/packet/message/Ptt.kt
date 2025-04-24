@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-internal class Ptt(
+class Ptt(
     @ProtoNumber(1) val fileType: Int? = null,
     @ProtoNumber(2) val srcUin: Long? = null,
     @ProtoNumber(3) val fileUuid: String? = null,

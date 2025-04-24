@@ -1,6 +1,6 @@
 package org.ntqqrev.saltify.lagrange.packet
 
-internal class SsoResponse(
+class SsoResponse(
     val retCode: Int,
     val command: String,
     val response: ByteArray,

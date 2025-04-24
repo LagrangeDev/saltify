@@ -3,7 +3,7 @@ package org.ntqqrev.saltify.lagrange.packet.message
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal class Attributes(
+class Attributes(
     val codePage: Int,
     val time: Int,
     val random: Int,

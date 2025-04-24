@@ -3,7 +3,7 @@ package org.ntqqrev.saltify.lagrange.packet.common
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal class RegisterInfo(
+class RegisterInfo(
     val guid: String,
     val kickPC: Int = 0,
     val currentVersion: String,

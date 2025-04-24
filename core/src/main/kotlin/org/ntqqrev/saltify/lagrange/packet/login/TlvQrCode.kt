@@ -6,7 +6,7 @@ import kotlinx.io.Buffer
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.util.binary.*
 
-internal class TlvQrCode(val bot: BotContext) {
+class TlvQrCode(val bot: BotContext) {
 
     private val builder = Buffer()
 

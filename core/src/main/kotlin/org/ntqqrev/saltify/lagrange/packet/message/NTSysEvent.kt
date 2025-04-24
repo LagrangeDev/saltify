@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-internal class NTSysEvent(
+class NTSysEvent(
     val ip: String,
     val sid: Long,
     val sub: Sub

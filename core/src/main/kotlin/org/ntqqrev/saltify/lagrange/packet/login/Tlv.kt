@@ -11,7 +11,7 @@ import org.ntqqrev.saltify.lagrange.util.binary.writeString
 import org.ntqqrev.saltify.lagrange.util.crypto.TEA
 import kotlin.random.Random
 
-internal class Tlv(val bot: BotContext) {
+class Tlv(val bot: BotContext) {
     private val builder = Buffer()
 
     private var tlvCount: UShort = 0u

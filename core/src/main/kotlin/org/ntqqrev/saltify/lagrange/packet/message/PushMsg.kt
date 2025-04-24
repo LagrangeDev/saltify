@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-internal class PushMsg(
+class PushMsg(
     @ProtoNumber(1) val message: ByteArray,
     @ProtoNumber(3) val status: Int?,
     @ProtoNumber(4) val ntEvent: NTSysEvent?,

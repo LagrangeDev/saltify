@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-internal class ContentHead(
+class ContentHead(
     @ProtoNumber(1) val type: Long, // 消息类型
     @ProtoNumber(2) val subType: Long?, // 消息子类型（0x211\0x2dc\0x210等系统消息的子类型,取值同 c2c_cmd）
     @ProtoNumber(3) val c2cCmd: Long?, // c2c消息子类型

@@ -3,7 +3,7 @@ package org.ntqqrev.saltify.lagrange.packet.message
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal class RichText(
+class RichText(
     val attributes: Attributes?,
     val elements: List<ByteArray>,
     val notOnlineFile: NotOnlineFile?,

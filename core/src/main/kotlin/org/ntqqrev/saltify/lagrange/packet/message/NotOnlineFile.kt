@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-internal class NotOnlineFile(
+class NotOnlineFile(
     @ProtoNumber(1) val fileType: Int?,
     @ProtoNumber(2) val sig: ByteArray?,
     @ProtoNumber(3) val fileUuid: String?,
