@@ -9,5 +9,5 @@ interface RequestAction {
     /**
      * Reject the request with the given flag, using the given reason or no reason.
      */
-    suspend fun rejectRequest(requestFlag: String, reason: String?)
+    suspend fun rejectRequest(requestFlag: String, reason: String? = null)
 }

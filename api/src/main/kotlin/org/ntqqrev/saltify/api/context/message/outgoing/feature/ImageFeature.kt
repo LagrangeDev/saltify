@@ -7,5 +7,5 @@ interface ImageFeature {
     /**
      * Create an image segment.
      */
-    fun image(raw: InputStream, subType: ImageSubType?, summary: String?)
+    fun image(raw: InputStream, subType: ImageSubType = ImageSubType.NORMAL, summary: String? = "")
 }

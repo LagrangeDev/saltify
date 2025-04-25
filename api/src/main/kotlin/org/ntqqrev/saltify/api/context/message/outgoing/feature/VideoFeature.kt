@@ -6,5 +6,5 @@ interface VideoFeature {
     /**
      * Create a video segment with custom cover (if provided).
      */
-    fun video(raw: InputStream, cover: InputStream?)
+    fun video(raw: InputStream, cover: InputStream? = null)
 }

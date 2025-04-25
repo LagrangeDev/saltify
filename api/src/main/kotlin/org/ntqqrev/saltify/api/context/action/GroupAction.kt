@@ -68,7 +68,7 @@ interface GroupAction {
     /**
      * Send an announcement to a group.
      */
-    suspend fun sendGroupAnnouncement(groupUin: Long, content: String, image: InputStream?)
+    suspend fun sendGroupAnnouncement(groupUin: Long, content: String, image: InputStream? = null)
 
     /**
      * Delete an announcement from a group.
