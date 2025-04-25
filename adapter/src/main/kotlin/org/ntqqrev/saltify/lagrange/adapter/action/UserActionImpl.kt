@@ -1,4 +1,4 @@
-package org.ntqqrev.saltify.lagrange.adapter.impl
+package org.ntqqrev.saltify.lagrange.adapter.action
 
 import org.ntqqrev.saltify.api.context.action.UserAction
 import org.ntqqrev.saltify.lagrange.BotContext
