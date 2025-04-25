@@ -22,7 +22,7 @@ import kotlin.io.path.writeText
 
 private val logger = KotlinLogging.logger { }
 
-class LagrangeContextFactory : ContextFactory<LagrangeInit> {
+object LagrangeContextFactory : ContextFactory<LagrangeInit> {
     val fallbackAppInfo = AppInfo(
         os = "Linux",
         kernel = "Linux",
