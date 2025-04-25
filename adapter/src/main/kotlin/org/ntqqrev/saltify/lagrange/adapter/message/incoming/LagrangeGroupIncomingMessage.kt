@@ -7,7 +7,7 @@ import org.ntqqrev.saltify.api.context.model.Group
 import org.ntqqrev.saltify.api.context.model.GroupMember
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
-import org.ntqqrev.saltify.lagrange.packet.message.PushMsg
+import org.ntqqrev.saltify.lagrange.packet.message.PushMsgBody
 
 class LagrangeGroupIncomingMessage(
     time: Instant,
@@ -19,7 +19,7 @@ class LagrangeGroupIncomingMessage(
     override val sender: GroupMember,
 ) : LagrangeIncomingMessage(time, ctx, messageType, peerUin, sequence), GroupIncomingMessage {
     companion object {
-        suspend fun create(ctx: LagrangeContext, pushMsg: PushMsg) {
+        suspend fun create(ctx: LagrangeContext, raw: PushMsgBody) {
 
         }
     }
