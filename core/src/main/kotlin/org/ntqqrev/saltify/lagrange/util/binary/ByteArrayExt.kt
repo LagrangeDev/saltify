@@ -28,9 +28,9 @@ internal fun String.fromHex(): ByteArray {
     return result
 }
 
-internal inline fun <reified T> T.pb(): ByteArray = ProtoBuf.encodeToByteArray(this)
+inline fun <reified T> T.pb(): ByteArray = ProtoBuf.encodeToByteArray(this)
 
-internal inline fun <reified T> ByteArray.pb(): T = ProtoBuf.decodeFromByteArray<T>(this)
+inline fun <reified T> ByteArray.pb(): T = ProtoBuf.decodeFromByteArray<T>(this)
 
 internal fun ByteArray.writeUInt32BE(value: Long, offset: Int) {
     this[offset] = (value ushr 24).toByte()
