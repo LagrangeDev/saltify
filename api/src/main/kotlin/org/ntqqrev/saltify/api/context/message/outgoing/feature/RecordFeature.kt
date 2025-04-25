@@ -1,10 +1,10 @@
 package org.ntqqrev.saltify.api.context.message.outgoing.feature
 
-import kotlinx.io.Source
+import java.io.InputStream
 
 interface RecordFeature {
     /**
      * Create a record segment.
      */
-    fun record(raw: Source)
+    fun record(raw: InputStream)
 }

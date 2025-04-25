@@ -1,8 +1,8 @@
 package org.ntqqrev.saltify.api.context.action
 
-import kotlinx.io.Source
 import org.ntqqrev.saltify.api.context.model.GroupMember
 import org.ntqqrev.saltify.api.context.model.group.Announcement
+import java.io.InputStream
 
 interface GroupAction {
     /**
@@ -28,7 +28,7 @@ interface GroupAction {
     /**
      * Set the avatar of a group.
      */
-    suspend fun setGroupAvatar(groupUin: Long, image: Source)
+    suspend fun setGroupAvatar(groupUin: Long, image: InputStream)
 
     /**
      * Set the card of a group member.
@@ -68,7 +68,7 @@ interface GroupAction {
     /**
      * Send an announcement to a group.
      */
-    suspend fun sendGroupAnnouncement(groupUin: Long, content: String, image: Source?)
+    suspend fun sendGroupAnnouncement(groupUin: Long, content: String, image: InputStream?)
 
     /**
      * Delete an announcement from a group.

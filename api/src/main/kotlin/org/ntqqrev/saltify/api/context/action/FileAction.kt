@@ -1,14 +1,14 @@
 package org.ntqqrev.saltify.api.context.action
 
-import kotlinx.io.Source
 import org.ntqqrev.saltify.api.context.model.group.FileEntry
 import org.ntqqrev.saltify.api.context.model.group.FileSystemEntry
+import java.io.InputStream
 
 interface FileAction {
     /**
      * Upload a file to the specified user.
      */
-    suspend fun uploadPrivateFile(userUin: Long, file: Source): String
+    suspend fun uploadPrivateFile(userUin: Long, file: InputStream): String
 
     /**
      * Get the download URL of a private file.
@@ -19,7 +19,7 @@ interface FileAction {
      * Upload a file to the specified group.
      * @return The uploaded file ID
      */
-    suspend fun uploadGroupFile(groupUin: Long, file: Source, parentFolderId: String = "/"): String
+    suspend fun uploadGroupFile(groupUin: Long, file: InputStream, parentFolderId: String = "/"): String
 
     /**
      * Upload a file to the specified group.

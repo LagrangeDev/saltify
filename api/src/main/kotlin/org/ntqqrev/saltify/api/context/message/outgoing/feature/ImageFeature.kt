@@ -1,11 +1,11 @@
 package org.ntqqrev.saltify.api.context.message.outgoing.feature
 
-import kotlinx.io.Source
 import org.ntqqrev.saltify.api.context.message.ImageSubType
+import java.io.InputStream
 
 interface ImageFeature {
     /**
      * Create an image segment.
      */
-    fun image(raw: Source, subType: ImageSubType?, summary: String?)
+    fun image(raw: InputStream, subType: ImageSubType?, summary: String?)
 }
