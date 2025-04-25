@@ -49,7 +49,7 @@ class Keystore(
         }
     }
 
-    internal fun clear() {
+    fun clear() {
         a2 = ByteArray(0)
         d2 = ByteArray(0)
         d2Key = ByteArray(16)
