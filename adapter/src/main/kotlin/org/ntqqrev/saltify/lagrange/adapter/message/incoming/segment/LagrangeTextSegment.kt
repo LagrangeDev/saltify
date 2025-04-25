@@ -9,12 +9,9 @@ import org.ntqqrev.saltify.lagrange.packet.message.MessageElement
 class LagrangeTextSegment(message: IncomingMessage, text: String) : TextSegment(message, text) {
     companion object : LagrangeSegmentFactory<TextSegment> {
         override fun tryParse(element: MessageElement, message: LagrangeIncomingMessage): TextSegment? =
-            element.text?.let {
-                return if (it.attr6Buf?.isEmpty() ?: true) LagrangeTextSegment(
-                    message = message,
-                    text = it.str!!
-                ) else null
-            }
+            element.text
+                ?.takeUnless { it.attr6Buf?.isNotEmpty() ?: false }
+                ?.let { LagrangeTextSegment(message, it.str ?: "") }
     }
 
     override fun toString(): String = text

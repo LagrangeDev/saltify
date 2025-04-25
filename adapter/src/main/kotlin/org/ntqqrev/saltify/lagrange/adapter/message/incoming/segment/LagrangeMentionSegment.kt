@@ -11,11 +11,9 @@ class LagrangeMentionSegment(message: IncomingMessage, uin: Long, name: String) 
     companion object : LagrangeSegmentFactory<MentionSegment> {
         override fun tryParse(element: MessageElement, message: LagrangeIncomingMessage): MentionSegment? =
             element.text?.let { text ->
-                return text.mentionExtra?.let {
-                    return if (it.type == 2)
-                        LagrangeMentionSegment(message, it.uin, text.str ?: "")
-                    else null
-                }
+                text.mentionExtra
+                    ?.takeIf { it.type == 2 }
+                    ?.let { LagrangeMentionSegment(message, it.uin, text.str ?: "") }
             }
     }
 
