@@ -7,7 +7,12 @@ open class MentionSegment(
     message: IncomingMessage,
 
     /**
-     * The member to mention; if null, it means to mention all members.
+     * The uin of the mentioned user.
      */
-    val member: GroupMember?
+    val mentionedUin: Long?,
+
+    /**
+     * The name of the mentioned user.
+     */
+    val mentionedName: String?
 ) : Segment(message)
