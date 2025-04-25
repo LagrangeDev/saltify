@@ -17,7 +17,5 @@ class LagrangeTextSegment(message: IncomingMessage, text: String) : TextSegment(
             }
     }
 
-    override fun toString(): String {
-        return text
-    }
+    override fun toString(): String = text
 }
