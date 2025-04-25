@@ -11,7 +11,7 @@ import org.ntqqrev.saltify.lagrange.util.binary.writeBytes
 import org.ntqqrev.saltify.lagrange.util.crypto.TEA
 import kotlin.random.Random
 
-internal class WtLoginContext(bot: BotContext) : Context(bot) {
+class WtLoginContext(bot: BotContext) : Context(bot) {
     private val ecdhKey =
         "04928D8850673088B343264E0C6BACB8496D697799F37211DEB25BB73906CB089FEA9639B4E0260498B51A992D50813DA8".fromHex()
 

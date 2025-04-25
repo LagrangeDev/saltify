@@ -25,7 +25,7 @@ import java.util.zip.InflaterInputStream
 import kotlin.io.use
 import kotlin.random.Random
 
-internal class SsoContext(bot: BotContext) : Context(bot) {
+class SsoContext(bot: BotContext) : Context(bot) {
     private var sequence = Random.nextInt(0x10000, 0x20000)
     private val host = "msfwifi.3g.qq.com"
     private val port = 8080

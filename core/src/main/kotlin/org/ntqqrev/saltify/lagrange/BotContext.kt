@@ -17,8 +17,8 @@ class BotContext(
     val signProvider: SignProvider,
     val parentCoroutineContext: CoroutineContext
 ) {
-    internal val ssoContext = SsoContext(this)
-    internal val wtLoginContext = WtLoginContext(this)
+    val ssoContext = SsoContext(this)
+    val wtLoginContext = WtLoginContext(this)
 
     internal val ecdh192 = ECDH(EllipticCurve.secp192k1)
     internal val ecdh256 = ECDH(EllipticCurve.prime256v1)
