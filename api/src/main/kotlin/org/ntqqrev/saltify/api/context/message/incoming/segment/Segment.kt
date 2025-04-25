@@ -5,9 +5,9 @@ import org.ntqqrev.saltify.api.context.message.incoming.IncomingMessage
 /**
  * Represents part of the content of a message.
  */
-interface Segment {
+abstract class Segment (
     /**
      * The message that this segment belongs to.
      */
     val message: IncomingMessage
-}
+)
