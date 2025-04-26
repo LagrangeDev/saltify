@@ -5,6 +5,7 @@ import org.ntqqrev.saltify.lagrange.common.Keystore
 import org.ntqqrev.saltify.lagrange.common.SignProvider
 import org.ntqqrev.saltify.lagrange.context.SsoContext
 import org.ntqqrev.saltify.lagrange.context.WtLoginContext
+import org.ntqqrev.saltify.lagrange.exception.OperationCallException
 import org.ntqqrev.saltify.lagrange.operation.NoInputOperation
 import org.ntqqrev.saltify.lagrange.operation.Operation
 import org.ntqqrev.saltify.lagrange.util.crypto.ecdh.ECDH
@@ -27,7 +28,11 @@ class BotContext(
         val byteArray = operation.build(this, payload)
         val resp = ssoContext.sendPacket(operation.command, byteArray)
         if (resp.retCode != 0) {
-            throw Exception("Error when calling operation: ${resp.retCode} ${resp.extra}")
+            throw OperationCallException(
+                operation.command,
+                resp.retCode,
+                resp.extra ?: ""
+            )
         }
         return operation.parse(this, resp.response)
     }
