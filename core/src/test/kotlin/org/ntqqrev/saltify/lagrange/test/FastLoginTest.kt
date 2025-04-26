@@ -10,6 +10,7 @@ import kotlinx.serialization.json.decodeFromStream
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.common.Keystore
 import org.ntqqrev.saltify.lagrange.operation.system.BotOnline
+import org.ntqqrev.saltify.lagrange.operation.system.FetchFriends
 
 private val logger = KotlinLogging.logger {  }
 
@@ -36,6 +37,13 @@ fun main() = runBlocking(testContext) {
         return@runBlocking
     }
     logger.info { "Login successful" }
+
+    val friendListResult = bot.callOperation(FetchFriends, FetchFriends.Req(
+        nextUin = null
+    ))
+    logger.info {
+        friendListResult.entries.map { "${it.nickname} (${it.uin})" }
+    }
 
     delay(Long.MAX_VALUE)
 }
