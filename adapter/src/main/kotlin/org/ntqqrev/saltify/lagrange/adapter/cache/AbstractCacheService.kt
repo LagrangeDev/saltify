@@ -7,15 +7,15 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 
-class CacheService<T : CachedEntity<D>, K, D>(
-    val ctx: LagrangeContext,
-    val fetchData: suspend () -> Map<K, D>,
-    val entityFactory: (D) -> T,
-) {
+abstract class AbstractCacheService<T : CachedEntity<D>, K, D>(val ctx: LagrangeContext) {
     val updateMutex = Mutex()
     var currentTask: Deferred<Unit>? = null
 
     var currentCache = emptyMap<K, T>()
+
+    abstract suspend fun fetchData(): Map<K, D>
+
+    abstract fun constructNewEntity(data: D): T
 
     suspend fun get(key: K, cacheFirst: Boolean = true): T? {
         if (key !in currentCache || !cacheFirst) {
@@ -45,7 +45,7 @@ class CacheService<T : CachedEntity<D>, K, D>(
                 currentCache = data.mapValues { (k, v) ->
                     cacheSnapshot[k]?.apply {
                         dataBinding = v
-                    } ?: entityFactory(v)
+                    } ?: constructNewEntity(v)
                 }
             }
 
