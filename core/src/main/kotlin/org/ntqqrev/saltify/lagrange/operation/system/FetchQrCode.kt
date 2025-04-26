@@ -12,12 +12,7 @@ import org.ntqqrev.saltify.lagrange.util.binary.pb
 import org.ntqqrev.saltify.lagrange.util.binary.readPrefixedBytes
 import org.ntqqrev.saltify.lagrange.util.binary.writeBytes
 
-class FetchQrCodeResult(
-    val qrCodeUrl: String,
-    val qrCodePng: ByteArray
-)
-
-object FetchQrCode : NoInputOperation<FetchQrCodeResult> {
+object FetchQrCode : NoInputOperation<FetchQrCode.Result> {
     override val command: String = "wtlogin.trans_emp"
 
     override fun build(bot: BotContext, payload: Unit): ByteArray {
@@ -42,7 +37,7 @@ object FetchQrCode : NoInputOperation<FetchQrCodeResult> {
         return bot.wtLoginContext.buildCode2DPacket(packet.readByteArray(), 0x31u)
     }
 
-    override fun parse(bot: BotContext, payload: ByteArray): FetchQrCodeResult {
+    override fun parse(bot: BotContext, payload: ByteArray): Result {
         val wtlogin = bot.wtLoginContext.parseWtLogin(payload)
         val code2d = bot.wtLoginContext.parseCode2DPacket(wtlogin)
         val reader = Buffer().apply {
@@ -54,9 +49,14 @@ object FetchQrCode : NoInputOperation<FetchQrCodeResult> {
         bot.keystore.qrSig = sig
         val response = tlv
         val respD1Body = response.getValue(0xD1u).pb<TlvQrCodeD1ResponseBody>()
-        return FetchQrCodeResult(
+        return Result(
             qrCodeUrl = respD1Body.qrCodeUrl,
             qrCodePng = response.getValue(0x17u)
         )
     }
+
+    class Result(
+        val qrCodeUrl: String,
+        val qrCodePng: ByteArray
+    )
 }
