@@ -1,4 +1,4 @@
-package org.ntqqrev.saltify.lagrange.adapter.util.cache
+package org.ntqqrev.saltify.lagrange.adapter.cache
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred

@@ -1,9 +1,8 @@
 package org.ntqqrev.saltify.lagrange.adapter.model
 
-import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.model.Friend
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
-import org.ntqqrev.saltify.lagrange.adapter.util.cache.CachedEntity
+import org.ntqqrev.saltify.lagrange.adapter.cache.CachedEntity
 
 class LagrangeFriend(
     override var dataBinding: Binding,

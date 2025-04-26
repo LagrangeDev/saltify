@@ -4,7 +4,7 @@ import kotlinx.datetime.Instant
 import org.ntqqrev.saltify.api.context.model.Group
 import org.ntqqrev.saltify.api.context.model.GroupMember
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
-import org.ntqqrev.saltify.lagrange.adapter.util.cache.CachedEntity
+import org.ntqqrev.saltify.lagrange.adapter.cache.CachedEntity
 
 class LagrangeGroupMember(
     override val group: Group,

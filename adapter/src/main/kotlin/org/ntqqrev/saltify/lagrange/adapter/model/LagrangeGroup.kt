@@ -3,7 +3,7 @@ package org.ntqqrev.saltify.lagrange.adapter.model
 import kotlinx.datetime.Instant
 import org.ntqqrev.saltify.api.context.model.Group
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
-import org.ntqqrev.saltify.lagrange.adapter.util.cache.CachedEntity
+import org.ntqqrev.saltify.lagrange.adapter.cache.CachedEntity
 
 class LagrangeGroup(
     override var dataBinding: Binding,
