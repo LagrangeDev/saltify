@@ -17,7 +17,7 @@ interface Group : Entity {
     /**
      * The remark of the group defined by the bot.
      */
-    val remark: String
+    val remark: String?
 
     /**
      * The description of the group, if present.
