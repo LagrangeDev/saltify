@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-class FetchFriendsRequest(
+class OidbFetchFriendsRequest(
     @ProtoNumber(2) val friendCount: Int,
     @ProtoNumber(5) val nextUin: UinBody,
     @ProtoNumber(10001) val body: Map<Int, NumberList>,
@@ -16,7 +16,7 @@ class FetchFriendsRequest(
 }
 
 @Serializable
-class FetchFriendsResponse(
+class OidbFetchFriendsResponse(
     @ProtoNumber(2) val next: UinBody?,
     @ProtoNumber(3) val displayFriendCount: Long,
     @ProtoNumber(6) val timestamp: Long,

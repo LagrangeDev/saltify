@@ -2,17 +2,17 @@ package org.ntqqrev.saltify.lagrange.operation.system
 
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.operation.OidbOperation
-import org.ntqqrev.saltify.lagrange.packet.oidb.FetchFriendsRequest
-import org.ntqqrev.saltify.lagrange.packet.oidb.FetchFriendsResponse
+import org.ntqqrev.saltify.lagrange.packet.oidb.OidbFetchFriendsRequest
+import org.ntqqrev.saltify.lagrange.packet.oidb.OidbFetchFriendsResponse
 import org.ntqqrev.saltify.lagrange.packet.oidb.UinBody
 import org.ntqqrev.saltify.lagrange.util.binary.pb
 
 object FetchFriends : OidbOperation<FetchFriends.Req, FetchFriends.Resp>(0xfd4, 1) {
     override fun buildOidb(bot: BotContext, payload: Req): ByteArray =
-        FetchFriendsRequest(
+        OidbFetchFriendsRequest(
             friendCount = 300,
             body = mapOf(
-                1 to FetchFriendsRequest.NumberList(
+                1 to OidbFetchFriendsRequest.NumberList(
                     numbers = listOf(
                         QueryKey.SIGNATURE.value,
                         QueryKey.REMARK.value,
@@ -20,7 +20,7 @@ object FetchFriends : OidbOperation<FetchFriends.Req, FetchFriends.Resp>(0xfd4, 
                         QueryKey.QID.value,
                     )
                 ),
-                4 to FetchFriendsRequest.NumberList(
+                4 to OidbFetchFriendsRequest.NumberList(
                     numbers = listOf(
                         QueryKey.UNKNOWN_100.value,
                         QueryKey.UNKNOWN_101.value,
@@ -32,7 +32,7 @@ object FetchFriends : OidbOperation<FetchFriends.Req, FetchFriends.Resp>(0xfd4, 
         ).pb()
 
     override fun parseOidb(bot: BotContext, payload: ByteArray): Resp {
-        val rawResp = payload.pb<FetchFriendsResponse>()
+        val rawResp = payload.pb<OidbFetchFriendsResponse>()
         return Resp(
             entries = rawResp.friends.map { entry ->
                 val properties = entry.additional[1]?.properties ?: emptyMap()
