@@ -1,23 +1,16 @@
 package org.ntqqrev.saltify.lagrange.packet.common
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
 class RegisterInfo(
-    val guid: String,
-    val kickPC: Int = 0,
-    val currentVersion: String,
-    val isFirstRegisterProxyOnline: Int = 0,
-    val localeId: Int = 2052,
-    val device: DeviceInfo,
-    val setMute: Int = 0,
-    val registerVendorType: Int = 6,
-    val regType: Int = 0,
-    val businessInfo: BusinessInfo = BusinessInfo(
+    @ProtoNumber(1) val guid: String,
+    @ProtoNumber(3) val currentVersion: String,
+    @ProtoNumber(6) val device: DeviceInfo,
+    @ProtoNumber(10) val businessInfo: BusinessInfo = BusinessInfo(
         notifySwitch = 1,
         bindUinNotifySwitch = 1,
     ),
-    val batteryStatus: Int = 0,
-    val field12: Int = 0,
 )
 
