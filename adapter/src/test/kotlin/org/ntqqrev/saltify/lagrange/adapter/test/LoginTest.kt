@@ -14,6 +14,7 @@ suspend fun main() {
     ctx.start()
 
     ctx.getAllFriends().forEach { println(it) }
+    ctx.getAllGroups().forEach { println(it)}
 
     delay(Long.MAX_VALUE)
 }
