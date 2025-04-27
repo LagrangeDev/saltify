@@ -10,6 +10,7 @@ import org.ntqqrev.saltify.api.context.event.Event
 import org.ntqqrev.saltify.api.context.model.Friend
 import org.ntqqrev.saltify.api.context.model.Group
 import org.ntqqrev.saltify.lagrange.BotContext
+import org.ntqqrev.saltify.lagrange.adapter.cache.FriendCacheService
 import org.ntqqrev.saltify.lagrange.operation.system.BotOnline
 import org.ntqqrev.saltify.lagrange.operation.system.DoWtLogin
 import org.ntqqrev.saltify.lagrange.operation.system.FetchQrCode
@@ -39,6 +40,8 @@ class LagrangeContext(
         get() = instanceUin
     override val state: Context.State
         get() = instanceState
+
+    private val friendCacheService = FriendCacheService(this)
 
     suspend fun qrCodeLogin() {
         logger.info { "Session is empty, using QR code login" }
@@ -94,13 +97,11 @@ class LagrangeContext(
         instanceState = Context.State.RUNNING
     }
 
-    override suspend fun getAllFriends(cacheFirst: Boolean): Iterable<Friend> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getAllFriends(cacheFirst: Boolean): Iterable<Friend>
+        = friendCacheService.getAll(cacheFirst)
 
-    override suspend fun getFriend(friendUin: Long, cacheFirst: Boolean): Friend? {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getFriend(friendUin: Long, cacheFirst: Boolean): Friend?
+        = friendCacheService.get(friendUin, cacheFirst)
 
     override suspend fun getAllGroups(cacheFirst: Boolean): Iterable<Group> {
         TODO("Not yet implemented")

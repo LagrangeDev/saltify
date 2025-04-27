@@ -1,5 +1,6 @@
 package org.ntqqrev.saltify.lagrange.adapter.test
 
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContextFactory
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeInit
@@ -11,4 +12,8 @@ suspend fun main() {
         channel = MutableSharedFlow()
     )
     ctx.start()
+
+    ctx.getAllFriends().forEach { println(it) }
+
+    delay(Long.MAX_VALUE)
 }
