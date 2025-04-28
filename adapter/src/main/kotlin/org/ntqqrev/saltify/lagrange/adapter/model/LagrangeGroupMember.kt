@@ -5,51 +5,42 @@ import org.ntqqrev.saltify.api.context.model.Group
 import org.ntqqrev.saltify.api.context.model.GroupMember
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.cache.CachedEntity
+import org.ntqqrev.saltify.lagrange.packet.oidb.OidbFetchGroupMembersResponse
 
 class LagrangeGroupMember(
     override val group: Group,
-    override var dataBinding: Binding,
+    override var dataBinding: OidbFetchGroupMembersResponse.Entry,
     override val ctx: LagrangeContext
-) : GroupMember, CachedEntity<LagrangeGroupMember.Binding> {
+) : GroupMember, CachedEntity<OidbFetchGroupMembersResponse.Entry> {
     override val uin: Long
-        get() = dataBinding.uin
+        get() = dataBinding.identity.uin
     override val name: String
-        get() = dataBinding.name
+        get() = dataBinding.memberName ?: uin.toString()
     override val remark: String?
-        get() = dataBinding.remark
+        get() = null
     override val signature: String?
-        get() = dataBinding.signature
+        get() = null
     override val qid: String?
-        get() = dataBinding.qid
+        get() = null
     override val card: String?
-        get() = dataBinding.card
+        get() = dataBinding.memberCard?.memberCard
     override val specialTitle: String?
         get() = dataBinding.specialTitle
     override val level: Int
-        get() = dataBinding.level
+        get() = dataBinding.level?.level ?: 0
     override val joinedAt: Instant
-        get() = dataBinding.joinedAt
+        get() = Instant.fromEpochSeconds(dataBinding.joinTimestamp)
     override val lastSpokeAt: Instant?
-        get() = dataBinding.lastSpokeAt
+        get() = Instant.fromEpochSeconds(dataBinding.lastMsgTimestamp)
     override val isBannedUntil: Instant?
-        get() = dataBinding.isBannedUntil
+        get() = dataBinding.shutUpTimestamp?.let { Instant.fromEpochSeconds(it) }
     override val role: GroupMember.Role
-        get() = dataBinding.role
-
-    class Binding(
-        var uin: Long,
-        var name: String,
-        var remark: String?,
-        var signature: String?,
-        var qid: String?,
-        var card: String?,
-        var specialTitle: String?,
-        var level: Int,
-        var joinedAt: Instant,
-        var lastSpokeAt: Instant?,
-        var isBannedUntil: Instant?,
-        var role: GroupMember.Role,
-    )
+        get() = when (dataBinding.permission) {
+            0 -> GroupMember.Role.MEMBER
+            1 -> GroupMember.Role.ADMIN
+            2 -> GroupMember.Role.OWNER
+            else -> throw Exception("Unknown role: ${dataBinding.permission}")
+        }
 
     override fun toString(): String = "${
         if (remark.isNullOrEmpty()) (

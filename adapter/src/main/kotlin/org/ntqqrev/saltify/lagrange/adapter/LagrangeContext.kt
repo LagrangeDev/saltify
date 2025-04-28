@@ -112,13 +112,11 @@ class LagrangeContext(
     override suspend fun getGroup(groupUin: Long, cacheFirst: Boolean): LagrangeGroup?
         = groupCacheService.get(groupUin, cacheFirst)
 
-    override suspend fun getGroupMembers(groupUin: Long, cacheFirst: Boolean): Iterable<GroupMember> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getGroupMembers(groupUin: Long, cacheFirst: Boolean): Iterable<GroupMember> =
+        getGroup(groupUin)?.groupMemberCacheService?.getAll(cacheFirst) ?: emptyList()
 
-    override suspend fun getGroupMember(groupUin: Long, memberUin: Long, cacheFirst: Boolean): GroupMember? {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getGroupMember(groupUin: Long, memberUin: Long, cacheFirst: Boolean): GroupMember? =
+        getGroup(groupUin)?.groupMemberCacheService?.get(memberUin, cacheFirst)
 
     override suspend fun stop() {
         lagrange.ssoContext.disconnect()

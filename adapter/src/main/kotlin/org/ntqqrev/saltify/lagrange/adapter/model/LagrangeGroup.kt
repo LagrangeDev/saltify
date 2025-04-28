@@ -4,12 +4,15 @@ import kotlinx.datetime.Instant
 import org.ntqqrev.saltify.api.context.model.Group
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.cache.CachedEntity
+import org.ntqqrev.saltify.lagrange.adapter.cache.GroupMemberCacheService
 import org.ntqqrev.saltify.lagrange.packet.oidb.OidbFetchGroupsResponse
 
 class LagrangeGroup(
     override var dataBinding: OidbFetchGroupsResponse.Entry,
     override val ctx: LagrangeContext
 ) : Group, CachedEntity<OidbFetchGroupsResponse.Entry> {
+    val groupMemberCacheService = GroupMemberCacheService(this)
+
     override val uin: Long
         get() = dataBinding.groupUin
     override val name: String
