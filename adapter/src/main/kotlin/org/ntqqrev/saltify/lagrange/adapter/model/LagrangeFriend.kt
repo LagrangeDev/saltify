@@ -3,15 +3,16 @@ package org.ntqqrev.saltify.lagrange.adapter.model
 import org.ntqqrev.saltify.api.context.model.Friend
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.cache.CachedEntity
+import org.ntqqrev.saltify.lagrange.operation.system.FetchFriends
 
 class LagrangeFriend(
-    override var dataBinding: Binding,
+    override var dataBinding: FetchFriends.Entry,
     override val ctx: LagrangeContext
-) : Friend, CachedEntity<LagrangeFriend.Binding> {
+) : Friend, CachedEntity<FetchFriends.Entry> {
     override val uin: Long
         get() = dataBinding.uin
     override val name: String
-        get() = dataBinding.name
+        get() = dataBinding.nickname ?: uin.toString()
     override val remark: String?
         get() = dataBinding.remark
     override val signature: String?
@@ -20,15 +21,6 @@ class LagrangeFriend(
         get() = dataBinding.qid
     override val category: Int
         get() = dataBinding.category
-
-    class Binding(
-        var uin: Long,
-        var name: String,
-        var remark: String?,
-        var signature: String?,
-        var qid: String?,
-        var category: Int
-    )
 
     override fun toString(): String = "${if (remark.isNullOrEmpty()) name else remark} ($uin)"
 }
