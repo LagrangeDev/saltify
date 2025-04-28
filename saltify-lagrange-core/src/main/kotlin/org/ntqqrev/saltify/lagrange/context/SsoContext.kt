@@ -124,7 +124,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
                     if (it != null) {
                         it.complete(sso)
                     } else {
-                        // Handle incoming packets
+                        bot.eventContext.process(sso)
                     }
                 }
             } catch (e: Exception) {
