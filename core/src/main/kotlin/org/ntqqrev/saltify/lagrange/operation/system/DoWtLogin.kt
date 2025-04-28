@@ -1,15 +1,16 @@
 package org.ntqqrev.saltify.lagrange.operation.system
 
 import io.ktor.utils.io.core.*
-import kotlinx.io.*
 import kotlinx.io.Buffer
+import kotlinx.io.readByteArray
+import kotlinx.io.writeUShort
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.operation.NoInputOperation
 import org.ntqqrev.saltify.lagrange.packet.login.Tlv
 import org.ntqqrev.saltify.lagrange.packet.login.Tlv543Body
 import org.ntqqrev.saltify.lagrange.util.binary.Prefix
 import org.ntqqrev.saltify.lagrange.util.binary.pb
-import org.ntqqrev.saltify.lagrange.util.binary.readPrefixedString
+import org.ntqqrev.saltify.lagrange.util.binary.reader
 import org.ntqqrev.saltify.lagrange.util.crypto.TEA
 
 object DoWtLogin : NoInputOperation<Boolean> {
@@ -41,10 +42,7 @@ object DoWtLogin : NoInputOperation<Boolean> {
     }
 
     override fun parse(bot: BotContext, payload: ByteArray): Boolean {
-        val wtlogin = bot.wtLoginContext.parseWtLogin(payload)
-        val reader = Buffer().apply {
-            write(wtlogin, endIndex = 0 + wtlogin.size)
-        }
+        val reader = bot.wtLoginContext.parseWtLogin(payload).reader()
 
         val command = reader.readUShort()
         val state = reader.readUByte()
@@ -53,11 +51,7 @@ object DoWtLogin : NoInputOperation<Boolean> {
         if (state.toInt() == 0) {
             val tlv119 = tlv119Reader[0x119u]!!
             val array = TEA.decrypt(tlv119, bot.keystore.tgtgt)
-            val tlvPack = bot.wtLoginContext.readTlv(
-                Buffer().apply {
-                    write(array, endIndex = 0 + array.size)
-                }
-            )
+            val tlvPack = bot.wtLoginContext.readTlv(array.reader())
             bot.keystore.apply {
                 d2Key = tlvPack[0x305u]!!
                 uid = tlvPack[0x543u]!!.pb<Tlv543Body>().layer1.layer2.uid
@@ -67,10 +61,7 @@ object DoWtLogin : NoInputOperation<Boolean> {
             }
             return true
         } else {
-            val array = tlv119Reader[0x146u]!!
-            val tlv146 = Buffer().apply {
-                write(array, endIndex = 0 + array.size)
-            }
+            val tlv146 = tlv119Reader[0x146u]!!.reader()
             val state = tlv146.readUInt()
             val tag = tlv146.readPrefixedString(Prefix.UINT_16 or Prefix.LENGTH_ONLY)
             val message = tlv146.readPrefixedString(Prefix.UINT_16 or Prefix.LENGTH_ONLY)

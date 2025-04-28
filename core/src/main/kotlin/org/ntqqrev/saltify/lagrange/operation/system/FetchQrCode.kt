@@ -1,15 +1,13 @@
 package org.ntqqrev.saltify.lagrange.operation.system
 
-import io.ktor.utils.io.core.*
 import kotlinx.io.*
-import kotlinx.io.Buffer
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.operation.NoInputOperation
 import org.ntqqrev.saltify.lagrange.packet.login.TlvQrCode
 import org.ntqqrev.saltify.lagrange.packet.login.TlvQrCodeD1ResponseBody
 import org.ntqqrev.saltify.lagrange.util.binary.Prefix
 import org.ntqqrev.saltify.lagrange.util.binary.pb
-import org.ntqqrev.saltify.lagrange.util.binary.readPrefixedBytes
+import org.ntqqrev.saltify.lagrange.util.binary.reader
 import org.ntqqrev.saltify.lagrange.util.binary.writeBytes
 
 object FetchQrCode : NoInputOperation<FetchQrCode.Result> {
@@ -40,9 +38,7 @@ object FetchQrCode : NoInputOperation<FetchQrCode.Result> {
     override fun parse(bot: BotContext, payload: ByteArray): Result {
         val wtlogin = bot.wtLoginContext.parseWtLogin(payload)
         val code2d = bot.wtLoginContext.parseCode2DPacket(wtlogin)
-        val reader = Buffer().apply {
-            write(code2d, endIndex = 0 + code2d.size)
-        }
+        val reader = code2d.reader()
         reader.discard(1)
         val sig = reader.readPrefixedBytes(Prefix.UINT_16 or Prefix.LENGTH_ONLY)
         val tlv = bot.wtLoginContext.readTlv(reader)

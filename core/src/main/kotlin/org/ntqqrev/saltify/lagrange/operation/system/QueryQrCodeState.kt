@@ -1,12 +1,11 @@
 package org.ntqqrev.saltify.lagrange.operation.system
 
-import io.ktor.utils.io.core.*
 import kotlinx.io.*
-import kotlinx.io.Buffer
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.operation.NoInputOperation
 import org.ntqqrev.saltify.lagrange.packet.login.QrCodeState
 import org.ntqqrev.saltify.lagrange.util.binary.Prefix
+import org.ntqqrev.saltify.lagrange.util.binary.reader
 import org.ntqqrev.saltify.lagrange.util.binary.writeBytes
 
 object QueryQrCodeState : NoInputOperation<QrCodeState> {
@@ -27,10 +26,7 @@ object QueryQrCodeState : NoInputOperation<QrCodeState> {
 
     override fun parse(bot: BotContext, payload: ByteArray): QrCodeState {
         val wtlogin = bot.wtLoginContext.parseWtLogin(payload)
-        val code2d = bot.wtLoginContext.parseCode2DPacket(wtlogin)
-        val reader = Buffer().apply {
-            write(code2d, endIndex = 0 + code2d.size)
-        }
+        val reader = bot.wtLoginContext.parseCode2DPacket(wtlogin).reader()
         val retCode = QrCodeState(reader.readByte())
         if (retCode.value == QrCodeState.Confirmed.value) {
             reader.discard(4)

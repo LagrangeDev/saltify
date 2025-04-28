@@ -45,3 +45,5 @@ internal fun ByteArray.readUInt32BE(offset: Int): Long {
             ((this[offset + 2].toUInt() and 0xffu) shl 8) or
             (this[offset + 3].toUInt() and 0xffu)).toLong()
 }
+
+internal fun ByteArray.reader() = BinaryReader(this)

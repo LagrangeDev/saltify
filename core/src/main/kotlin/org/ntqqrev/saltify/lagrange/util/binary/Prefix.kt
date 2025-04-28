@@ -3,7 +3,7 @@ package org.ntqqrev.saltify.lagrange.util.binary
 /**
  * Describe the length prefix of a data block in a packet.
  */
-internal open class Prefix(val value: Int) {
+open class Prefix(val value: Int) {
     data object NONE : Prefix(0b0000)
 
     data object UINT_8 : Prefix(0b0010)

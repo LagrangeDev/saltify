@@ -4,10 +4,7 @@ import io.ktor.utils.io.core.*
 import kotlinx.io.*
 import kotlinx.io.Buffer
 import org.ntqqrev.saltify.lagrange.BotContext
-import org.ntqqrev.saltify.lagrange.util.binary.Prefix
-import org.ntqqrev.saltify.lagrange.util.binary.barrier
-import org.ntqqrev.saltify.lagrange.util.binary.fromHex
-import org.ntqqrev.saltify.lagrange.util.binary.writeBytes
+import org.ntqqrev.saltify.lagrange.util.binary.*
 import org.ntqqrev.saltify.lagrange.util.crypto.TEA
 import kotlin.random.Random
 
@@ -49,15 +46,13 @@ class WtLoginContext(bot: BotContext) : Context(bot) {
     }
 
     fun parseCode2DPacket(wtlogin: ByteArray): ByteArray {
-        val reader = Buffer().apply {
-            write(wtlogin, endIndex = 0 + wtlogin.size)
-        }
+        val reader = wtlogin.reader()
 
-        val packetLength = reader.readUInt()
+        /* val packetLength = */ reader.readUInt()
         reader.discard(4)
-        val command = reader.readUShort()
+        /* val command = */ reader.readUShort()
         reader.discard(40)
-        val appId = reader.readUInt()
+        /* val appId = */ reader.readUInt()
 
         return reader.readByteArray(reader.remaining.toInt())
     }
@@ -87,12 +82,11 @@ class WtLoginContext(bot: BotContext) : Context(bot) {
     }
 
     fun parseWtLogin(raw: ByteArray): ByteArray {
-        val reader = Buffer().apply {
-            write(raw, endIndex = 0 + raw.size)
-        }
+        val reader = raw.reader()
         val header = reader.readByte()
         if (header != 0x02.toByte()) throw Exception("Invalid Header")
 
+        /*
         val internalLength = reader.readUShort()
         val ver = reader.readUShort()
         val cmd = reader.readUShort()
@@ -100,6 +94,8 @@ class WtLoginContext(bot: BotContext) : Context(bot) {
         val uin = reader.readUInt()
         val flag = reader.readByte()
         val retryTime = reader.readUShort()
+         */
+        reader.skip(15)
 
         val encrypted = reader.readByteArray(reader.remaining.toInt() - 1)
         val decrypted = TEA.decrypt(
@@ -119,7 +115,7 @@ class WtLoginContext(bot: BotContext) : Context(bot) {
         writeBytes(bot.ecdh192.getPublicKey(true), Prefix.UINT_16 or Prefix.LENGTH_ONLY)
     }.readByteArray()
 
-    fun readTlv(reader: Buffer): Map<UShort, ByteArray> {
+    fun readTlv(reader: BinaryReader): Map<UShort, ByteArray> {
         val tlvCount = reader.readUShort()
         val result = mutableMapOf<UShort, ByteArray>()
         for (i in 0 until tlvCount.toInt()) {

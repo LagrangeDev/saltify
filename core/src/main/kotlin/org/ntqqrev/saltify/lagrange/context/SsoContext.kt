@@ -10,7 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.io.Buffer
 import kotlinx.io.readByteArray
-import kotlinx.io.readUInt
 import kotlinx.serialization.ExperimentalSerializationApi
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.common.SignResult
@@ -193,9 +192,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
     }
 
     private fun parseSso(packet: ByteArray): SsoResponse {
-        val reader = Buffer().apply {
-            write(packet, endIndex = 0 + packet.size)
-        }
+        val reader = packet.reader()
         /* val headLen = */ reader.readUInt()
         val sequence = reader.readUInt()
         val retCode = reader.readInt()
@@ -220,9 +217,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
     }
 
     private fun parseService(raw: ByteArray): ByteArray {
-        val reader = Buffer().apply {
-            write(raw, endIndex = 0 + raw.size)
-        }
+        val reader = raw.reader()
 
         val protocol = reader.readUInt()
         val authFlag = reader.readByte()
