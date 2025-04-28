@@ -10,7 +10,7 @@ import kotlinx.serialization.json.decodeFromStream
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.common.Keystore
 import org.ntqqrev.saltify.lagrange.operation.system.BotOnline
-import org.ntqqrev.saltify.lagrange.operation.system.FetchFriends
+import org.ntqqrev.saltify.lagrange.operation.friend.FetchFriends
 
 private val logger = KotlinLogging.logger { }
 

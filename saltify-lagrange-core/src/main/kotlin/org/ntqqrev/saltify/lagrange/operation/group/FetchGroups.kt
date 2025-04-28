@@ -1,4 +1,4 @@
-package org.ntqqrev.saltify.lagrange.operation.system
+package org.ntqqrev.saltify.lagrange.operation.group
 
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.operation.NoInputOidbOperation

@@ -2,7 +2,7 @@ package org.ntqqrev.saltify.lagrange.adapter.cache
 
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeFriend
-import org.ntqqrev.saltify.lagrange.operation.system.FetchFriends
+import org.ntqqrev.saltify.lagrange.operation.friend.FetchFriends
 
 class FriendCacheService(ctx: LagrangeContext) :
     AbstractCacheService<LagrangeFriend, Long, FetchFriends.Entry>(ctx) {

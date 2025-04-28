@@ -3,7 +3,7 @@ package org.ntqqrev.saltify.lagrange.adapter.model
 import org.ntqqrev.saltify.api.context.model.Friend
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.cache.CachedEntity
-import org.ntqqrev.saltify.lagrange.operation.system.FetchFriends
+import org.ntqqrev.saltify.lagrange.operation.friend.FetchFriends
 
 class LagrangeFriend(
     override var dataBinding: FetchFriends.Entry,
