@@ -20,10 +20,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/adapter" />
-            <option value="$PROJECT_DIR$/api" />
+            <option value="$PROJECT_DIR$/saltify-lagrange" />
+            <option value="$PROJECT_DIR$/saltify-api" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/saltify-lagrange-core" />
           </set>
         </option>
       </GradleProjectSettings>

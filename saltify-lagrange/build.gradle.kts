@@ -6,10 +6,10 @@ plugins {
 dependencies {
     compileOnly(libs.bundles.kotlinxEcosystem)
     compileOnly(libs.kotlinLogging)
-    compileOnly(project(":api"))
-    implementation(project(":core"))
+    compileOnly(project(":saltify-api"))
+    implementation(project(":saltify-lagrange-core"))
 
     testImplementation(libs.bundles.kotlinxEcosystem)
     testImplementation(libs.bundles.logging)
-    testImplementation(project(":api"))
+    testImplementation(project(":saltify-api"))
 }
