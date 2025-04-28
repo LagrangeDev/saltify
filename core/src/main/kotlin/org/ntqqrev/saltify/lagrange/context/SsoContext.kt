@@ -172,7 +172,6 @@ class SsoContext(bot: BotContext) : Context(bot) {
         return packet.readByteArray()
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
     private suspend fun buildSsoReserved(command: String, payload: ByteArray, sequence: Int): ByteArray {
         var signResult: SignResult? = null
 

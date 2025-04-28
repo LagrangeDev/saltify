@@ -41,7 +41,6 @@ object LagrangeContextFactory : ContextFactory<LagrangeInit> {
         ntLoginType = 1
     )
 
-    @OptIn(ExperimentalSerializationApi::class)
     override suspend fun createContext(
         init: LagrangeInit,
         env: Environment,
