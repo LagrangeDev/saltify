@@ -112,7 +112,7 @@ class LagrangeContext(
     override suspend fun getGroup(groupUin: Long, cacheFirst: Boolean): LagrangeGroup?
         = groupCacheService.get(groupUin, cacheFirst)
 
-    override suspend fun getGroupMembers(groupUin: Long, cacheFirst: Boolean): Iterable<GroupMember> =
+    override suspend fun getAllGroupMembers(groupUin: Long, cacheFirst: Boolean): Iterable<GroupMember> =
         getGroup(groupUin)?.groupMemberCacheService?.getAll(cacheFirst) ?: emptyList()
 
     override suspend fun getGroupMember(groupUin: Long, memberUin: Long, cacheFirst: Boolean): GroupMember? =

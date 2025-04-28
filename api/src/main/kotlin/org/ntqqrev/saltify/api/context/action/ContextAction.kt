@@ -33,7 +33,7 @@ interface ContextAction {
     /**
      * Get all group members from a group.
      */
-    suspend fun getGroupMembers(groupUin: Long, cacheFirst: Boolean = true): Iterable<GroupMember>
+    suspend fun getAllGroupMembers(groupUin: Long, cacheFirst: Boolean = true): Iterable<GroupMember>
 
     /**
      * Get a group member by its uin.
