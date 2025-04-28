@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class RichText(
-    val attributes: Attributes?,
+    val attr: Attr?,
     val elements: List<ByteArray>,
     val notOnlineFile: NotOnlineFile?,
     val ptt: Ptt?,
