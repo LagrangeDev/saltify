@@ -9,6 +9,7 @@ import org.ntqqrev.saltify.api.context.action.*
 import org.ntqqrev.saltify.api.context.event.Event
 import org.ntqqrev.saltify.api.context.model.Friend
 import org.ntqqrev.saltify.api.context.model.Group
+import org.ntqqrev.saltify.api.context.model.GroupMember
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.adapter.cache.FriendCacheService
 import org.ntqqrev.saltify.lagrange.adapter.cache.GroupCacheService
@@ -110,6 +111,14 @@ class LagrangeContext(
 
     override suspend fun getGroup(groupUin: Long, cacheFirst: Boolean): Group?
         = groupCacheService.get(groupUin, cacheFirst)
+
+    override suspend fun getGroupMembers(groupUin: Long, cacheFirst: Boolean): Iterable<GroupMember> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getGroupMember(groupUin: Long, memberUin: Long, cacheFirst: Boolean): GroupMember? {
+        TODO("Not yet implemented")
+    }
 
     override suspend fun stop() {
         lagrange.ssoContext.disconnect()

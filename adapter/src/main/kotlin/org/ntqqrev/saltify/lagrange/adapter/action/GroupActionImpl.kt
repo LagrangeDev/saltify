@@ -7,21 +7,6 @@ import org.ntqqrev.saltify.lagrange.BotContext
 import java.io.InputStream
 
 class GroupActionImpl(val lagrange: BotContext) : GroupAction {
-    override suspend fun getGroupMembers(
-        groupUin: Long,
-        cacheFirst: Boolean
-    ): Iterable<GroupMember> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getGroupMember(
-        groupUin: Long,
-        memberUin: Long,
-        cacheFirst: Boolean
-    ): GroupMember? {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun getGroupAnnouncements(groupUin: Long): List<Announcement> {
         TODO("Not yet implemented")
     }
