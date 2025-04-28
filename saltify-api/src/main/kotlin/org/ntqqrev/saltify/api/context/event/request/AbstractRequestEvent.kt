@@ -1,8 +1,8 @@
 package org.ntqqrev.saltify.api.context.event.request
 
+import kotlinx.datetime.Instant
 import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.event.Event
-import kotlinx.datetime.Instant
 
 abstract class AbstractRequestEvent(
     ctx: Context,

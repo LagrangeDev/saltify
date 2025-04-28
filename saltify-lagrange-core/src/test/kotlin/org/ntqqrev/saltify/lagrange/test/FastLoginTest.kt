@@ -12,7 +12,7 @@ import org.ntqqrev.saltify.lagrange.common.Keystore
 import org.ntqqrev.saltify.lagrange.operation.system.BotOnline
 import org.ntqqrev.saltify.lagrange.operation.system.FetchFriends
 
-private val logger = KotlinLogging.logger {  }
+private val logger = KotlinLogging.logger { }
 
 fun main() = runBlocking(testContext) {
     val appInfo = urlSignProvider.getAppInfo()
@@ -38,9 +38,11 @@ fun main() = runBlocking(testContext) {
     }
     logger.info { "Login successful" }
 
-    val friendListResult = bot.callOperation(FetchFriends, FetchFriends.Req(
-        nextUin = null
-    ))
+    val friendListResult = bot.callOperation(
+        FetchFriends, FetchFriends.Req(
+            nextUin = null
+        )
+    )
     logger.info {
         friendListResult.entries.map { "${it.nickname} (${it.uin})" }
     }

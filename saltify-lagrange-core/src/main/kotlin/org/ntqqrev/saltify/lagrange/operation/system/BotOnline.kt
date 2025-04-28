@@ -22,6 +22,6 @@ object BotOnline : NoInputOperation<Boolean> {
         )
     ).pb()
 
-    override fun parse(bot: BotContext, payload: ByteArray): Boolean
-        = payload.pb<RegisterInfoResponse>().message.contains("register success")
+    override fun parse(bot: BotContext, payload: ByteArray): Boolean =
+        payload.pb<RegisterInfoResponse>().message.contains("register success")
 }

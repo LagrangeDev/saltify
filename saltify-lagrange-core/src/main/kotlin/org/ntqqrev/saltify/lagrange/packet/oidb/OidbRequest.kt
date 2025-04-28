@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-class OidbRequest (
+class OidbRequest(
     @ProtoNumber(1) val cmd: Int,
     @ProtoNumber(2) val subCmd: Int,
     @ProtoNumber(4) val payload: ByteArray,

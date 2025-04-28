@@ -10,7 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.io.Buffer
 import kotlinx.io.readByteArray
-import kotlinx.serialization.ExperimentalSerializationApi
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.common.SignResult
 import org.ntqqrev.saltify.lagrange.packet.SsoResponse

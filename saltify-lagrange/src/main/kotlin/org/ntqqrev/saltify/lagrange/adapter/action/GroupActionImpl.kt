@@ -1,7 +1,6 @@
 package org.ntqqrev.saltify.lagrange.adapter.action
 
 import org.ntqqrev.saltify.api.context.action.GroupAction
-import org.ntqqrev.saltify.api.context.model.GroupMember
 import org.ntqqrev.saltify.api.context.model.group.Announcement
 import org.ntqqrev.saltify.lagrange.BotContext
 import java.io.InputStream

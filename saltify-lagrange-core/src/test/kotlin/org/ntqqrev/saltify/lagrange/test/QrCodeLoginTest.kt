@@ -14,7 +14,7 @@ import org.ntqqrev.saltify.lagrange.operation.system.QueryQrCodeState
 import org.ntqqrev.saltify.lagrange.packet.login.QrCodeState
 import kotlin.io.path.writeBytes
 
-private val logger = KotlinLogging.logger {  }
+private val logger = KotlinLogging.logger { }
 
 fun main() = runBlocking(testContext) {
     val appInfo = urlSignProvider.getAppInfo()

@@ -1,6 +1,5 @@
 package org.ntqqrev.saltify.api.context.action
 
-import org.ntqqrev.saltify.api.context.model.GroupMember
 import org.ntqqrev.saltify.api.context.model.group.Announcement
 import java.io.InputStream
 

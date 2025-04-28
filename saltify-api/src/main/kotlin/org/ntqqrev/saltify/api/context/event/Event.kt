@@ -1,8 +1,8 @@
 package org.ntqqrev.saltify.api.context.event
 
+import kotlinx.datetime.Instant
 import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.Entity
-import kotlinx.datetime.Instant
 
 abstract class Event(
     override val ctx: Context,

@@ -1,8 +1,8 @@
 package org.ntqqrev.saltify.api.context.event.message
 
+import kotlinx.datetime.Instant
 import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.event.Event
-import kotlinx.datetime.Instant
 
 abstract class AbstractMessageEvent(
     ctx: Context,

@@ -20,7 +20,7 @@ import org.ntqqrev.saltify.lagrange.operation.system.QueryQrCodeState
 import org.ntqqrev.saltify.lagrange.packet.login.QrCodeState
 import kotlin.io.path.writeBytes
 
-private val logger = KotlinLogging.logger {  }
+private val logger = KotlinLogging.logger { }
 
 class LagrangeContext(
     val lagrange: BotContext,
@@ -100,17 +100,17 @@ class LagrangeContext(
         instanceState = Context.State.RUNNING
     }
 
-    override suspend fun getAllFriends(cacheFirst: Boolean): Iterable<LagrangeFriend>
-        = friendCacheService.getAll(cacheFirst)
+    override suspend fun getAllFriends(cacheFirst: Boolean): Iterable<LagrangeFriend> =
+        friendCacheService.getAll(cacheFirst)
 
-    override suspend fun getFriend(friendUin: Long, cacheFirst: Boolean): LagrangeFriend?
-        = friendCacheService.get(friendUin, cacheFirst)
+    override suspend fun getFriend(friendUin: Long, cacheFirst: Boolean): LagrangeFriend? =
+        friendCacheService.get(friendUin, cacheFirst)
 
-    override suspend fun getAllGroups(cacheFirst: Boolean): Iterable<LagrangeGroup>
-        = groupCacheService.getAll(cacheFirst)
+    override suspend fun getAllGroups(cacheFirst: Boolean): Iterable<LagrangeGroup> =
+        groupCacheService.getAll(cacheFirst)
 
-    override suspend fun getGroup(groupUin: Long, cacheFirst: Boolean): LagrangeGroup?
-        = groupCacheService.get(groupUin, cacheFirst)
+    override suspend fun getGroup(groupUin: Long, cacheFirst: Boolean): LagrangeGroup? =
+        groupCacheService.get(groupUin, cacheFirst)
 
     override suspend fun getAllGroupMembers(groupUin: Long, cacheFirst: Boolean): Iterable<GroupMember> =
         getGroup(groupUin)?.groupMemberCacheService?.getAll(cacheFirst) ?: emptyList()

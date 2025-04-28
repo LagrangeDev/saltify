@@ -1,9 +1,9 @@
 package org.ntqqrev.saltify.api.context.event.friend
 
-import org.ntqqrev.saltify.api.context.Context
-import org.ntqqrev.saltify.api.context.model.Friend
-import org.ntqqrev.saltify.api.context.event.Event
 import kotlinx.datetime.Instant
+import org.ntqqrev.saltify.api.context.Context
+import org.ntqqrev.saltify.api.context.event.Event
+import org.ntqqrev.saltify.api.context.model.Friend
 
 abstract class AbstractFriendEvent(
     ctx: Context,

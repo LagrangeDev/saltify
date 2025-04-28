@@ -1,7 +1,7 @@
 package org.ntqqrev.saltify.api.context.model
 
-import org.ntqqrev.saltify.api.context.Entity
 import kotlinx.datetime.Instant
+import org.ntqqrev.saltify.api.context.Entity
 
 interface Group : Entity {
     /**

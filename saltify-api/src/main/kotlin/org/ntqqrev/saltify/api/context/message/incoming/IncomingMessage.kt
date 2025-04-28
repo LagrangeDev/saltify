@@ -1,8 +1,8 @@
 package org.ntqqrev.saltify.api.context.message.incoming
 
+import kotlinx.datetime.Instant
 import org.ntqqrev.saltify.api.context.Entity
 import org.ntqqrev.saltify.api.context.message.incoming.segment.Segment
-import kotlinx.datetime.Instant
 
 interface IncomingMessage : Entity {
     /**

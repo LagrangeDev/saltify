@@ -1,11 +1,6 @@
 package org.ntqqrev.saltify.api.context
 
-import org.ntqqrev.saltify.api.context.action.ContextAction
-import org.ntqqrev.saltify.api.context.action.FileAction
-import org.ntqqrev.saltify.api.context.action.GroupAction
-import org.ntqqrev.saltify.api.context.action.MessageAction
-import org.ntqqrev.saltify.api.context.action.RequestAction
-import org.ntqqrev.saltify.api.context.action.UserAction
+import org.ntqqrev.saltify.api.context.action.*
 
 /**
  * The context object, which represents the bot itself.
