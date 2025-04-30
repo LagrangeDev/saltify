@@ -4,6 +4,7 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 import org.ntqqrev.saltify.api.Environment
 import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.action.*
@@ -22,6 +23,7 @@ import org.ntqqrev.saltify.lagrange.operation.system.FetchQrCode
 import org.ntqqrev.saltify.lagrange.operation.system.QueryQrCodeState
 import org.ntqqrev.saltify.lagrange.packet.login.QrCodeState
 import kotlin.io.path.writeBytes
+import kotlin.io.path.writeText
 
 private val logger = KotlinLogging.logger { }
 
@@ -58,8 +60,10 @@ class LagrangeContext(
 
         val fetchQrCodeResult = lagrange.callOperation(FetchQrCode)
         logger.info { "QR code URL: ${fetchQrCodeResult.qrCodeUrl}" }
-        env.rootDataPath.resolve(qrCodeFileName).writeBytes(fetchQrCodeResult.qrCodePng)
-        logger.info { "QR code saved to data/qrcode.png" }
+        env.scope.launch {
+            env.rootDataPath.resolve(qrCodeFileName).writeBytes(fetchQrCodeResult.qrCodePng)
+            logger.info { "QR code saved to data/qrcode.png" }
+        }
 
         while (true) {
             val qrCodeState = lagrange.callOperation(QueryQrCodeState)
@@ -74,10 +78,17 @@ class LagrangeContext(
         logger.info { "QR code has been confirmed" }
 
         val loginSuccess = lagrange.callOperation(DoWtLogin)
-        if (!loginSuccess)
+        if (!loginSuccess) {
+            instanceState = Context.State.ERROR_TERMINATED
             throw RuntimeException("QR code login failed")
+        }
 
         logger.info { "Credentials retrieved, trying online" }
+        env.scope.launch {
+            env.rootDataPath.resolve(keystoreFileName)
+                .writeText(Json.encodeToString(lagrange.keystore))
+        }
+
         val onlineResult = lagrange.callOperation(BotOnline)
         if (!onlineResult) {
             instanceState = Context.State.ERROR_TERMINATED
