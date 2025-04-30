@@ -8,8 +8,8 @@ class TlvQrCodeD1Body(
     @ProtoField(4) var typeBuf: ByteArray,
 ) : ProtoMessage() {
     class System(
-        var os: String,
-        var deviceName: String,
+        @ProtoField(1) var os: String,
+        @ProtoField(2) var deviceName: String,
     ) : ProtoMessage()
 }
 
