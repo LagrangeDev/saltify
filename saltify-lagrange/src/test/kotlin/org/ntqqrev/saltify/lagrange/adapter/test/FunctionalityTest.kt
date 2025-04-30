@@ -1,6 +1,5 @@
 package org.ntqqrev.saltify.lagrange.adapter.test
 
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContextFactory
