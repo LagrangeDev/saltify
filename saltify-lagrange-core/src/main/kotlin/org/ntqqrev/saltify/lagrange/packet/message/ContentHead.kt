@@ -4,8 +4,8 @@ import org.ntqqrev.saltify.protobuf.ProtoMessage
 import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
 class ContentHead(
-    @ProtoField(1) var type: Long, // 消息类型
-    @ProtoField(2) var subType: Long?, // 消息子类型（0x211\0x2dc\0x210等系统消息的子类型,取值同 c2c_cmd）
+    @ProtoField(1) var type: Int, // 消息类型
+    @ProtoField(2) var subType: Int?, // 消息子类型（0x211\0x2dc\0x210等系统消息的子类型,取值同 c2c_cmd）
     @ProtoField(3) var c2cCmd: Long?, // c2c消息子类型
     @ProtoField(4) var random: Long?, // 随机数
     @ProtoField(5) var sequence: Long?, // 序列号
