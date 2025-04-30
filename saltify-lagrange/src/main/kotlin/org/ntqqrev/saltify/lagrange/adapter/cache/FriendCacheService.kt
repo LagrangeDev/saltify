@@ -16,7 +16,7 @@ class FriendCacheService(ctx: LagrangeContext) :
             fetchResult.entries.forEach {
                 result[it.uin] = it
             }
-        } while (nextUin != null)
+        } while (nextUin != null && nextUin != 0L)
         return result
     }
 

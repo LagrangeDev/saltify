@@ -1,29 +1,27 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
-import kotlinx.serialization.protobuf.ProtoOneOf
 import org.ntqqrev.saltify.lagrange.packet.message.element.*
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class MessageElement(
-    @ProtoOneOf @ProtoNumber(1) val text: TextElement?,
-    @ProtoOneOf @ProtoNumber(2) val face: FaceElement?,
-    @ProtoOneOf @ProtoNumber(3) val onlineImage: OnlineImageElement?,
-    @ProtoOneOf @ProtoNumber(4) val notOnlineImage: NotOnlineImageElement?,
-    @ProtoOneOf @ProtoNumber(5) val trans: TransElement?,
-    @ProtoOneOf @ProtoNumber(6) val marketFace: MarketFaceElement?,
-    @ProtoOneOf @ProtoNumber(8) val customFace: CustomFaceElement?,
-    @ProtoOneOf @ProtoNumber(9) val elemFlags2: ElemFlags2?,
-    @ProtoOneOf @ProtoNumber(12) val richMsg: RichMsgElement?,
-    @ProtoOneOf @ProtoNumber(13) val groupFile: GroupFileElement?,
-    @ProtoOneOf @ProtoNumber(16) val extraInfo: ExtraInfo?,
-    @ProtoOneOf @ProtoNumber(19) val videoFile: VideoFileElement?,
-    @ProtoOneOf @ProtoNumber(21) val anonGroupMsg: AnonymousGroupMessageElement?,
-    @ProtoOneOf @ProtoNumber(24) val qqWalletMsg: QQWalletMsgElement?,
-    @ProtoOneOf @ProtoNumber(31) val custom: CustomElement?,
-    @ProtoOneOf @ProtoNumber(37) val generalFlags: GeneralFlagsElement?,
-    @ProtoOneOf @ProtoNumber(45) val srcMsg: SrcMsgElement?,
-    @ProtoOneOf @ProtoNumber(51) val lightApp: LightAppElement?,
-    @ProtoOneOf @ProtoNumber(53) val common: CommonElement?,
-)
+    @ProtoField(1) var text: TextElement?,
+    @ProtoField(2) var face: FaceElement?,
+    @ProtoField(3) var onlineImage: OnlineImageElement?,
+    @ProtoField(4) var notOnlineImage: NotOnlineImageElement?,
+    @ProtoField(5) var trans: TransElement?,
+    @ProtoField(6) var marketFace: MarketFaceElement?,
+    @ProtoField(8) var customFace: CustomFaceElement?,
+    @ProtoField(9) var elemFlags2: ElemFlags2?,
+    @ProtoField(12) var richMsg: RichMsgElement?,
+    @ProtoField(13) var groupFile: GroupFileElement?,
+    @ProtoField(16) var extraInfo: ExtraInfo?,
+    @ProtoField(19) var videoFile: VideoFileElement?,
+    @ProtoField(21) var anonGroupMsg: AnonymousGroupMessageElement?,
+    @ProtoField(24) var qqWalletMsg: QQWalletMsgElement?,
+    @ProtoField(31) var custom: CustomElement?,
+    @ProtoField(37) var generalFlags: GeneralFlagsElement?,
+    @ProtoField(45) var srcMsg: SrcMsgElement?,
+    @ProtoField(51) var lightApp: LightAppElement?,
+    @ProtoField(53) var common: CommonElement?,
+) : ProtoMessage()

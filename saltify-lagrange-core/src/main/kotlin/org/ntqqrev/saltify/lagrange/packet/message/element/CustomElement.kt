@@ -1,13 +1,12 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class CustomElement(
-    @ProtoNumber(1) val desc: ByteArray?,
-    @ProtoNumber(2) val data: ByteArray?,
-    @ProtoNumber(3) val enumType: Int,
-    @ProtoNumber(4) val ext: ByteArray?,
-    @ProtoNumber(5) val sound: ByteArray?,
-) : ElementType
+    @ProtoField(1) var desc: ByteArray?,
+    @ProtoField(2) var data: ByteArray?,
+    @ProtoField(3) var enumType: Int,
+    @ProtoField(4) var ext: ByteArray?,
+    @ProtoField(5) var sound: ByteArray?,
+) : ProtoMessage()

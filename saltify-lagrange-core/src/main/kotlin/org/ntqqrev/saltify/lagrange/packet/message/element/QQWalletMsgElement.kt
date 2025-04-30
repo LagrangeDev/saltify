@@ -1,59 +1,56 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class QQWalletMsgElement(
-    @ProtoNumber(1) val body: AioBody,
-) : ElementType {
-    @Serializable
+    @ProtoField(1) var body: AioBody,
+) : ProtoMessage() {
     class AioBody(
-        @ProtoNumber(1) val sendUin: Long,
-        @ProtoNumber(2) val sender: AioElem?,
-        @ProtoNumber(3) val receiver: AioElem?,
-        @ProtoNumber(4) val channelId: Int,
-        @ProtoNumber(5) val templateId: Int,
-        @ProtoNumber(6) val resend: Long,
-        @ProtoNumber(7) val msgPriority: Long,
-        @ProtoNumber(8) val redType: Int,
-        @ProtoNumber(9) val billNo: ByteArray?,
-        @ProtoNumber(10) val authKey: ByteArray?,
-        @ProtoNumber(11) val sessionType: Int,
-        @ProtoNumber(12) val msgType: Int,
-        @ProtoNumber(13) val envelopeId: Int,
-        @ProtoNumber(14) val name: ByteArray?,
-        @ProtoNumber(15) val confType: Int,
-        @ProtoNumber(16) val msgFrom: Int,
-        @ProtoNumber(17) val pcBody: ByteArray?,
-        @ProtoNumber(18) val index: ByteArray?,
-        @ProtoNumber(19) val redChannel: Long,
-        @ProtoNumber(20) val grapUin: List<Long>,
-        @ProtoNumber(21) val pbReserve: ByteArray?,
-    )
+        @ProtoField(1) var sendUin: Long,
+        @ProtoField(2) var sender: AioElem?,
+        @ProtoField(3) var receiver: AioElem?,
+        @ProtoField(4) var channelId: Int,
+        @ProtoField(5) var templateId: Int,
+        @ProtoField(6) var resend: Long,
+        @ProtoField(7) var msgPriority: Long,
+        @ProtoField(8) var redType: Int,
+        @ProtoField(9) var billNo: ByteArray?,
+        @ProtoField(10) var authKey: ByteArray?,
+        @ProtoField(11) var sessionType: Int,
+        @ProtoField(12) var msgType: Int,
+        @ProtoField(13) var envelopeId: Int,
+        @ProtoField(14) var name: ByteArray?,
+        @ProtoField(15) var confType: Int,
+        @ProtoField(16) var msgFrom: Int,
+        @ProtoField(17) var pcBody: ByteArray?,
+        @ProtoField(18) var index: ByteArray?,
+        @ProtoField(19) var redChannel: Long,
+        @ProtoField(20) var grapUin: List<Long>,
+        @ProtoField(21) var pbReserve: ByteArray?,
+    ) : ProtoMessage()
 
-    @Serializable
     class AioElem(
-        @ProtoNumber(1) val background: Long,
-        @ProtoNumber(2) val icon: Long,
-        @ProtoNumber(3) val title: String?,
-        @ProtoNumber(4) val subtitle: String?,
-        @ProtoNumber(5) val content: String?,
-        @ProtoNumber(6) val linkUrl: ByteArray?,
-        @ProtoNumber(7) val blackStripe: ByteArray?,
-        @ProtoNumber(8) val notice: ByteArray?,
-        @ProtoNumber(9) val titleColor: Long,
-        @ProtoNumber(10) val subtitleColor: Long,
-        @ProtoNumber(11) val actionsPriority: ByteArray?,
-        @ProtoNumber(12) val jumpUrl: ByteArray?,
-        @ProtoNumber(13) val nativeIos: ByteArray?,
-        @ProtoNumber(14) val nativeAndroid: ByteArray?,
-        @ProtoNumber(15) val iconUrl: ByteArray?,
-        @ProtoNumber(16) val contentColor: Long,
-        @ProtoNumber(17) val contentBgColor: Long,
-        @ProtoNumber(18) val aioImageLeft: ByteArray?,
-        @ProtoNumber(19) val aioImageRight: ByteArray?,
-        @ProtoNumber(20) val cftImage: ByteArray?,
-        @ProtoNumber(21) val pbReserve: ByteArray?,
-    )
+        @ProtoField(1) var background: Long,
+        @ProtoField(2) var icon: Long,
+        @ProtoField(3) var title: String?,
+        @ProtoField(4) var subtitle: String?,
+        @ProtoField(5) var content: String?,
+        @ProtoField(6) var linkUrl: ByteArray?,
+        @ProtoField(7) var blackStripe: ByteArray?,
+        @ProtoField(8) var notice: ByteArray?,
+        @ProtoField(9) var titleColor: Long,
+        @ProtoField(10) var subtitleColor: Long,
+        @ProtoField(11) var actionsPriority: ByteArray?,
+        @ProtoField(12) var jumpUrl: ByteArray?,
+        @ProtoField(13) var nativeIos: ByteArray?,
+        @ProtoField(14) var nativeAndroid: ByteArray?,
+        @ProtoField(15) var iconUrl: ByteArray?,
+        @ProtoField(16) var contentColor: Long,
+        @ProtoField(17) var contentBgColor: Long,
+        @ProtoField(18) var aioImageLeft: ByteArray?,
+        @ProtoField(19) var aioImageRight: ByteArray?,
+        @ProtoField(20) var cftImage: ByteArray?,
+        @ProtoField(21) var pbReserve: ByteArray?,
+    ) : ProtoMessage()
 }

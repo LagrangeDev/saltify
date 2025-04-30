@@ -1,10 +1,10 @@
 package org.ntqqrev.saltify.lagrange.packet.common
 
-import kotlinx.serialization.Serializable
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class SsoSecureInfo(
-    val sign: ByteArray,
-    val token: ByteArray,
-    val extra: ByteArray,
-)
+    @ProtoField(1) var sign: ByteArray,
+    @ProtoField(2) var token: ByteArray,
+    @ProtoField(3) var extra: ByteArray,
+) : ProtoMessage()

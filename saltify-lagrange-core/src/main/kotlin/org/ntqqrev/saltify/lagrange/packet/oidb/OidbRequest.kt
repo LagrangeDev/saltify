@@ -1,12 +1,11 @@
 package org.ntqqrev.saltify.lagrange.packet.oidb
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class OidbRequest(
-    @ProtoNumber(1) val cmd: Int,
-    @ProtoNumber(2) val subCmd: Int,
-    @ProtoNumber(4) val payload: ByteArray,
-    @ProtoNumber(12) val reserve: Boolean = false,
-)
+    @ProtoField(1) var cmd: Int,
+    @ProtoField(2) var subCmd: Int,
+    @ProtoField(4) var payload: ByteArray,
+    @ProtoField(12) var reserve: Boolean = false,
+) : ProtoMessage()

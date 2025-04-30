@@ -1,12 +1,12 @@
 package org.ntqqrev.saltify.lagrange.packet.common
 
-import kotlinx.serialization.Serializable
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class DeviceInfo(
-    val user: String,
-    val os: String,
-    val osVer: String,
-    val vendorName: String? = null,
-    val osLower: String,
-)
+    @ProtoField(1) var user: String,
+    @ProtoField(2) var os: String,
+    @ProtoField(3) var osVer: String,
+    @ProtoField(4) var vendorName: String? = null,
+    @ProtoField(5) var osLower: String,
+) : ProtoMessage()

@@ -1,11 +1,11 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-import kotlinx.serialization.Serializable
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class RichText(
-    val attr: Attr?,
-    val elements: List<ByteArray>,
-    val notOnlineFile: NotOnlineFile?,
-    val ptt: Ptt?,
-)
+    @ProtoField(1) var attr: Attr?,
+    @ProtoField(2) var elements: List<ByteArray>,
+    @ProtoField(3) var notOnlineFile: NotOnlineFile?,
+    @ProtoField(4)  var ptt: Ptt?,
+) : ProtoMessage()

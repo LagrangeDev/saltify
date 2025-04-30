@@ -1,23 +1,21 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class MarketFaceElement(
-    @ProtoNumber(1) val summary: String?,
-    @ProtoNumber(2) val itemType: Int,
-    @ProtoNumber(3) val info: Int,
-    @ProtoNumber(4) val faceId: ByteArray?,
-    @ProtoNumber(5) val tabId: Int,
-    @ProtoNumber(6) val subType: Int,
-    @ProtoNumber(7) val key: String?,
-    @ProtoNumber(10) val width: Int,
-    @ProtoNumber(11) val height: Int,
-    @ProtoNumber(13) val pbReserve: Reserve?,
-) : ElementType {
-    @Serializable
+    @ProtoField(1) var summary: String?,
+    @ProtoField(2) var itemType: Int,
+    @ProtoField(3) var info: Int,
+    @ProtoField(4) var faceId: ByteArray?,
+    @ProtoField(5) var tabId: Int,
+    @ProtoField(6) var subType: Int,
+    @ProtoField(7) var key: String?,
+    @ProtoField(10) var width: Int,
+    @ProtoField(11) var height: Int,
+    @ProtoField(13) var pbReserve: Reserve?,
+) : ProtoMessage() {
     class Reserve(
-        @ProtoNumber(8) val field8: Int,
-    )
+        @ProtoField(8) var field8: Int,
+    ) : ProtoMessage()
 }

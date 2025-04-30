@@ -1,11 +1,10 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class FaceElement(
-    @ProtoNumber(1) val index: Int?,
-    @ProtoNumber(2) val old: ByteArray?,
-    @ProtoNumber(11) val buf: ByteArray?,
-) : ElementType
+    @ProtoField(1) var index: Int?,
+    @ProtoField(2) var old: ByteArray?,
+    @ProtoField(11) var buf: ByteArray?,
+) : ProtoMessage()

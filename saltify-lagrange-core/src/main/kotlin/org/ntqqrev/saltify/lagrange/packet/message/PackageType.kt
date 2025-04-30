@@ -1,6 +1,6 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-enum class PackageType(val value: Int) {
+enum class PackageType(var value: Int) {
     PRIVATE_MESSAGE(166),
     GROUP_MESSAGE(82),
     TEMP_MESSAGE(141),

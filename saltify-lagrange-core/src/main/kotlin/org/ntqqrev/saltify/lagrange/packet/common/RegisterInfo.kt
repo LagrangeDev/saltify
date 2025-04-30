@@ -1,16 +1,15 @@
 package org.ntqqrev.saltify.lagrange.packet.common
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class RegisterInfo(
-    @ProtoNumber(1) val guid: String,
-    @ProtoNumber(3) val currentVersion: String,
-    @ProtoNumber(6) val device: DeviceInfo,
-    @ProtoNumber(10) val businessInfo: BusinessInfo = BusinessInfo(
+    @ProtoField(1) var guid: String,
+    @ProtoField(3) var currentVersion: String,
+    @ProtoField(6) var device: DeviceInfo,
+    @ProtoField(10) var businessInfo: BusinessInfo = BusinessInfo(
         notifySwitch = 1,
         bindUinNotifySwitch = 1,
     ),
-)
+) : ProtoMessage()
 

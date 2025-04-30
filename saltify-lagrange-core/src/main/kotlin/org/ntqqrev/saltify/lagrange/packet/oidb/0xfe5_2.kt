@@ -1,104 +1,100 @@
 package org.ntqqrev.saltify.lagrange.packet.oidb
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class OidbFetchGroupsRequest(
-    @ProtoNumber(1) val config: Config,
-) {
-    @Serializable
+    @ProtoField(1) var config: Config,
+) : ProtoMessage() {
+
     class Config(
-        @ProtoNumber(1) val config1: Config1,
-        @ProtoNumber(2) val config2: Config2,
-        @ProtoNumber(3) val config3: Config3,
-    ) {
-        @Serializable
+        @ProtoField(1) var config1: Config1,
+        @ProtoField(2) var config2: Config2,
+        @ProtoField(3) var config3: Config3,
+    ) : ProtoMessage() {
+
         class Config1(
-            @ProtoNumber(1) val groupOwner: Boolean,
-            @ProtoNumber(2) val field2: Boolean,
-            @ProtoNumber(3) val memberMax: Boolean,
-            @ProtoNumber(4) val memberCount: Boolean,
-            @ProtoNumber(5) val groupName: Boolean,
-            @ProtoNumber(8) val field8: Boolean,
-            @ProtoNumber(9) val field9: Boolean,
-            @ProtoNumber(10) val field10: Boolean,
-            @ProtoNumber(11) val field11: Boolean,
-            @ProtoNumber(12) val field12: Boolean,
-            @ProtoNumber(13) val field13: Boolean,
-            @ProtoNumber(14) val field14: Boolean,
-            @ProtoNumber(15) val field15: Boolean,
-            @ProtoNumber(16) val field16: Boolean,
-            @ProtoNumber(17) val field17: Boolean,
-            @ProtoNumber(18) val field18: Boolean,
-            @ProtoNumber(19) val question: Boolean,
-            @ProtoNumber(20) val field20: Boolean,
-            @ProtoNumber(22) val field22: Boolean,
-            @ProtoNumber(23) val field23: Boolean,
-            @ProtoNumber(24) val field24: Boolean,
-            @ProtoNumber(25) val field25: Boolean,
-            @ProtoNumber(26) val field26: Boolean,
-            @ProtoNumber(27) val field27: Boolean,
-            @ProtoNumber(28) val field28: Boolean,
-            @ProtoNumber(29) val field29: Boolean,
-            @ProtoNumber(30) val field30: Boolean,
-            @ProtoNumber(31) val field31: Boolean,
-            @ProtoNumber(32) val field32: Boolean,
-            @ProtoNumber(5001) val field5001: Boolean,
-            @ProtoNumber(5002) val field5002: Boolean,
-            @ProtoNumber(5003) val field5003: Boolean,
-        )
+            @ProtoField(1) var groupOwner: Boolean,
+            @ProtoField(2) var field2: Boolean,
+            @ProtoField(3) var memberMax: Boolean,
+            @ProtoField(4) var memberCount: Boolean,
+            @ProtoField(5) var groupName: Boolean,
+            @ProtoField(8) var field8: Boolean,
+            @ProtoField(9) var field9: Boolean,
+            @ProtoField(10) var field10: Boolean,
+            @ProtoField(11) var field11: Boolean,
+            @ProtoField(12) var field12: Boolean,
+            @ProtoField(13) var field13: Boolean,
+            @ProtoField(14) var field14: Boolean,
+            @ProtoField(15) var field15: Boolean,
+            @ProtoField(16) var field16: Boolean,
+            @ProtoField(17) var field17: Boolean,
+            @ProtoField(18) var field18: Boolean,
+            @ProtoField(19) var question: Boolean,
+            @ProtoField(20) var field20: Boolean,
+            @ProtoField(22) var field22: Boolean,
+            @ProtoField(23) var field23: Boolean,
+            @ProtoField(24) var field24: Boolean,
+            @ProtoField(25) var field25: Boolean,
+            @ProtoField(26) var field26: Boolean,
+            @ProtoField(27) var field27: Boolean,
+            @ProtoField(28) var field28: Boolean,
+            @ProtoField(29) var field29: Boolean,
+            @ProtoField(30) var field30: Boolean,
+            @ProtoField(31) var field31: Boolean,
+            @ProtoField(32) var field32: Boolean,
+            @ProtoField(5001) var field5001: Boolean,
+            @ProtoField(5002) var field5002: Boolean,
+            @ProtoField(5003) var field5003: Boolean,
+        ) : ProtoMessage()
 
-        @Serializable
         class Config2(
-            @ProtoNumber(1) val field1: Boolean,
-            @ProtoNumber(2) val field2: Boolean,
-            @ProtoNumber(3) val field3: Boolean,
-            @ProtoNumber(4) val field4: Boolean,
-            @ProtoNumber(5) val field5: Boolean,
-            @ProtoNumber(6) val field6: Boolean,
-            @ProtoNumber(7) val field7: Boolean,
-            @ProtoNumber(8) val field8: Boolean,
-        )
+            @ProtoField(1) var field1: Boolean,
+            @ProtoField(2) var field2: Boolean,
+            @ProtoField(3) var field3: Boolean,
+            @ProtoField(4) var field4: Boolean,
+            @ProtoField(5) var field5: Boolean,
+            @ProtoField(6) var field6: Boolean,
+            @ProtoField(7) var field7: Boolean,
+            @ProtoField(8) var field8: Boolean,
+        ) : ProtoMessage()
 
-        @Serializable
         class Config3(
-            @ProtoNumber(5) val field5: Boolean,
-            @ProtoNumber(6) val field6: Boolean,
-        )
+            @ProtoField(5) var field5: Boolean,
+            @ProtoField(6) var field6: Boolean,
+        ) : ProtoMessage()
     }
 }
 
-@Serializable
+
 class OidbFetchGroupsResponse(
-    @ProtoNumber(2) val entries: List<Entry>,
-) {
-    @Serializable
+    @ProtoField(2) var entries: List<Entry>,
+) : ProtoMessage() {
+
     class Entry(
-        @ProtoNumber(3) val groupUin: Long,
-        @ProtoNumber(4) val info: Info,
-        @ProtoNumber(5) val customInfo: CustomInfo?,
-    ) {
-        @Serializable
+        @ProtoField(3) var groupUin: Long,
+        @ProtoField(4) var info: Info,
+        @ProtoField(5) var customInfo: CustomInfo?,
+    ) : ProtoMessage() {
+
         class Info(
-            @ProtoNumber(1) val groupOwner: Member?,
-            @ProtoNumber(2) val createdTime: Long,
-            @ProtoNumber(3) val memberMax: Int,
-            @ProtoNumber(4) val memberCount: Int,
-            @ProtoNumber(5) val groupName: String?,
-            @ProtoNumber(18) val description: String?,
-            @ProtoNumber(19) val question: String?,
-            @ProtoNumber(30) val announcement: String?,
-        ) {
-            @Serializable
+            @ProtoField(1) var groupOwner: Member?,
+            @ProtoField(2) var createdTime: Long,
+            @ProtoField(3) var memberMax: Int,
+            @ProtoField(4) var memberCount: Int,
+            @ProtoField(5) var groupName: String?,
+            @ProtoField(18) var description: String?,
+            @ProtoField(19) var question: String?,
+            @ProtoField(30) var announcement: String?,
+        ) : ProtoMessage() {
+
             class Member(
-                @ProtoNumber(2) val uid: String?,
-            )
+                @ProtoField(2) var uid: String?,
+            ) : ProtoMessage()
         }
 
-        @Serializable
         class CustomInfo(
-            @ProtoNumber(3) val remark: String?,
-        )
+            @ProtoField(3) var remark: String?,
+        ) : ProtoMessage()
     }
 }

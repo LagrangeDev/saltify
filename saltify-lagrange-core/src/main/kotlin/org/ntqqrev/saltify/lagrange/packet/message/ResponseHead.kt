@@ -1,29 +1,28 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
 
-@Serializable
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
+
+
 class ResponseHead(
-    val fromUin: Long,
-    val fromUid: String?,
-    val type: Long,
-    val sigMap: Long,
-    val toUin: Long,
-    val toUid: String?,
-    val friendExt: FriendExt?,
-    val groupExt: GroupExt?,
-) {
-    @Serializable
+    @ProtoField(1) var fromUin: Long,
+    @ProtoField(2) var fromUid: String?,
+    @ProtoField(3) var type: Long,
+    @ProtoField(4) var sigMap: Long,
+    @ProtoField(5) var toUin: Long,
+    @ProtoField(6) var toUid: String?,
+    @ProtoField(7) var friendExt: FriendExt?,
+    @ProtoField(8) var groupExt: GroupExt?,
+) : ProtoMessage() {
     class FriendExt(
-        @ProtoNumber(6) val friendName: String?,
-    )
+        @ProtoField(6) var friendName: String?,
+    ) : ProtoMessage()
 
-    @Serializable
     class GroupExt(
-        @ProtoNumber(1) val groupUin: Long,
-        @ProtoNumber(4) val memberName: String?,
-        @ProtoNumber(5) val unknown5: Long,
-        @ProtoNumber(7) val groupName: String,
-    )
+        @ProtoField(1) var groupUin: Long,
+        @ProtoField(4) var memberName: String?,
+        @ProtoField(5) var unknown5: Long,
+        @ProtoField(7) var groupName: String,
+    ) : ProtoMessage()
 }

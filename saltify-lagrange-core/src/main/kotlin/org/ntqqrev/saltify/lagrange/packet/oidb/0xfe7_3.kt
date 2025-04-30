@@ -1,77 +1,73 @@
 package org.ntqqrev.saltify.lagrange.packet.oidb
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
 
-@Serializable
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
+
+
 class OidbFetchGroupMembersRequest(
-    @ProtoNumber(1) val groupUin: Long,
-    @ProtoNumber(2) val field2: Int,
-    @ProtoNumber(3) val field3: Int,
-    @ProtoNumber(4) val body: Body,
-    @ProtoNumber(15) val token: String?,
-) {
-    @Serializable
+    @ProtoField(1) var groupUin: Long,
+    @ProtoField(2) var field2: Int,
+    @ProtoField(3) var field3: Int,
+    @ProtoField(4) var body: Body,
+    @ProtoField(15) var token: String?,
+) : ProtoMessage(){
     class Body(
-        @ProtoNumber(10) val memberName: Boolean,
-        @ProtoNumber(11) val memberCard: Boolean,
-        @ProtoNumber(12) val level: Boolean,
-        @ProtoNumber(13) val field13: Boolean,
-        @ProtoNumber(16) val field16: Boolean,
-        @ProtoNumber(17) val specialTitle: Boolean,
-        @ProtoNumber(18) val field18: Boolean,
-        @ProtoNumber(20) val field20: Boolean,
-        @ProtoNumber(21) val field21: Boolean,
-        @ProtoNumber(100) val joinTimestamp: Boolean,
-        @ProtoNumber(101) val lastMsgTimestamp: Boolean,
-        @ProtoNumber(102) val shutUpTimestamp: Boolean,
-        @ProtoNumber(103) val field103: Boolean,
-        @ProtoNumber(104) val field104: Boolean,
-        @ProtoNumber(105) val field105: Boolean,
-        @ProtoNumber(106) val field106: Boolean,
-        @ProtoNumber(107) val permission: Boolean,
-        @ProtoNumber(200) val field200: Boolean,
-        @ProtoNumber(201) val field201: Boolean,
-    )
+        @ProtoField(10) var memberName: Boolean,
+        @ProtoField(11) var memberCard: Boolean,
+        @ProtoField(12) var level: Boolean,
+        @ProtoField(13) var field13: Boolean,
+        @ProtoField(16) var field16: Boolean,
+        @ProtoField(17) var specialTitle: Boolean,
+        @ProtoField(18) var field18: Boolean,
+        @ProtoField(20) var field20: Boolean,
+        @ProtoField(21) var field21: Boolean,
+        @ProtoField(100) var joinTimestamp: Boolean,
+        @ProtoField(101) var lastMsgTimestamp: Boolean,
+        @ProtoField(102) var shutUpTimestamp: Boolean,
+        @ProtoField(103) var field103: Boolean,
+        @ProtoField(104) var field104: Boolean,
+        @ProtoField(105) var field105: Boolean,
+        @ProtoField(106) var field106: Boolean,
+        @ProtoField(107) var permission: Boolean,
+        @ProtoField(200) var field200: Boolean,
+        @ProtoField(201) var field201: Boolean,
+    ) : ProtoMessage()
 }
 
-@Serializable
+
 class OidbFetchGroupMembersResponse(
-    @ProtoNumber(1) val groupUin: Long,
-    @ProtoNumber(2) val entries: List<Entry>,
-    @ProtoNumber(3) val field3: Long,
-    @ProtoNumber(5) val memberChangeSeq: Long,
-    @ProtoNumber(6) val memberCardChangeSeq: Long,
-    @ProtoNumber(15) val token: String?,
-) {
-    @Serializable
+    @ProtoField(1) var groupUin: Long,
+    @ProtoField(2) var entries: List<Entry>,
+    @ProtoField(3) var field3: Long,
+    @ProtoField(5) var memberChangeSeq: Long,
+    @ProtoField(6) var memberCardChangeSeq: Long,
+    @ProtoField(15) var token: String?,
+) : ProtoMessage() {
     class Entry(
-        @ProtoNumber(1) val identity: Identity,
-        @ProtoNumber(10) val memberName: String?,
-        @ProtoNumber(17) val specialTitle: String?,
-        @ProtoNumber(11) val memberCard: Card?,
-        @ProtoNumber(12) val level: Level?,
-        @ProtoNumber(100) val joinTimestamp: Long,
-        @ProtoNumber(101) val lastMsgTimestamp: Long,
-        @ProtoNumber(102) val shutUpTimestamp: Long?,
-        @ProtoNumber(107) val permission: Int = 0,
-    ) {
-        @Serializable
+        @ProtoField(1) var identity: Identity,
+        @ProtoField(10) var memberName: String?,
+        @ProtoField(17) var specialTitle: String?,
+        @ProtoField(11) var memberCard: Card?,
+        @ProtoField(12) var level: Level?,
+        @ProtoField(100) var joinTimestamp: Long,
+        @ProtoField(101) var lastMsgTimestamp: Long,
+        @ProtoField(102) var shutUpTimestamp: Long?,
+        @ProtoField(107) var permission: Int = 0,
+    ) : ProtoMessage() {
+
         class Identity(
-            @ProtoNumber(2) val uid: String,
-            @ProtoNumber(4) val uin: Long,
-        )
+            @ProtoField(2) var uid: String,
+            @ProtoField(4) var uin: Long,
+        ) : ProtoMessage()
 
-        @Serializable
         class Card(
-            @ProtoNumber(2) val memberCard: String?,
-        )
+            @ProtoField(2) var memberCard: String?,
+        ) : ProtoMessage()
 
-        @Serializable
         class Level(
-            @ProtoNumber(1) val infos: List<Int>,
-            @ProtoNumber(2) val level: Int,
-        )
-
+            @ProtoField(1) var infos: List<Int>,
+            @ProtoField(2) var level: Int,
+        ) : ProtoMessage()
     }
 }

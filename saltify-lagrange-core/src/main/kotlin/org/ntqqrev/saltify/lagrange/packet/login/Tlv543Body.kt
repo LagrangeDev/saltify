@@ -1,19 +1,16 @@
 package org.ntqqrev.saltify.lagrange.packet.login
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class Tlv543Body(
-    @ProtoNumber(9) val layer1: Layer1,
-) {
-    @Serializable
+    @ProtoField(9) var layer1: Layer1,
+) : ProtoMessage() {
     class Layer1(
-        @ProtoNumber(11) val layer2: Layer2,
-    ) {
-        @Serializable
+        @ProtoField(11) var layer2: Layer2,
+    ) : ProtoMessage() {
         class Layer2(
-            @ProtoNumber(1) val uid: String,
-        )
+            @ProtoField(1) var uid: String,
+        ) : ProtoMessage()
     }
 }

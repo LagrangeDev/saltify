@@ -1,11 +1,10 @@
 package org.ntqqrev.saltify.lagrange.packet.common
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class SsoReservedFields(
-    @ProtoNumber(15) val trace: String,
-    @ProtoNumber(16) val uid: String?,
-    @ProtoNumber(24) val secureInfo: SsoSecureInfo?,
-)
+    @ProtoField(15) var trace: String,
+    @ProtoField(16) var uid: String?,
+    @ProtoField(24) var secureInfo: SsoSecureInfo?,
+) : ProtoMessage()

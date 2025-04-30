@@ -1,22 +1,20 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class NTSysEvent(
-    val ip: String,
-    val sid: Long,
-    val sub: Sub
-) {
-    @Serializable
+    @ProtoField(1) var ip: String,
+    @ProtoField(2) var sid: Long,
+    @ProtoField(3) var sub: Sub
+) : ProtoMessage() {
     class Sub(
-        @ProtoNumber(2) val state: Long,
-        @ProtoNumber(3) val field3: Int,
-        @ProtoNumber(4) val field4: Long,
-        @ProtoNumber(5) val uin: Long,
-        @ProtoNumber(6) val flag: Int,
-        @ProtoNumber(7) val on: Int,
-        @ProtoNumber(8) val groupUin: Long
-    )
+        @ProtoField(2) var state: Long,
+        @ProtoField(3) var field3: Int,
+        @ProtoField(4) var field4: Long,
+        @ProtoField(5) var uin: Long,
+        @ProtoField(6) var flag: Int,
+        @ProtoField(7) var on: Int,
+        @ProtoField(8) var groupUin: Long
+    ) : ProtoMessage()
 }

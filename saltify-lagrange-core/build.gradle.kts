@@ -12,8 +12,7 @@ kotlin.sourceSets.all {
 
 dependencies {
     implementation(libs.bundles.ktorEcosystem)
-    implementation(libs.kotlinxSerializationProtobuf)
-    implementation(libs.saltifyProtobuf)
+    api(libs.saltifyProtobuf)
 
     compileOnly(libs.bundles.kotlinxEcosystem)
     compileOnly(libs.kotlinLogging)

@@ -1,50 +1,44 @@
 package org.ntqqrev.saltify.lagrange.packet.oidb
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class OidbFetchFriendsRequest(
-    @ProtoNumber(2) val friendCount: Int,
-    @ProtoNumber(5) val nextUin: UinBody,
-    @ProtoNumber(10001) val body: Map<Int, NumberList>,
-) {
-    @Serializable
+    @ProtoField(2) var friendCount: Int,
+    @ProtoField(5) var nextUin: UinBody,
+    @ProtoField(10001) var body: Map<Int, NumberList>,
+) : ProtoMessage() {
     class NumberList(
-        @ProtoNumber(1) val numbers: List<Int>,
-    )
+        @ProtoField(1) var numbers: List<Int>,
+    ) : ProtoMessage()
 }
 
-@Serializable
+
 class OidbFetchFriendsResponse(
-    @ProtoNumber(2) val next: UinBody?,
-    @ProtoNumber(3) val displayFriendCount: Long,
-    @ProtoNumber(6) val timestamp: Long,
-    @ProtoNumber(7) val selfUin: Long,
-    @ProtoNumber(101) val friends: List<Entry>,
-    @ProtoNumber(102) val categories: List<Category>,
-) {
-    @Serializable
+    @ProtoField(2) var next: UinBody?,
+    @ProtoField(3) var displayFriendCount: Long,
+    @ProtoField(6) var timestamp: Long,
+    @ProtoField(7) var selfUin: Long,
+    @ProtoField(101) var friends: List<Entry>,
+    @ProtoField(102) var categories: List<Category>,
+) : ProtoMessage() {
     class Entry(
-        @ProtoNumber(1) val uid: String,
-        @ProtoNumber(2) val category: Int?,
-        @ProtoNumber(3) val uin: Long,
-        @ProtoNumber(10001) val additional: Map<Int, Properties>,
-    ) {
-        @Serializable
+        @ProtoField(1) var uid: String,
+        @ProtoField(2) var category: Int?,
+        @ProtoField(3) var uin: Long,
+        @ProtoField(10001) var additional: Map<Int, Properties>,
+    ) : ProtoMessage() {
         class Properties(
-            @ProtoNumber(2) val properties: Map<Int, String>,
-        )
+            @ProtoField(2) var properties: Map<Int, String>,
+        ) : ProtoMessage()
     }
 
-    @Serializable
     class Category(
-        @ProtoNumber(2) val name: String,
-        @ProtoNumber(3) val id: Int,
-    )
+        @ProtoField(2) var name: String,
+        @ProtoField(3) var id: Int,
+    ) : ProtoMessage()
 }
 
-@Serializable
 class UinBody(
-    @ProtoNumber(1) val uin: Long?,
-)
+    @ProtoField(1) var uin: Long?,
+) : ProtoMessage()

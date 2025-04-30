@@ -1,22 +1,19 @@
 package org.ntqqrev.saltify.lagrange.packet.login
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class TlvQrCodeD1Body(
-    @ProtoNumber(1) val system: System,
-    @ProtoNumber(4) val typeBuf: ByteArray,
-) {
-    @Serializable
+    @ProtoField(1) var system: System,
+    @ProtoField(4) var typeBuf: ByteArray,
+) : ProtoMessage() {
     class System(
-        val os: String,
-        val deviceName: String,
-    )
+        var os: String,
+        var deviceName: String,
+    ) : ProtoMessage()
 }
 
-@Serializable
 class TlvQrCodeD1ResponseBody(
-    @ProtoNumber(2) val qrCodeUrl: String,
-    @ProtoNumber(3) val qrSig: String,
-)
+    @ProtoField(2) var qrCodeUrl: String,
+    @ProtoField(3) var qrSig: String,
+) : ProtoMessage()

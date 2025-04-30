@@ -1,6 +1,6 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-enum class Event0x2DCSubType(val value: Int) {
+enum class Event0x2DCSubType(var value: Int) {
     GROUP_MUTE(12),
     SUB_TYPE_16(16),
     GROUP_RECALL(17),

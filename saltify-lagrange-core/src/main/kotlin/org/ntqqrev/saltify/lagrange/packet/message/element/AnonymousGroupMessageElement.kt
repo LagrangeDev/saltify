@@ -1,15 +1,14 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class AnonymousGroupMessageElement(
-    @ProtoNumber(1) val flags: Int,
-    @ProtoNumber(2) val anonId: ByteArray?,
-    @ProtoNumber(3) val anonNick: ByteArray?,
-    @ProtoNumber(4) val headPortrait: Int,
-    @ProtoNumber(5) val expireTime: Int,
-    @ProtoNumber(6) val bubbleId: Int,
-    @ProtoNumber(7) val rankColor: ByteArray?,
-) : ElementType
+    @ProtoField(1) var flags: Int,
+    @ProtoField(2) var anonId: ByteArray?,
+    @ProtoField(3) var anonNick: ByteArray?,
+    @ProtoField(4) var headPortrait: Int,
+    @ProtoField(5) var expireTime: Int,
+    @ProtoField(6) var bubbleId: Int,
+    @ProtoField(7) var rankColor: ByteArray?,
+) : ProtoMessage()

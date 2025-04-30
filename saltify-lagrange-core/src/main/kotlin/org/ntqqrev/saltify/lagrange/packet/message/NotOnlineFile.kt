@@ -1,28 +1,27 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class NotOnlineFile(
-    @ProtoNumber(1) val fileType: Int?,
-    @ProtoNumber(2) val sig: ByteArray?,
-    @ProtoNumber(3) val fileUuid: String?,
-    @ProtoNumber(4) val fileMd5: ByteArray?,
-    @ProtoNumber(5) val fileName: String?,
-    @ProtoNumber(6) val fileSize: Long?,
-    @ProtoNumber(7) val note: ByteArray?,
-    @ProtoNumber(8) val reserved: Int?,
-    @ProtoNumber(9) val subCmd: Int?,
-    @ProtoNumber(10) val microCloud: Int?,
-    @ProtoNumber(11) val bytesFileUrls: List<ByteArray>?,
-    @ProtoNumber(12) val downloadFlag: Int?,
-    @ProtoNumber(50) val dangerLevel: Int?,
-    @ProtoNumber(51) val lifeTime: Int?,
-    @ProtoNumber(52) val uploadTime: Int?,
-    @ProtoNumber(53) val absFileType: Int?,
-    @ProtoNumber(54) val clientType: Int?,
-    @ProtoNumber(55) val expireTime: Int?,
-    @ProtoNumber(56) val pbReserve: ByteArray?,
-    @ProtoNumber(57) val fileHash: String?,
-)
+    @ProtoField(1) var fileType: Int?,
+    @ProtoField(2) var sig: ByteArray?,
+    @ProtoField(3) var fileUuid: String?,
+    @ProtoField(4) var fileMd5: ByteArray?,
+    @ProtoField(5) var fileName: String?,
+    @ProtoField(6) var fileSize: Long?,
+    @ProtoField(7) var note: ByteArray?,
+    @ProtoField(8) var reserved: Int?,
+    @ProtoField(9) var subCmd: Int?,
+    @ProtoField(10) var microCloud: Int?,
+    @ProtoField(11) var bytesFileUrls: List<ByteArray>?,
+    @ProtoField(12) var downloadFlag: Int?,
+    @ProtoField(50) var dangerLevel: Int?,
+    @ProtoField(51) var lifeTime: Int?,
+    @ProtoField(52) var uploadTime: Int?,
+    @ProtoField(53) var absFileType: Int?,
+    @ProtoField(54) var clientType: Int?,
+    @ProtoField(55) var expireTime: Int?,
+    @ProtoField(56) var pbReserve: ByteArray?,
+    @ProtoField(57) var fileHash: String?,
+) : ProtoMessage()

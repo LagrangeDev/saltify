@@ -1,9 +1,8 @@
 package org.ntqqrev.saltify.lagrange.packet.common
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class RegisterInfoResponse(
-    @ProtoNumber(2) val message: String
-)
+    @ProtoField(2) var message: String
+) : ProtoMessage()

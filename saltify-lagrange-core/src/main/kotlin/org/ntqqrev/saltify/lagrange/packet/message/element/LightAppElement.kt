@@ -1,10 +1,9 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class LightAppElement(
-    @ProtoNumber(1) val data: ByteArray?,
-    @ProtoNumber(2) val msgResId: ByteArray?,
-) : ElementType
+    @ProtoField(1) var data: ByteArray?,
+    @ProtoField(2) var msgResId: ByteArray?,
+) : ProtoMessage()

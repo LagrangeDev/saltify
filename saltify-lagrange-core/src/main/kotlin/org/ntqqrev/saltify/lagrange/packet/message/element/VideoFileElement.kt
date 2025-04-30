@@ -1,32 +1,31 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class VideoFileElement(
-    @ProtoNumber(1) val fileUuid: String?,
-    @ProtoNumber(2) val fileMd5: ByteArray?,
-    @ProtoNumber(3) val fileName: String?,
-    @ProtoNumber(4) val fileFormat: Int,
-    @ProtoNumber(5) val fileTime: Int,
-    @ProtoNumber(6) val fileSize: Int,
-    @ProtoNumber(7) val thumbWidth: Int,
-    @ProtoNumber(8) val thumbHeight: Int,
-    @ProtoNumber(9) val thumbFileMd5: ByteArray?,
-    @ProtoNumber(10) val source: ByteArray?,
-    @ProtoNumber(11) val thumbFileSize: Int,
-    @ProtoNumber(12) val bizType: Int,
-    @ProtoNumber(13) val fromChatType: Int,
-    @ProtoNumber(14) val toChatType: Int,
-    @ProtoNumber(15) val boolSupportProgressive: Boolean,
-    @ProtoNumber(16) val fileWidth: Int,
-    @ProtoNumber(17) val fileHeight: Int,
-    @ProtoNumber(18) val subBizType: Int,
-    @ProtoNumber(19) val videoAttr: Int,
-    @ProtoNumber(20) val bytesThumbFileUrls: List<ByteArray>,
-    @ProtoNumber(21) val bytesVideoFileUrls: List<ByteArray>,
-    @ProtoNumber(22) val thumbDownloadFlag: Int,
-    @ProtoNumber(23) val videoDownloadFlag: Int,
-    @ProtoNumber(24) val pbReserve: ByteArray?,
-) : ElementType
+    @ProtoField(1) var fileUuid: String?,
+    @ProtoField(2) var fileMd5: ByteArray?,
+    @ProtoField(3) var fileName: String?,
+    @ProtoField(4) var fileFormat: Int,
+    @ProtoField(5) var fileTime: Int,
+    @ProtoField(6) var fileSize: Int,
+    @ProtoField(7) var thumbWidth: Int,
+    @ProtoField(8) var thumbHeight: Int,
+    @ProtoField(9) var thumbFileMd5: ByteArray?,
+    @ProtoField(10) var source: ByteArray?,
+    @ProtoField(11) var thumbFileSize: Int,
+    @ProtoField(12) var bizType: Int,
+    @ProtoField(13) var fromChatType: Int,
+    @ProtoField(14) var toChatType: Int,
+    @ProtoField(15) var boolSupportProgressive: Boolean,
+    @ProtoField(16) var fileWidth: Int,
+    @ProtoField(17) var fileHeight: Int,
+    @ProtoField(18) var subBizType: Int,
+    @ProtoField(19) var videoAttr: Int,
+    @ProtoField(20) var bytesThumbFileUrls: List<ByteArray>,
+    @ProtoField(21) var bytesVideoFileUrls: List<ByteArray>,
+    @ProtoField(22) var thumbDownloadFlag: Int,
+    @ProtoField(23) var videoDownloadFlag: Int,
+    @ProtoField(24) var pbReserve: ByteArray?,
+) : ProtoMessage()

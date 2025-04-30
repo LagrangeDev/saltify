@@ -1,11 +1,10 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element.reserve
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class MentionExtra(
-    @ProtoNumber(3) val type: Int,
-    @ProtoNumber(4) val uin: Long,
-    @ProtoNumber(9) val uidOrAll: String,
-)
+    @ProtoField(3) var type: Int,
+    @ProtoField(4) var uin: Long,
+    @ProtoField(9) var uidOrAll: String,
+) : ProtoMessage()

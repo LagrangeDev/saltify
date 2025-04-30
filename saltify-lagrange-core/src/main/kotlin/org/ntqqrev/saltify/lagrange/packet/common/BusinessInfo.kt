@@ -1,9 +1,9 @@
 package org.ntqqrev.saltify.lagrange.packet.common
 
-import kotlinx.serialization.Serializable
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class BusinessInfo(
-    val notifySwitch: Int,
-    val bindUinNotifySwitch: Int,
-)
+    @ProtoField(1) var notifySwitch: Int,
+    @ProtoField(2) var bindUinNotifySwitch: Int,
+) : ProtoMessage()

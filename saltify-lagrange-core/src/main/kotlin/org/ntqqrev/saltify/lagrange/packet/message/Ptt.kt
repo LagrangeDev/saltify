@@ -1,32 +1,31 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class Ptt(
-    @ProtoNumber(1) val fileType: Int? = null,
-    @ProtoNumber(2) val srcUin: Long? = null,
-    @ProtoNumber(3) val fileUuid: String? = null,
-    @ProtoNumber(4) val fileMd5: ByteArray? = null,
-    @ProtoNumber(5) val fileName: String? = null,
-    @ProtoNumber(6) val fileSize: Int? = null,
-    @ProtoNumber(7) val reserve: ByteArray? = null,
-    @ProtoNumber(8) val fileId: Int? = null,
-    @ProtoNumber(9) val serverIp: Int? = null,
-    @ProtoNumber(10) val serverPort: Int? = null,
-    @ProtoNumber(11) val boolValid: Boolean? = null,
-    @ProtoNumber(12) val signature: ByteArray? = null,
-    @ProtoNumber(13) val shortcut: ByteArray? = null,
-    @ProtoNumber(14) val fileKey: ByteArray? = null,
-    @ProtoNumber(15) val magicPttIndex: Int? = null,
-    @ProtoNumber(16) val voiceSwitch: Int? = null,
-    @ProtoNumber(17) val pttUrl: ByteArray? = null,
-    @ProtoNumber(18) val groupFileKey: String? = null,
-    @ProtoNumber(19) val time: Int? = null,
-    @ProtoNumber(20) val downPara: ByteArray? = null,
-    @ProtoNumber(29) val format: Int? = null,
-    @ProtoNumber(30) val pbReserve: ByteArray? = null,
-    @ProtoNumber(31) val bytesPttUrls: List<ByteArray>? = null,
-    @ProtoNumber(32) val downloadFlag: Int? = null
-)
+    @ProtoField(1) var fileType: Int? = null,
+    @ProtoField(2) var srcUin: Long? = null,
+    @ProtoField(3) var fileUuid: String? = null,
+    @ProtoField(4) var fileMd5: ByteArray? = null,
+    @ProtoField(5) var fileName: String? = null,
+    @ProtoField(6) var fileSize: Int? = null,
+    @ProtoField(7) var reserve: ByteArray? = null,
+    @ProtoField(8) var fileId: Int? = null,
+    @ProtoField(9) var serverIp: Int? = null,
+    @ProtoField(10) var serverPort: Int? = null,
+    @ProtoField(11) var boolValid: Boolean? = null,
+    @ProtoField(12) var signature: ByteArray? = null,
+    @ProtoField(13) var shortcut: ByteArray? = null,
+    @ProtoField(14) var fileKey: ByteArray? = null,
+    @ProtoField(15) var magicPttIndex: Int? = null,
+    @ProtoField(16) var voiceSwitch: Int? = null,
+    @ProtoField(17) var pttUrl: ByteArray? = null,
+    @ProtoField(18) var groupFileKey: String? = null,
+    @ProtoField(19) var time: Int? = null,
+    @ProtoField(20) var downPara: ByteArray? = null,
+    @ProtoField(29) var format: Int? = null,
+    @ProtoField(30) var pbReserve: ByteArray? = null,
+    @ProtoField(31) var bytesPttUrls: List<ByteArray>? = null,
+    @ProtoField(32) var downloadFlag: Int? = null
+) : ProtoMessage()

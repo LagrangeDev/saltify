@@ -1,17 +1,16 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element.reserve
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class QBigFaceExtra(
-    @ProtoNumber(1) val aniStickerPackId: String,
-    @ProtoNumber(2) val aniStickerId: String,
-    @ProtoNumber(3) val faceId: Int,
-    @ProtoNumber(4) val field4: Int,
-    @ProtoNumber(5) val aniStickerType: Int,
-    @ProtoNumber(6) val field6: String,
-    @ProtoNumber(7) val preview: String,
-    @ProtoNumber(9) val field9: Int,
-)
+    @ProtoField(1) var aniStickerPackId: String,
+    @ProtoField(2) var aniStickerId: String,
+    @ProtoField(3) var faceId: Int,
+    @ProtoField(4) var field4: Int,
+    @ProtoField(5) var aniStickerType: Int,
+    @ProtoField(6) var field6: String,
+    @ProtoField(7) var preview: String,
+    @ProtoField(9) var field9: Int,
+) : ProtoMessage()
 

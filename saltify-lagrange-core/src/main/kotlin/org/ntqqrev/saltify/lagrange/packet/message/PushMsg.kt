@@ -1,13 +1,12 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class PushMsg(
-    @ProtoNumber(1) val message: ByteArray,
-    @ProtoNumber(3) val status: Int?,
-    @ProtoNumber(4) val ntEvent: NTSysEvent?,
-    @ProtoNumber(5) val pingFlag: Int?,
-    @ProtoNumber(9) val generalFlag: Int?
-)
+    @ProtoField(1) var message: ByteArray,
+    @ProtoField(3) var status: Int?,
+    @ProtoField(4) var ntEvent: NTSysEvent?,
+    @ProtoField(5) var pingFlag: Int?,
+    @ProtoField(9) var generalFlag: Int?
+) : ProtoMessage()

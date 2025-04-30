@@ -1,10 +1,10 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-import kotlinx.serialization.Serializable
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class PushMsgBody(
-    val responseHead: ResponseHead,
-    val contentHead: ContentHead,
-    val body: MessageBody?,
-)
+    @ProtoField(1) var responseHead: ResponseHead,
+    @ProtoField(2) var contentHead: ContentHead,
+    @ProtoField(3) var body: MessageBody?,
+) : ProtoMessage()

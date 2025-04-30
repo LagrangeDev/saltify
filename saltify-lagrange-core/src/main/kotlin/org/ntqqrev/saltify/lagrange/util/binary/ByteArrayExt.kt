@@ -1,8 +1,7 @@
 package org.ntqqrev.saltify.lagrange.util.binary
 
-import kotlinx.serialization.decodeFromByteArray
-import kotlinx.serialization.encodeToByteArray
-import kotlinx.serialization.protobuf.ProtoBuf
+import org.ntqqrev.saltify.protobuf.ProtoBuf
+import org.ntqqrev.saltify.protobuf.ProtoMessage
 import java.security.MessageDigest
 
 val EMPTY_BYTE_ARRAY = ByteArray(0)
@@ -28,9 +27,9 @@ internal fun String.fromHex(): ByteArray {
     return result
 }
 
-inline fun <reified T> T.pb(): ByteArray = ProtoBuf.encodeToByteArray(this)
+inline fun <reified T : ProtoMessage> T.pb(): ByteArray = ProtoBuf.serialize(this)
 
-inline fun <reified T> ByteArray.pb(): T = ProtoBuf.decodeFromByteArray<T>(this)
+inline fun <reified T : ProtoMessage> ByteArray.pb(): T = ProtoBuf.deserialize<T>(this)
 
 internal fun ByteArray.writeUInt32BE(value: Long, offset: Int) {
     this[offset] = (value ushr 24).toByte()

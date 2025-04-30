@@ -1,18 +1,17 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class GroupFileElement(
-    @ProtoNumber(1) val filename: ByteArray?,
-    @ProtoNumber(2) val fileSize: Long,
-    @ProtoNumber(3) val fileId: ByteArray?,
-    @ProtoNumber(4) val batchId: ByteArray?,
-    @ProtoNumber(5) val fileKey: ByteArray?,
-    @ProtoNumber(6) val mark: ByteArray?,
-    @ProtoNumber(7) val sequence: Long,
-    @ProtoNumber(8) val batchItemId: ByteArray?,
-    @ProtoNumber(9) val feedMsgTime: Int,
-    @ProtoNumber(10) val pbReserve: ByteArray?,
-) : ElementType
+    @ProtoField(1) var filename: ByteArray?,
+    @ProtoField(2) var fileSize: Long,
+    @ProtoField(3) var fileId: ByteArray?,
+    @ProtoField(4) var batchId: ByteArray?,
+    @ProtoField(5) var fileKey: ByteArray?,
+    @ProtoField(6) var mark: ByteArray?,
+    @ProtoField(7) var sequence: Long,
+    @ProtoField(8) var batchItemId: ByteArray?,
+    @ProtoField(9) var feedMsgTime: Int,
+    @ProtoField(10) var pbReserve: ByteArray?,
+) : ProtoMessage()

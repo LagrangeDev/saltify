@@ -1,38 +1,36 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class ElemFlags2(
-    @ProtoNumber(1) val colorTextId: Long,
-    @ProtoNumber(2) val msgId: Long,
-    @ProtoNumber(3) val whisperSessionId: Long,
-    @ProtoNumber(4) val pttChangeBit: Long,
-    @ProtoNumber(5) val vipStatus: Long,
-    @ProtoNumber(6) val compatibleId: Long,
-    @ProtoNumber(7) val instances: List<Instance>,
-    @ProtoNumber(8) val msgRptCnt: Long,
-    @ProtoNumber(9) val srcInst: Instance?,
-    @ProtoNumber(10) val longitude: Long,
-    @ProtoNumber(11) val latitude: Long,
-    @ProtoNumber(12) val customFont: Long,
-    @ProtoNumber(13) val pcSupportDef: PcSupportDef?,
-    @ProtoNumber(14) val crmFlags: Long?,
-) : ElementType {
-    @Serializable
-    class Instance(
-        @ProtoNumber(1) val appId: Long,
-        @ProtoNumber(2) val instId: Long,
-    )
+    @ProtoField(1) var colorTextId: Long,
+    @ProtoField(2) var msgId: Long,
+    @ProtoField(3) var whisperSessionId: Long,
+    @ProtoField(4) var pttChangeBit: Long,
+    @ProtoField(5) var vipStatus: Long,
+    @ProtoField(6) var compatibleId: Long,
+    @ProtoField(7) var instances: List<Instance>,
+    @ProtoField(8) var msgRptCnt: Long,
+    @ProtoField(9) var srcInst: Instance?,
+    @ProtoField(10) var longitude: Long,
+    @ProtoField(11) var latitude: Long,
+    @ProtoField(12) var customFont: Long,
+    @ProtoField(13) var pcSupportDef: PcSupportDef?,
+    @ProtoField(14) var crmFlags: Long?,
+) : ProtoMessage() {
 
-    @Serializable
+    class Instance(
+        @ProtoField(1) var appId: Long,
+        @ProtoField(2) var instId: Long,
+    ) : ProtoMessage()
+
     class PcSupportDef(
-        @ProtoNumber(1) val pcPtlBegin: Long,
-        @ProtoNumber(2) val pcPtlEnd: Long,
-        @ProtoNumber(3) val macPtlBegin: Long,
-        @ProtoNumber(4) val macPtlEnd: Long,
-        @ProtoNumber(5) val ptlsSupport: List<Long>,
-        @ProtoNumber(6) val ptlsNotSupport: List<Long>,
-    )
+        @ProtoField(1) var pcPtlBegin: Long,
+        @ProtoField(2) var pcPtlEnd: Long,
+        @ProtoField(3) var macPtlBegin: Long,
+        @ProtoField(4) var macPtlEnd: Long,
+        @ProtoField(5) var ptlsSupport: List<Long>,
+        @ProtoField(6) var ptlsNotSupport: List<Long>,
+    ) : ProtoMessage()
 }

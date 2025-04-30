@@ -1,14 +1,13 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element.reserve
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class PbReserve2(
-    @ProtoNumber(1) val field1: Int,
-    @ProtoNumber(2) val field2: String?,
-    @ProtoNumber(3) val field3: Int,
-    @ProtoNumber(4) val field4: Int,
-    @ProtoNumber(5) val field5: Int,
-    @ProtoNumber(7) val md5Str: String?,
-)
+    @ProtoField(1) var field1: Int,
+    @ProtoField(2) var field2: String?,
+    @ProtoField(3) var field3: Int,
+    @ProtoField(4) var field4: Int,
+    @ProtoField(5) var field5: Int,
+    @ProtoField(7) var md5Str: String?,
+) : ProtoMessage()

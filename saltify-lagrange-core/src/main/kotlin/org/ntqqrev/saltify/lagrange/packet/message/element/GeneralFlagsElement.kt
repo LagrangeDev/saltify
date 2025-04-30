@@ -1,27 +1,26 @@
 package org.ntqqrev.saltify.lagrange.packet.message.element
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.protobuf.ProtoNumber
+import org.ntqqrev.saltify.protobuf.ProtoMessage
+import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
-@Serializable
 class GeneralFlagsElement(
-    @ProtoNumber(1) val bubbleDiyTextId: Long,
-    @ProtoNumber(2) val groupFlagNew: Int,
-    @ProtoNumber(3) val uin: Long,
-    @ProtoNumber(4) val rpId: ByteArray?,
-    @ProtoNumber(5) val prpFold: Int,
-    @ProtoNumber(6) val longTextFlag: Int,
-    @ProtoNumber(7) val longTextResId: String?,
-    @ProtoNumber(8) val groupType: Int,
-    @ProtoNumber(9) val toUinFlag: Int,
-    @ProtoNumber(10) val glamourLevel: Int,
-    @ProtoNumber(11) val memberLevel: Int,
-    @ProtoNumber(12) val groupRankSeq: Long,
-    @ProtoNumber(13) val olympicTorch: Int,
-    @ProtoNumber(14) val babyQGuideMsgCookie: ByteArray?,
-    @ProtoNumber(15) val uin32ExpertFlag: Int,
-    @ProtoNumber(16) val bubbleSubId: Int,
-    @ProtoNumber(17) val pendantId: Long,
-    @ProtoNumber(18) val rpIndex: ByteArray?,
-    @ProtoNumber(19) val pbReserve: ByteArray?,
-) : ElementType
+    @ProtoField(1) var bubbleDiyTextId: Long,
+    @ProtoField(2) var groupFlagNew: Int,
+    @ProtoField(3) var uin: Long,
+    @ProtoField(4) var rpId: ByteArray?,
+    @ProtoField(5) var prpFold: Int,
+    @ProtoField(6) var longTextFlag: Int,
+    @ProtoField(7) var longTextResId: String?,
+    @ProtoField(8) var groupType: Int,
+    @ProtoField(9) var toUinFlag: Int,
+    @ProtoField(10) var glamourLevel: Int,
+    @ProtoField(11) var memberLevel: Int,
+    @ProtoField(12) var groupRankSeq: Long,
+    @ProtoField(13) var olympicTorch: Int,
+    @ProtoField(14) var babyQGuideMsgCookie: ByteArray?,
+    @ProtoField(15) var uin32ExpertFlag: Int,
+    @ProtoField(16) var bubbleSubId: Int,
+    @ProtoField(17) var pendantId: Long,
+    @ProtoField(18) var rpIndex: ByteArray?,
+    @ProtoField(19) var pbReserve: ByteArray?,
+) : ProtoMessage()

@@ -12,6 +12,11 @@
                   <project path="$PROJECT_DIR$/buildSrc" />
                 </projects>
               </build>
+              <build path="$PROJECT_DIR$/saltify-protobuf" name="saltify-protobuf">
+                <projects>
+                  <project path="$PROJECT_DIR$/saltify-protobuf" />
+                </projects>
+              </build>
             </builds>
           </compositeBuild>
         </compositeConfiguration>
@@ -20,10 +25,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/saltify-lagrange" />
-            <option value="$PROJECT_DIR$/saltify-api" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/saltify-api" />
+            <option value="$PROJECT_DIR$/saltify-lagrange" />
             <option value="$PROJECT_DIR$/saltify-lagrange-core" />
+            <option value="$PROJECT_DIR$/saltify-protobuf" />
           </set>
         </option>
       </GradleProjectSettings>
