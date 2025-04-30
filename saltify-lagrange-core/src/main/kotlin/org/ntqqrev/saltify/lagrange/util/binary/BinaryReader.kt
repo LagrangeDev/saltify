@@ -17,11 +17,13 @@ class BinaryReader(val bytes: ByteArray) {
     }
 
     fun readShort(): Short {
-        return (bytes[position++].toInt() shl 8 or bytes[position++].toInt()).toShort()
+        return (bytes[position++].toInt() shl 8 or
+                (bytes[position++].toInt() and 0xff)).toShort()
     }
 
     fun readUShort(): UShort {
-        return (bytes[position++].toInt() shl 8 or bytes[position++].toInt()).toUShort()
+        return (bytes[position++].toInt() shl 8 or
+                (bytes[position++].toInt() and 0xff)).toUShort()
     }
 
     fun readInt(): Int {
