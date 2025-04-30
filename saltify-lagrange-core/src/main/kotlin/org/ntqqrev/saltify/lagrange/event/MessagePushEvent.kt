@@ -10,6 +10,6 @@ class MessagePushEvent(val push: PushMsgBody) : SystemEvent() {
         override val command = "trpc.msg.olpush.OlPushService.MsgPush"
 
         override fun buildEvent(bot: BotContext, payload: ByteArray) =
-            MessagePushEvent(payload.pb<PushMsg>().message.pb())
+            MessagePushEvent(payload.pb<PushMsg>().message)
     }
 }
