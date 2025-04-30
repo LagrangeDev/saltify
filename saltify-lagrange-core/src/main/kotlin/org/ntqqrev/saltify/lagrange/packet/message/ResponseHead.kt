@@ -1,14 +1,12 @@
 package org.ntqqrev.saltify.lagrange.packet.message
 
-
 import org.ntqqrev.saltify.protobuf.ProtoMessage
 import org.ntqqrev.saltify.protobuf.annotation.ProtoField
-
 
 class ResponseHead(
     @ProtoField(1) var fromUin: Long,
     @ProtoField(2) var fromUid: String?,
-    @ProtoField(3) var type: Long,
+    @ProtoField(3) var type: Int,
     @ProtoField(4) var sigMap: Long,
     @ProtoField(5) var toUin: Long,
     @ProtoField(6) var toUid: String?,
