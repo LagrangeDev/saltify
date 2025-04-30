@@ -1,25 +1,36 @@
 package org.ntqqrev.saltify.lagrange.adapter.message.incoming
 
-import kotlinx.datetime.Instant
-import org.ntqqrev.saltify.api.context.Context
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.ntqqrev.saltify.api.context.message.incoming.PrivateIncomingMessage
-import org.ntqqrev.saltify.api.context.model.User
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
+import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeFriend
 import org.ntqqrev.saltify.lagrange.packet.message.PushMsgBody
 
-class LagrangePrivateIncomingMessage(
-    time: Instant,
-    ctx: Context,
-    messageType: MessageType,
-    peerUin: Long,
-    sequence: Long,
-    override val peer: User,
-    override val isSelf: Boolean
-) : LagrangeIncomingMessage(time, ctx, messageType, peerUin, sequence), PrivateIncomingMessage {
-    companion object {
-        suspend fun create(ctx: LagrangeContext, raw: PushMsgBody) {
+private val logger = KotlinLogging.logger { }
 
+class LagrangePrivateIncomingMessage(
+    ctx: LagrangeContext,
+    raw: PushMsgBody,
+    override val peer: LagrangeFriend,
+    override val isSelf: Boolean
+) : LagrangeIncomingMessage(
+    ctx, raw, MessageType.PRIVATE,
+    peer.uin, raw.contentHead.ntMsgSeq ?: 0L
+), PrivateIncomingMessage {
+    val clientSequence: Long = raw.contentHead.sequence ?: 0L
+
+    companion object {
+        suspend fun create(ctx: LagrangeContext, raw: PushMsgBody): LagrangePrivateIncomingMessage? {
+            val friend = ctx.getFriend(raw.responseHead.fromUin)
+            if (friend == null) {
+                logger.warn { "Failed to resolve friend ${raw.responseHead.fromUin}" }
+                return null
+            }
+            val isSelf = raw.responseHead.fromUin == ctx.uin
+
+            val draft = LagrangePrivateIncomingMessage(ctx, raw, friend, isSelf)
+            return draft
         }
     }
 }

@@ -1,26 +1,41 @@
 package org.ntqqrev.saltify.lagrange.adapter.message.incoming
 
-import kotlinx.datetime.Instant
-import org.ntqqrev.saltify.api.context.Context
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.ntqqrev.saltify.api.context.message.incoming.GroupIncomingMessage
-import org.ntqqrev.saltify.api.context.model.Group
-import org.ntqqrev.saltify.api.context.model.GroupMember
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
+import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroup
+import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroupMember
 import org.ntqqrev.saltify.lagrange.packet.message.PushMsgBody
 
-class LagrangeGroupIncomingMessage(
-    time: Instant,
-    ctx: Context,
-    messageType: MessageType,
-    peerUin: Long,
-    sequence: Long,
-    override val group: Group,
-    override val sender: GroupMember,
-) : LagrangeIncomingMessage(time, ctx, messageType, peerUin, sequence), GroupIncomingMessage {
-    companion object {
-        suspend fun create(ctx: LagrangeContext, raw: PushMsgBody) {
+private val logger = KotlinLogging.logger { }
 
+class LagrangeGroupIncomingMessage(
+    ctx: LagrangeContext,
+    raw: PushMsgBody,
+    override val group: LagrangeGroup,
+    override val sender: LagrangeGroupMember,
+) : LagrangeIncomingMessage(
+    ctx, raw, MessageType.GROUP,
+    group.uin, raw.contentHead.sequence ?: 0L,
+), GroupIncomingMessage {
+    companion object {
+        suspend fun create(ctx: LagrangeContext, raw: PushMsgBody): LagrangeGroupIncomingMessage? {
+            val groupExt = raw.responseHead.groupExt!!
+
+            val group = ctx.getGroup(groupExt.groupUin)
+            if (group == null) {
+                logger.warn { "Failed to resolve group ${groupExt.groupUin}" }
+                return null
+            }
+            val sender = ctx.getGroupMember(group.uin, raw.responseHead.fromUin)
+            if (sender == null) {
+                logger.warn { "Failed to resolve group member ${raw.responseHead.fromUin} in group ${group.uin}" }
+                return null
+            }
+
+            val draft = LagrangeGroupIncomingMessage(ctx, raw, group, sender)
+            return draft
         }
     }
 }
