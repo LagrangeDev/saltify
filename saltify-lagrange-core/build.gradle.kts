@@ -13,6 +13,7 @@ kotlin.sourceSets.all {
 dependencies {
     implementation(libs.bundles.ktorEcosystem)
     implementation(libs.kotlinxSerializationProtobuf)
+    implementation("com.github.SaltifyDev:saltify-protobuf:1.0-SNAPSHOT")
 
     compileOnly(libs.bundles.kotlinxEcosystem)
     compileOnly(libs.kotlinLogging)

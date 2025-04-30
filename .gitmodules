@@ -1,0 +1,3 @@
+[submodule "saltify-protobuf"]
+	path = saltify-protobuf
+	url = https://github.com/SaltifyDev/saltify-protobuf.git

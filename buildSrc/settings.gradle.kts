@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "buildSrc"
+
+includeBuild("../saltify-protobuf")
