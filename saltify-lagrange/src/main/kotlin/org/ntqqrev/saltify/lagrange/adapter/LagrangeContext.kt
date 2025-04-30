@@ -3,6 +3,7 @@ package org.ntqqrev.saltify.lagrange.adapter
 import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 import org.ntqqrev.saltify.api.Environment
 import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.action.*
@@ -10,9 +11,11 @@ import org.ntqqrev.saltify.api.context.event.Event
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.adapter.cache.FriendCacheService
 import org.ntqqrev.saltify.lagrange.adapter.cache.GroupCacheService
+import org.ntqqrev.saltify.lagrange.adapter.event.MessagePushEventProcessor
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeFriend
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroup
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroupMember
+import org.ntqqrev.saltify.lagrange.event.MessagePushEvent
 import org.ntqqrev.saltify.lagrange.operation.system.BotOnline
 import org.ntqqrev.saltify.lagrange.operation.system.DoWtLogin
 import org.ntqqrev.saltify.lagrange.operation.system.FetchQrCode
@@ -96,6 +99,7 @@ class LagrangeContext(
             qrCodeLogin()
         else
             fastLogin()
+
         logger.info { "Logging in success" }
         instanceState = Context.State.RUNNING
     }

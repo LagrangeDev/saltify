@@ -7,7 +7,7 @@ import org.ntqqrev.saltify.lagrange.adapter.LagrangeContextFactory
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeInit
 
 suspend fun main() {
-    CoroutineScope(testEnv.parentCoroutineContext).run {
+    testEnv.scope.run {
         val ctx = LagrangeContextFactory.createContext(
             init = LagrangeInit(),
             env = testEnv,

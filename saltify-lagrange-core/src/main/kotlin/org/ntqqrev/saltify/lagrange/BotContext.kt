@@ -1,5 +1,6 @@
 package org.ntqqrev.saltify.lagrange
 
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import org.ntqqrev.saltify.lagrange.common.AppInfo
@@ -14,13 +15,12 @@ import org.ntqqrev.saltify.lagrange.operation.NoInputOperation
 import org.ntqqrev.saltify.lagrange.operation.Operation
 import org.ntqqrev.saltify.lagrange.util.crypto.ecdh.ECDH
 import org.ntqqrev.saltify.lagrange.util.crypto.ecdh.EllipticCurve
-import kotlin.coroutines.CoroutineContext
 
 class BotContext(
     val appInfo: AppInfo,
     val keystore: Keystore,
     val signProvider: SignProvider,
-    val parentCoroutineContext: CoroutineContext
+    val scope: CoroutineScope
 ) {
     val ssoContext = SsoContext(this)
     val wtLoginContext = WtLoginContext(this)

@@ -58,12 +58,7 @@ object LagrangeContextFactory : ContextFactory<LagrangeInit> {
             keystore = Json.decodeFromString(keystorePath.readText())
         }
 
-        val lagrange = BotContext(
-            appInfo,
-            keystore,
-            signProvider,
-            env.parentCoroutineContext
-        )
+        val lagrange = BotContext(appInfo, keystore, signProvider, env.scope)
         lagrange.ssoContext.connect()
 
         return LagrangeContext(

@@ -39,7 +39,7 @@ abstract class AbstractCacheService<T : CachedEntity<D>, K, D>(val ctx: Lagrange
                 }
             }
 
-            val newTask = CoroutineScope(ctx.env.parentCoroutineContext).async {
+            val newTask = ctx.env.scope.async {
                 val data = fetchData()
                 val cacheSnapshot = currentCache
                 currentCache = data.mapValues { (k, v) ->

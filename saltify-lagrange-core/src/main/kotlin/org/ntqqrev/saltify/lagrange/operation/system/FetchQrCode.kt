@@ -43,11 +43,10 @@ object FetchQrCode : NoInputOperation<FetchQrCode.Result> {
         val sig = reader.readPrefixedBytes(Prefix.UINT_16 or Prefix.LENGTH_ONLY)
         val tlv = bot.wtLoginContext.readTlv(reader)
         bot.keystore.qrSig = sig
-        val response = tlv
-        val respD1Body = response.getValue(0xD1u).pb<TlvQrCodeD1ResponseBody>()
+        val respD1Body = tlv.getValue(0xD1u).pb<TlvQrCodeD1ResponseBody>()
         return Result(
             qrCodeUrl = respD1Body.qrCodeUrl,
-            qrCodePng = response.getValue(0x17u)
+            qrCodePng = tlv.getValue(0x17u)
         )
     }
 

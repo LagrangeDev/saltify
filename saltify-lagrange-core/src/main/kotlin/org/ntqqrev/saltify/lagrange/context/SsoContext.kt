@@ -28,7 +28,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
     private val host = "msfwifi.3g.qq.com"
     private val port = 8080
 
-    private val selectorManager = ActorSelectorManager(bot.parentCoroutineContext)
+    private val selectorManager = ActorSelectorManager(bot.scope.coroutineContext)
     private val socket = aSocket(selectorManager).tcp()
     private lateinit var input: ByteReadChannel
     private lateinit var output: ByteWriteChannel
@@ -86,7 +86,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
         logger.info { "Connected to $host:$port" }
         connected = true
 
-        CoroutineScope(bot.parentCoroutineContext).launch {
+        bot.scope.launch {
             handleReceiveLoop()
         }
     }
