@@ -49,6 +49,8 @@ class LagrangeContext(
     private val friendCacheService = FriendCacheService(this)
     private val groupCacheService = GroupCacheService(this)
 
+    private val messagePushEventProcessor = MessagePushEventProcessor(this)
+
     suspend fun qrCodeLogin() {
         logger.info { "Session is empty, using QR code login" }
 
@@ -102,6 +104,14 @@ class LagrangeContext(
 
         logger.info { "Logging in success" }
         instanceState = Context.State.RUNNING
+
+        env.scope.launch {
+            lagrange.eventFlow.collect { event ->
+                when (event) {
+                    is MessagePushEvent -> messagePushEventProcessor.process(event)
+                }
+            }
+        }
     }
 
     override suspend fun getAllFriends(cacheFirst: Boolean): Iterable<LagrangeFriend> =
