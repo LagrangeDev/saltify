@@ -11,29 +11,6 @@ object FetchGroupMembers :
     override fun buildOidb(bot: BotContext, payload: Req): ByteArray =
         OidbFetchGroupMembersRequest(
             groupUin = payload.groupUin,
-            field2 = 5,
-            field3 = 2,
-            body = OidbFetchGroupMembersRequest.Body(
-                memberName = true,
-                memberCard = true,
-                level = true,
-                field13 = true,
-                field16 = true,
-                specialTitle = true,
-                field18 = true,
-                field20 = true,
-                field21 = true,
-                joinTimestamp = true,
-                lastMsgTimestamp = true,
-                shutUpTimestamp = true,
-                field103 = true,
-                field104 = true,
-                field105 = true,
-                field106 = true,
-                permission = true,
-                field200 = true,
-                field201 = true,
-            ),
             token = payload.token,
         ).pb()
 
