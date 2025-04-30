@@ -8,17 +8,21 @@ import org.ntqqrev.saltify.lagrange.event.SystemEventFactory
 import org.ntqqrev.saltify.lagrange.packet.SsoResponse
 
 class EventContext(bot: BotContext) : Context(bot) {
-    internal val flow = MutableSharedFlow<SystemEvent>()
+    internal val flow = MutableSharedFlow<SystemEvent>(
+        replay = 1,
+        extraBufferCapacity = 100,
+        onBufferOverflow = kotlinx.coroutines.channels.BufferOverflow.DROP_OLDEST
+    )
     internal val factories = listOf<SystemEventFactory<*>>(
         MessagePushEvent.Companion
     ).associateBy { it.command }
 
-    fun process(ssoResponse: SsoResponse) {
+    suspend fun process(ssoResponse: SsoResponse) {
         if (ssoResponse.retCode != 0)
             return
         factories[ssoResponse.command]?.also { factory ->
             factory.buildEvent(bot, ssoResponse.response)?.also {
-                flow.tryEmit(it)
+                flow.emit(it)
             }
         }
     }
