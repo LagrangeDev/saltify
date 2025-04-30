@@ -7,12 +7,12 @@ import org.ntqqrev.saltify.api.Environment
 import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.action.*
 import org.ntqqrev.saltify.api.context.event.Event
-import org.ntqqrev.saltify.api.context.model.GroupMember
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.adapter.cache.FriendCacheService
 import org.ntqqrev.saltify.lagrange.adapter.cache.GroupCacheService
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeFriend
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroup
+import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroupMember
 import org.ntqqrev.saltify.lagrange.operation.system.BotOnline
 import org.ntqqrev.saltify.lagrange.operation.system.DoWtLogin
 import org.ntqqrev.saltify.lagrange.operation.system.FetchQrCode
@@ -112,10 +112,10 @@ class LagrangeContext(
     override suspend fun getGroup(groupUin: Long, cacheFirst: Boolean): LagrangeGroup? =
         groupCacheService.get(groupUin, cacheFirst)
 
-    override suspend fun getAllGroupMembers(groupUin: Long, cacheFirst: Boolean): Iterable<GroupMember> =
+    override suspend fun getAllGroupMembers(groupUin: Long, cacheFirst: Boolean): Iterable<LagrangeGroupMember> =
         getGroup(groupUin)?.groupMemberCacheService?.getAll(cacheFirst) ?: emptyList()
 
-    override suspend fun getGroupMember(groupUin: Long, memberUin: Long, cacheFirst: Boolean): GroupMember? =
+    override suspend fun getGroupMember(groupUin: Long, memberUin: Long, cacheFirst: Boolean): LagrangeGroupMember? =
         getGroup(groupUin)?.groupMemberCacheService?.get(memberUin, cacheFirst)
 
     override suspend fun stop() {
