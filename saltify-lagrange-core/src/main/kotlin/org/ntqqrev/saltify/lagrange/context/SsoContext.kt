@@ -148,6 +148,11 @@ class SsoContext(bot: BotContext) : Context(bot) {
         return packet
     }
 
+    val buildSsoFixedBytes = byteArrayOf(
+        0x02, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00,
+    )
     private suspend fun buildSso(command: String, payload: ByteArray, sequence: Int): ByteArray {
         val packet = Buffer()
         val ssoReserved = buildSsoReserved(command, payload, sequence)
@@ -156,7 +161,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
             writeInt(sequence)
             writeInt(bot.appInfo.subAppId)
             writeInt(2052)  // locale id
-            writeFully("020000000000000000000000".fromHex())
+            writeFully(buildSsoFixedBytes)
             writeBytes(bot.keystore.a2, Prefix.UINT_32 or Prefix.INCLUDE_PREFIX)
             writeString(command, Prefix.UINT_32 or Prefix.INCLUDE_PREFIX)
             writeBytes(ByteArray(0), Prefix.UINT_32 or Prefix.INCLUDE_PREFIX) // unknown
