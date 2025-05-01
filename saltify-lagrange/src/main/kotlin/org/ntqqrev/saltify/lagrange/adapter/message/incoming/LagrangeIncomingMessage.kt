@@ -21,4 +21,6 @@ abstract class LagrangeIncomingMessage(
     val segmentMutableList: MutableList<Segment> = mutableListOf()
     override val segments: List<Segment>
         get() = segmentMutableList
+
+    val contentToString by lazy { segments.joinToString("") }
 }
