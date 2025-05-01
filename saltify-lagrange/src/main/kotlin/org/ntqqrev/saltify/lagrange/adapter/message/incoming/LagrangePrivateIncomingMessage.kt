@@ -49,4 +49,6 @@ class LagrangePrivateIncomingMessage(
             return draft.takeUnless { it.segments.isEmpty() }
         }
     }
+
+    override fun toString(): String = "[$peer] $contentToString"
 }

@@ -57,4 +57,6 @@ class LagrangeGroupIncomingMessage(
             return draft.takeUnless { it.segments.isEmpty() }
         }
     }
+
+    override fun toString() = "[$group] [$sender] $contentToString"
 }
