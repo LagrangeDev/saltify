@@ -6,7 +6,6 @@ import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.writeFully
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.io.Buffer
 import kotlinx.io.readByteArray
@@ -129,6 +128,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
                 }
             } catch (e: Exception) {
                 logger.error(e) { "Error receiving packet" }
+                disconnect()
             }
         }
     }
