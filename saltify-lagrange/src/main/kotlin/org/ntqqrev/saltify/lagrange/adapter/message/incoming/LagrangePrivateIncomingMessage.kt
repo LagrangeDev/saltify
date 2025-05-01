@@ -5,6 +5,7 @@ import org.ntqqrev.saltify.api.context.message.incoming.PrivateIncomingMessage
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeFaceSegment
+import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeImageSegment
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeTextSegment
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeFriend
 import org.ntqqrev.saltify.lagrange.packet.message.PushMsgBody
@@ -27,6 +28,7 @@ class LagrangePrivateIncomingMessage(
         val factories = listOf<LagrangeSegmentFactory<*>>(
             LagrangeTextSegment.Companion,
             LagrangeFaceSegment.Companion,
+            LagrangeImageSegment.Companion,
         )
 
         suspend fun create(ctx: LagrangeContext, raw: PushMsgBody): LagrangePrivateIncomingMessage? {
