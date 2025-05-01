@@ -4,8 +4,11 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import org.ntqqrev.saltify.api.context.message.incoming.PrivateIncomingMessage
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
+import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeFaceSegment
+import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeTextSegment
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeFriend
 import org.ntqqrev.saltify.lagrange.packet.message.PushMsgBody
+import org.ntqqrev.saltify.lagrange.util.binary.pb
 
 private val logger = KotlinLogging.logger { }
 
@@ -21,6 +24,11 @@ class LagrangePrivateIncomingMessage(
     val clientSequence: Long = raw.contentHead.sequence ?: 0L
 
     companion object {
+        val factories = listOf<LagrangeSegmentFactory<*>>(
+            LagrangeTextSegment.Companion,
+            LagrangeFaceSegment.Companion,
+        )
+
         suspend fun create(ctx: LagrangeContext, raw: PushMsgBody): LagrangePrivateIncomingMessage? {
             val friend = ctx.getFriend(raw.responseHead.fromUin)
             if (friend == null) {
@@ -30,7 +38,15 @@ class LagrangePrivateIncomingMessage(
             val isSelf = raw.responseHead.fromUin == ctx.uin
 
             val draft = LagrangePrivateIncomingMessage(ctx, raw, friend, isSelf)
-            return draft
+            val elementReader = ElementReader(
+                ctx,
+                message = draft,
+                elements = raw.body!!.richText.elements.map { it.pb() }
+            )
+            LagrangeGroupIncomingMessage.Companion.factories.firstNotNullOfOrNull { it.tryParse(elementReader) }
+                ?.let { draft.segmentMutableList.add(it) }
+                ?: elementReader.skip()
+            return draft.takeUnless { it.segments.isEmpty() }
         }
     }
 }
