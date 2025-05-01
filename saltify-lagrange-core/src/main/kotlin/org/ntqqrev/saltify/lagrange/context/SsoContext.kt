@@ -105,7 +105,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
         pending[sequence] = deferred
 
         output.writePacket(service)
-        logger.debug { "Sent packet '$cmd' with sequence $sequence" }
+        logger.trace { "Sent packet '$cmd' with sequence $sequence" }
 
         return deferred.await()
     }
@@ -118,7 +118,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
                 val packet = input.readByteArray(packetLength.toInt() - 4)
                 val service = parseService(packet)
                 val sso = parseSso(service)
-                logger.debug { "Received packet '${sso.command}' with sequence ${sso.sequence} (retcode=${sso.retCode})" }
+                logger.trace { "Received packet '${sso.command}' with sequence ${sso.sequence} (retcode=${sso.retCode})" }
                 pending.remove(sso.sequence).also {
                     if (it != null) {
                         it.complete(sso)
