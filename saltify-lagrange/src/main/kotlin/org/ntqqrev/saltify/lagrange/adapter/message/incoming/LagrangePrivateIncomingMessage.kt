@@ -43,7 +43,7 @@ class LagrangePrivateIncomingMessage(
                 message = draft,
                 elements = raw.body!!.richText.elements.map { it.pb() }
             )
-            LagrangeGroupIncomingMessage.Companion.factories.firstNotNullOfOrNull { it.tryParse(elementReader) }
+            factories.firstNotNullOfOrNull { it.tryParse(elementReader) }
                 ?.let { draft.segmentMutableList.add(it) }
                 ?: elementReader.skip()
             return draft.takeUnless { it.segments.isEmpty() }
