@@ -14,8 +14,8 @@ import org.ntqqrev.saltify.lagrange.util.binary.pb
 class LagrangeImageSegment(message: IncomingMessage, resourceId: String, subType: ImageSubType, summary: String) :
     ImageSegment(message, resourceId, subType, summary) {
     companion object : LagrangeSegmentFactory<ImageSegment> {
-        val ntBaseUrl = "https://multimedia.nt.qq.com.cn"
-        val legacyBaseUrl = "http://gchat.qpic.cn"
+        const val NT_BASE_URL = "https://multimedia.nt.qq.com.cn"
+        const val LEGACY_BASE_URL = "http://gchat.qpic.cn"
 
         override fun tryParse(reader: ElementReader): ImageSegment? {
             val element = reader.next()
@@ -31,10 +31,14 @@ class LagrangeImageSegment(message: IncomingMessage, resourceId: String, subType
                         else -> ImageSubType.NORMAL
                     }
                     LagrangeImageSegment(
-                        reader.message, uuid, subType, msgInfo.extBizInfo?.pic?.textSummary ?: when (subType) {
-                            ImageSubType.NORMAL -> "[图片]"
-                            ImageSubType.STICKER -> "[动画表情]"
-                        }
+                        reader.message,
+                        uuid,
+                        subType,
+                        msgInfo.extBizInfo?.pic?.textSummary?.takeIf { it.isNotEmpty() }
+                            ?: when (subType) {
+                                ImageSubType.NORMAL -> "[图片]"
+                                ImageSubType.STICKER -> "[动画表情]"
+                            }
                     )
                 }
 
@@ -46,13 +50,14 @@ class LagrangeImageSegment(message: IncomingMessage, resourceId: String, subType
                     }
                     LagrangeImageSegment(
                         reader.message,
-                        "url:" + (if (notOnlineImage.origUrl?.contains("&fileid=") ?: false) ntBaseUrl
-                        else legacyBaseUrl) + notOnlineImage.origUrl!!,
+                        "url:" + (if (notOnlineImage.origUrl?.contains("&fileid=") ?: false) NT_BASE_URL
+                        else LEGACY_BASE_URL) + notOnlineImage.origUrl!!,
                         subType,
-                        notOnlineImage.pbRes?.summary ?: when (subType) {
-                            ImageSubType.NORMAL -> "[图片]"
-                            ImageSubType.STICKER -> "[动画表情]"
-                        }
+                        notOnlineImage.pbRes?.summary?.takeIf { it.isNotEmpty() }
+                            ?: when (subType) {
+                                ImageSubType.NORMAL -> "[图片]"
+                                ImageSubType.STICKER -> "[动画表情]"
+                            }
                     )
                 }
 
@@ -64,13 +69,14 @@ class LagrangeImageSegment(message: IncomingMessage, resourceId: String, subType
                     }
                     LagrangeImageSegment(
                         reader.message,
-                        "url:" + (if (customFace.origUrl?.contains("&fileid=") ?: false) ntBaseUrl
-                        else legacyBaseUrl) + customFace.origUrl!!,
+                        "url:" + (if (customFace.origUrl?.contains("&fileid=") ?: false) NT_BASE_URL
+                        else LEGACY_BASE_URL) + customFace.origUrl!!,
                         subType,
-                        customFace.pbReserve?.summary ?: when (subType) {
-                            ImageSubType.NORMAL -> "[图片]"
-                            ImageSubType.STICKER -> "[动画表情]"
-                        }
+                        customFace.pbReserve?.summary?.takeIf { it.isNotEmpty() }
+                            ?: when (subType) {
+                                ImageSubType.NORMAL -> "[图片]"
+                                ImageSubType.STICKER -> "[动画表情]"
+                            }
                     )
                 }
 
