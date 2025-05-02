@@ -1,0 +1,3 @@
+[submodule "saltify-api"]
+	path = saltify-api
+	url = https://github.com/SaltifyDev/saltify-api.git

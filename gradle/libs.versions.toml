@@ -10,6 +10,7 @@ kotlinxSerialization = "1.8.1"
 kotlinxCoroutines = "1.9.0"
 kotlinLogging = "7.0.7"
 logbackClassic = "1.5.18"
+saltifyApi = "0.1.0"
 saltifyProtobuf = "0.1.0"
 
 [libraries]
@@ -29,6 +30,7 @@ kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", 
 kotlinLogging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
 logbackClassic = { module = "ch.qos.logback:logback-classic", version.ref = "logbackClassic" }
 
+saltifyApi = { module = "org.ntqqrev.saltify:saltify-api", version.ref = "saltifyApi" }
 saltifyProtobuf = { module = "org.ntqqrev.saltify:saltify-protobuf", version.ref = "saltifyProtobuf" }
 
 # Libraries can be bundled together for easier import
