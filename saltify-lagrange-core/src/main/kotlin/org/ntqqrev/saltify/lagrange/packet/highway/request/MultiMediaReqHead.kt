@@ -14,8 +14,8 @@ class MultiMediaReqHead(
         @ProtoField(102) var businessType: Long,
         @ProtoField(103) var field103: Long,
         @ProtoField(200) var sceneType: Long,
-        @ProtoField(201) var c2c: C2C?,
-        @ProtoField(202) var group: Group?,
+        @ProtoField(201) var c2c: C2C? = null,
+        @ProtoField(202) var group: Group? = null,
     ) : ProtoMessage() {
         class C2C(
             @ProtoField(1) var accountType: Long,

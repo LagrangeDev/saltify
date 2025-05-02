@@ -6,7 +6,7 @@ import org.ntqqrev.saltify.protobuf.annotation.ProtoField
 
 class DownloadReq(
     @ProtoField(1) var node: IndexNode?,
-    @ProtoField(2) var ext: Ext?,
+    @ProtoField(2) var ext: Ext? = null,
 ) : ProtoMessage() {
     class Ext(
         @ProtoField(1) var pic: Pic?,
