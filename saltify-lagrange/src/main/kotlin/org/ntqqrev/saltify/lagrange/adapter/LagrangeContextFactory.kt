@@ -39,7 +39,7 @@ object LagrangeContextFactory : ContextFactory<LagrangeInit> {
     override suspend fun createContext(
         init: LagrangeInit,
         env: Environment,
-        channel: MutableSharedFlow<Event>
+        flow: MutableSharedFlow<Event>
     ): LagrangeContext {
         val signProvider = UrlSignProvider(init.signApiUrl)
         val appInfo = signProvider.getAppInfo() ?: {
@@ -65,7 +65,7 @@ object LagrangeContextFactory : ContextFactory<LagrangeInit> {
             lagrange,
             init,
             env,
-            channel,
+            flow,
             MessageActionImpl(lagrange),
             UserActionImpl(lagrange),
             GroupActionImpl(lagrange),

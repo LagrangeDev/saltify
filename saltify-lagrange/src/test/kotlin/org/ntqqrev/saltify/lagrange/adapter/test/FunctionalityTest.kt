@@ -10,7 +10,7 @@ suspend fun main() {
         val ctx = LagrangeContextFactory.createContext(
             init = LagrangeInit(),
             env = testEnv,
-            channel = MutableSharedFlow()
+            flow = MutableSharedFlow()
         )
         ctx.start()
 
