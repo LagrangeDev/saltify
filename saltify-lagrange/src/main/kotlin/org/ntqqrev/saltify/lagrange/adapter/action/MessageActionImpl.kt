@@ -9,6 +9,12 @@ import org.ntqqrev.saltify.api.context.message.outgoing.GroupMessageBuilder
 import org.ntqqrev.saltify.api.context.message.outgoing.MessageSendResult
 import org.ntqqrev.saltify.api.context.message.outgoing.PrivateMessageBuilder
 import org.ntqqrev.saltify.lagrange.BotContext
+import org.ntqqrev.saltify.lagrange.operation.highway.GetPrivateImageUrl
+import org.ntqqrev.saltify.lagrange.packet.highway.FileId
+import org.ntqqrev.saltify.lagrange.packet.highway.IndexNode
+import org.ntqqrev.saltify.lagrange.util.binary.pb
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
 
 class MessageActionImpl(val lagrange: BotContext) : MessageAction {
     override suspend fun sendPrivateMessage(
@@ -45,8 +51,28 @@ class MessageActionImpl(val lagrange: BotContext) : MessageAction {
         TODO("Not yet implemented")
     }
 
+    @OptIn(ExperimentalEncodingApi::class)
     override suspend fun getResourceTempUrl(resourceId: String): String {
-        TODO("Not yet implemented")
+        if (resourceId.startsWith("url:"))
+            return resourceId.substring(4)
+
+        // Is File ID
+        val actualLength = 4 * (resourceId.length / 4 + 1)
+        val normalizedBase64 = resourceId
+            .replace("-", "+")
+            .replace("_", "/")
+            .padEnd(actualLength, '=')
+        val fileIdDecoded = Base64.Default.decode(normalizedBase64).pb<FileId>()
+        val indexNode = IndexNode(
+            fileUuid = resourceId,
+            ttl = fileIdDecoded.ttl
+        )
+
+        return when (fileIdDecoded.appId) {
+            1406 -> lagrange.callOperation(GetPrivateImageUrl, indexNode)
+            // TODO: Handle other app IDs
+            else -> throw IllegalArgumentException("Unsupported appId: ${fileIdDecoded.appId}")
+        }
     }
 
     override suspend fun getForwardedMessages(forwardId: String): List<ForwardedIncomingMessage> {
