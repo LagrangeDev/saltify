@@ -9,10 +9,10 @@ import org.ntqqrev.saltify.lagrange.event.MessagePushEvent
 
 object MessageReceiveEventFactory : EventFactory<MessagePushEvent, MessageReceiveEvent> {
     override suspend fun tryProcess(ctx: LagrangeContext, systemEvent: MessagePushEvent): MessageReceiveEvent? {
-        val message = if (systemEvent.push.responseHead.friendExt != null) {
-            LagrangePrivateIncomingMessage.create(ctx, systemEvent.push)
-        } else {
+        val message = if (systemEvent.push.responseHead.groupExt != null) {
             LagrangeGroupIncomingMessage.create(ctx, systemEvent.push)
+        } else {
+            LagrangePrivateIncomingMessage.create(ctx, systemEvent.push)
         }
         return message?.let { MessageReceiveEvent(ctx, it) }
     }
