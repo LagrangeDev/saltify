@@ -6,11 +6,13 @@ import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.writeFully
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.io.Buffer
 import kotlinx.io.readByteArray
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.common.SignResult
+import org.ntqqrev.saltify.lagrange.operation.system.SendHeartbeat
 import org.ntqqrev.saltify.lagrange.packet.SsoResponse
 import org.ntqqrev.saltify.lagrange.packet.common.SsoReservedFields
 import org.ntqqrev.saltify.lagrange.packet.common.SsoSecureInfo
@@ -87,6 +89,13 @@ class SsoContext(bot: BotContext) : Context(bot) {
 
         bot.scope.launch {
             handleReceiveLoop()
+        }
+
+        bot.scope.launch {
+            while (connected) {
+                bot.callOperation(SendHeartbeat)
+                delay(300_000) // 5 minutes
+            }
         }
     }
 
