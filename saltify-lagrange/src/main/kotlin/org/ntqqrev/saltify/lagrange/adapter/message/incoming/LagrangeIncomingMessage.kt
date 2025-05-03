@@ -5,6 +5,7 @@ import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.message.incoming.IncomingMessage
 import org.ntqqrev.saltify.api.context.message.incoming.segment.Segment
 import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
+import org.ntqqrev.saltify.lagrange.adapter.message.encodeMessageId
 import org.ntqqrev.saltify.lagrange.packet.message.PushMsgBody
 
 abstract class LagrangeIncomingMessage(
@@ -14,7 +15,7 @@ abstract class LagrangeIncomingMessage(
     val peerUin: Long,
     val sequence: Long,
 ) : IncomingMessage {
-    override val messageId: String = "${messageType.type}:$peerUin:$sequence"
+    override val messageId: String by lazy { encodeMessageId(messageType, peerUin, sequence) }
 
     override val time: Instant = Instant.fromEpochSeconds(raw.contentHead.timestamp ?: 0L)
 
