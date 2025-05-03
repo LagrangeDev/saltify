@@ -6,8 +6,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.launch
 import org.ntqqrev.saltify.api.context.event.message.MessageReceiveEvent
-import org.ntqqrev.saltify.api.context.message.incoming.PrivateIncomingMessage
-import org.ntqqrev.saltify.api.context.message.incoming.segment.ImageSegment
 import org.ntqqrev.saltify.api.context.message.incoming.segment.ResourceLikeSegment
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContextFactory
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeInit
