@@ -21,20 +21,14 @@ object GetPrivateImageUrl : OidbOperation<IndexNode, String>(0x11c5, 200) {
                 scene = MultiMediaReqHead.SceneInfo(
                     requestType = 2,
                     businessType = 1,
-                    field103 = 0,
                     sceneType = 1,
                     c2c = MultiMediaReqHead.SceneInfo.C2C(
                         accountType = 2,
                         targetUid = bot.keystore.uid,
                     ),
                 ),
-                client = MultiMediaReqHead.ClientMeta(
-                    agentType = 2
-                ),
             ),
-            download = DownloadReq(
-                node = payload
-            )
+            download = DownloadReq(payload)
         ).pb()
 
     override fun parseOidb(bot: BotContext, payload: ByteArray): String =

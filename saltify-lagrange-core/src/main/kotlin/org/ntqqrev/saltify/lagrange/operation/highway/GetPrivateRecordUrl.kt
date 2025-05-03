@@ -21,20 +21,14 @@ object GetPrivateRecordUrl : OidbOperation<IndexNode, String>(0x126e, 200) {
                 scene = MultiMediaReqHead.SceneInfo(
                     requestType = 1,
                     businessType = 3,
-                    field103 = 0,
                     sceneType = 2,
                     c2c = MultiMediaReqHead.SceneInfo.C2C(
                         accountType = 2,
                         targetUid = bot.keystore.uid,
                     ),
                 ),
-                client = MultiMediaReqHead.ClientMeta(
-                    agentType = 2
-                ),
             ),
-            download = DownloadReq(
-                node = payload
-            )
+            download = DownloadReq(payload)
         ).pb()
 
     override fun parseOidb(bot: BotContext, payload: ByteArray): String =

@@ -21,19 +21,11 @@ object GetGroupRecordUrl : OidbOperation<IndexNode, String>(0x126e, 200) {
                 scene = MultiMediaReqHead.SceneInfo(
                     requestType = 1,
                     businessType = 3,
-                    field103 = 0,
                     sceneType = 2,
-                    group = MultiMediaReqHead.SceneInfo.Group(
-                        groupUin = 0L
-                    ),
-                ),
-                client = MultiMediaReqHead.ClientMeta(
-                    agentType = 2
+                    group = MultiMediaReqHead.SceneInfo.Group(),
                 ),
             ),
-            download = DownloadReq(
-                node = payload
-            )
+            download = DownloadReq(payload)
         ).pb()
 
     override fun parseOidb(bot: BotContext, payload: ByteArray): String =
