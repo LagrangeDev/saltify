@@ -19,4 +19,6 @@ class LagrangeVideoSegment(message: IncomingMessage, resourceId: String) : Video
             return LagrangeVideoSegment(reader.message, uuid)
         }
     }
+
+    override fun toString() = "[视频]"
 }
