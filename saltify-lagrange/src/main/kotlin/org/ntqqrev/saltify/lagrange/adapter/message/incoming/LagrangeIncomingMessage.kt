@@ -23,5 +23,12 @@ abstract class LagrangeIncomingMessage(
     override val segments: List<Segment>
         get() = segmentMutableList
 
-    val contentToString by lazy { segments.joinToString("") }
+    val contentToString by lazy {
+        val content = segments.joinToString("").replace('\n', ' ')
+        if (content.length > 40) {
+            "${content.take(40)}..."
+        } else {
+            content
+        }
+    }
 }
