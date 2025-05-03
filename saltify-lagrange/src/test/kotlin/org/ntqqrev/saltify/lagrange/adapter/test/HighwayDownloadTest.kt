@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import org.ntqqrev.saltify.api.context.event.message.MessageReceiveEvent
 import org.ntqqrev.saltify.api.context.message.incoming.PrivateIncomingMessage
 import org.ntqqrev.saltify.api.context.message.incoming.segment.ImageSegment
+import org.ntqqrev.saltify.api.context.message.incoming.segment.ResourceLikeSegment
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContextFactory
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeInit
 
@@ -26,7 +27,7 @@ suspend fun main() {
             ctx.channel.filterIsInstance<MessageReceiveEvent>()
                 .collect {
                     logger.info { it.message }
-                    it.message.segments.filterIsInstance<ImageSegment>()
+                    it.message.segments.filterIsInstance<ResourceLikeSegment>()
                         .forEach { segment ->
                             println(ctx.getResourceTempUrl(segment.resourceId))
                         }

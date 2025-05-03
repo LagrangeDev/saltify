@@ -10,7 +10,9 @@ import org.ntqqrev.saltify.api.context.message.outgoing.MessageSendResult
 import org.ntqqrev.saltify.api.context.message.outgoing.PrivateMessageBuilder
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.operation.highway.GetGroupImageUrl
+import org.ntqqrev.saltify.lagrange.operation.highway.GetGroupRecordUrl
 import org.ntqqrev.saltify.lagrange.operation.highway.GetPrivateImageUrl
+import org.ntqqrev.saltify.lagrange.operation.highway.GetPrivateRecordUrl
 import org.ntqqrev.saltify.lagrange.packet.highway.FileId
 import org.ntqqrev.saltify.lagrange.packet.highway.IndexNode
 import org.ntqqrev.saltify.lagrange.util.binary.pb
@@ -76,6 +78,8 @@ class MessageActionImpl(val lagrange: BotContext) : MessageAction {
         return when (fileIdDecoded.appId) {
             1406 -> lagrange.callOperation(GetPrivateImageUrl, indexNode)
             1407 -> lagrange.callOperation(GetGroupImageUrl, indexNode)
+            1402 -> lagrange.callOperation(GetPrivateRecordUrl, indexNode)
+            1403 -> lagrange.callOperation(GetGroupRecordUrl, indexNode)
             // TODO: Handle other app IDs
             else -> throw IllegalArgumentException("Unsupported appId: ${fileIdDecoded.appId}")
         }

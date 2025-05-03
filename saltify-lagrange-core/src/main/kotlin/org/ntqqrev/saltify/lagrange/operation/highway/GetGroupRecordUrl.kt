@@ -1,0 +1,45 @@
+package org.ntqqrev.saltify.lagrange.operation.highway
+
+import org.ntqqrev.saltify.lagrange.BotContext
+import org.ntqqrev.saltify.lagrange.operation.OidbOperation
+import org.ntqqrev.saltify.lagrange.packet.highway.CommonHead
+import org.ntqqrev.saltify.lagrange.packet.highway.IndexNode
+import org.ntqqrev.saltify.lagrange.packet.highway.request.DownloadReq
+import org.ntqqrev.saltify.lagrange.packet.highway.request.MultiMediaReqHead
+import org.ntqqrev.saltify.lagrange.packet.highway.request.NTV2RichMediaReq
+import org.ntqqrev.saltify.lagrange.packet.highway.response.NTV2RichMediaResp
+import org.ntqqrev.saltify.lagrange.util.binary.pb
+
+object GetGroupRecordUrl : OidbOperation<IndexNode, String>(0x126e, 200) {
+    override fun buildOidb(bot: BotContext, payload: IndexNode): ByteArray =
+        NTV2RichMediaReq(
+            reqHead = MultiMediaReqHead(
+                common = CommonHead(
+                    requestId = 1,
+                    command = 200,
+                ),
+                scene = MultiMediaReqHead.SceneInfo(
+                    requestType = 1,
+                    businessType = 3,
+                    field103 = 0,
+                    sceneType = 2,
+                    group = MultiMediaReqHead.SceneInfo.Group(
+                        groupUin = 0L
+                    ),
+                ),
+                client = MultiMediaReqHead.ClientMeta(
+                    agentType = 2
+                ),
+            ),
+            download = DownloadReq(
+                node = payload
+            )
+        ).pb()
+
+    override fun parseOidb(bot: BotContext, payload: ByteArray): String =
+        payload.pb<NTV2RichMediaResp>().download
+            ?.let {
+                "https://${it.info!!.domain}${it.info!!.urlPath}${it.rKeyParam!!}"
+            }
+            ?: throw IllegalStateException("Failed to parse group record URL")
+}
