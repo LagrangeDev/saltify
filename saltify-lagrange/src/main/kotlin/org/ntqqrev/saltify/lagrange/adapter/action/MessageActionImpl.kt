@@ -58,7 +58,11 @@ class MessageActionImpl(val lagrange: BotContext) : MessageAction {
             return resourceId.substring(4)
 
         // Is File ID
-        val actualLength = 4 * (resourceId.length / 4 + 1)
+        val actualLength = if (resourceId.length % 4 == 0) {
+            resourceId.length
+        } else {
+            resourceId.length + (4 - resourceId.length % 4)
+        }
         val normalizedBase64 = resourceId
             .replace("-", "+")
             .replace("_", "/")
