@@ -25,13 +25,11 @@ suspend fun main() {
         launch {
             ctx.channel.filterIsInstance<MessageReceiveEvent>()
                 .collect {
-                    if (it.message is PrivateIncomingMessage) {
-                        logger.info { "Private -> " + it.message }
-                        it.message.segments.filterIsInstance<ImageSegment>()
-                            .forEach { segment ->
-                                println(ctx.getResourceTempUrl(segment.resourceId))
-                            }
-                    }
+                    logger.info { it.message }
+                    it.message.segments.filterIsInstance<ImageSegment>()
+                        .forEach { segment ->
+                            println(ctx.getResourceTempUrl(segment.resourceId))
+                        }
                 }
         }
 
