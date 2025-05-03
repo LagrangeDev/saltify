@@ -11,7 +11,7 @@ class OidbFetchGroupMembersRequest(
     @ProtoField(3) var field3: Int = 2,
     @ProtoField(4) var body: Body = Body(),
     @ProtoField(15) var token: String?,
-) : ProtoMessage(){
+) : ProtoMessage() {
     class Body(
         @ProtoField(10) var memberName: Boolean = true,
         @ProtoField(11) var memberCard: Boolean = true,

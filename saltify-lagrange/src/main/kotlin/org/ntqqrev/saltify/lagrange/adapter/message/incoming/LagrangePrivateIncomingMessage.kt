@@ -4,13 +4,7 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import org.ntqqrev.saltify.api.context.message.incoming.PrivateIncomingMessage
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
-import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeFaceSegment
-import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeForwardSegment
-import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeImageSegment
-import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeRecordSegment
-import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeReplySegment
-import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeTextSegment
-import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeVideoSegment
+import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.*
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeFriend
 import org.ntqqrev.saltify.lagrange.packet.message.PushMsgBody
 import org.ntqqrev.saltify.lagrange.util.binary.pb

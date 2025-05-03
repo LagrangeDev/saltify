@@ -162,6 +162,7 @@ class SsoContext(bot: BotContext) : Context(bot) {
         0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00,
     )
+
     private suspend fun buildSso(command: String, payload: ByteArray, sequence: Int): ByteArray {
         val packet = Buffer()
         val ssoReserved = buildSsoReserved(command, payload, sequence)

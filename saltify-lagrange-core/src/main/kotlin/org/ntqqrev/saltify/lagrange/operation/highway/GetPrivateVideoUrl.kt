@@ -10,7 +10,7 @@ import org.ntqqrev.saltify.lagrange.packet.highway.request.NTV2RichMediaReq
 import org.ntqqrev.saltify.lagrange.packet.highway.response.NTV2RichMediaResp
 import org.ntqqrev.saltify.lagrange.util.binary.pb
 
-object GetPrivateVideoUrl: OidbOperation<IndexNode, String>(0x11e9, 200) {
+object GetPrivateVideoUrl : OidbOperation<IndexNode, String>(0x11e9, 200) {
     override fun buildOidb(bot: BotContext, payload: IndexNode): ByteArray =
         NTV2RichMediaReq(
             reqHead = MultiMediaReqHead(

@@ -7,5 +7,5 @@ class RichText(
     @ProtoField(1) var attr: Attr?,
     @ProtoField(2) var elements: List<ByteArray>,
     @ProtoField(3) var notOnlineFile: NotOnlineFile?,
-    @ProtoField(4)  var ptt: Ptt?,
+    @ProtoField(4) var ptt: Ptt?,
 ) : ProtoMessage()

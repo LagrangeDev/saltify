@@ -1,8 +1,13 @@
 package org.ntqqrev.saltify.lagrange.adapter.action
 
 import org.ntqqrev.saltify.api.context.action.MessageAction
-import org.ntqqrev.saltify.api.context.message.incoming.*
-import org.ntqqrev.saltify.api.context.message.outgoing.*
+import org.ntqqrev.saltify.api.context.message.incoming.ForwardedIncomingMessage
+import org.ntqqrev.saltify.api.context.message.incoming.GroupIncomingMessage
+import org.ntqqrev.saltify.api.context.message.incoming.IncomingMessage
+import org.ntqqrev.saltify.api.context.message.incoming.PrivateIncomingMessage
+import org.ntqqrev.saltify.api.context.message.outgoing.GroupMessageBuilder
+import org.ntqqrev.saltify.api.context.message.outgoing.MessageSendResult
+import org.ntqqrev.saltify.api.context.message.outgoing.PrivateMessageBuilder
 import org.ntqqrev.saltify.lagrange.BotContext
 import org.ntqqrev.saltify.lagrange.operation.highway.*
 import org.ntqqrev.saltify.lagrange.packet.highway.FileId

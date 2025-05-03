@@ -5,7 +5,6 @@ import org.ntqqrev.saltify.lagrange.exception.OidbCallException
 import org.ntqqrev.saltify.lagrange.packet.oidb.OidbRequest
 import org.ntqqrev.saltify.lagrange.packet.oidb.OidbResponse
 import org.ntqqrev.saltify.lagrange.util.binary.pb
-import org.ntqqrev.saltify.lagrange.util.binary.toHex
 
 abstract class OidbOperation<T, R>(
     val cmd: Int,

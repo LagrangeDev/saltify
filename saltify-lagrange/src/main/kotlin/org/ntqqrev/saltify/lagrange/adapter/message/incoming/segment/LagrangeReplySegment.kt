@@ -21,13 +21,15 @@ class LagrangeReplySegment(message: LagrangeIncomingMessage, repliedSequence: Lo
             val srcMsg = reader.next()?.srcMsg
                 ?: return reader.pushBackAndReturnNull()
             val peek = reader.peek()
-            reader.skip(when {
-                peek?.text != null && peek.text?.mentionExtra != null -> 2 // @mention + text
-                peek?.generalFlags != null ->
-                    if (reader.message is PrivateIncomingMessage) 2 // generalFlags + elemFlags2
-                    else 4 // generalFlags + elemFlags2 + @mention + text
-                else -> 0
-            })
+            reader.skip(
+                when {
+                    peek?.text != null && peek.text?.mentionExtra != null -> 2 // @mention + text
+                    peek?.generalFlags != null ->
+                        if (reader.message is PrivateIncomingMessage) 2 // generalFlags + elemFlags2
+                        else 4 // generalFlags + elemFlags2 + @mention + text
+                    else -> 0
+                }
+            )
 
             return LagrangeReplySegment(
                 reader.message,
