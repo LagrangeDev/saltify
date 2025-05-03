@@ -5,6 +5,7 @@ import org.ntqqrev.saltify.api.context.message.incoming.GroupIncomingMessage
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
 import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeFaceSegment
+import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeForwardSegment
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeImageSegment
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeMentionSegment
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeRecordSegment
@@ -36,6 +37,7 @@ class LagrangeGroupIncomingMessage(
             LagrangeReplySegment.Companion,
             LagrangeRecordSegment.Companion,
             LagrangeVideoSegment.Companion,
+            LagrangeForwardSegment.Companion,
         )
 
         suspend fun create(ctx: LagrangeContext, raw: PushMsgBody): LagrangeGroupIncomingMessage? {
