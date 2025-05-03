@@ -9,6 +9,7 @@ import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeIma
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeRecordSegment
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeReplySegment
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeTextSegment
+import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeVideoSegment
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeFriend
 import org.ntqqrev.saltify.lagrange.packet.message.PushMsgBody
 import org.ntqqrev.saltify.lagrange.util.binary.pb
@@ -33,6 +34,7 @@ class LagrangePrivateIncomingMessage(
             LagrangeImageSegment.Companion,
             LagrangeReplySegment.Companion,
             LagrangeRecordSegment.Companion,
+            LagrangeVideoSegment.Companion,
         )
 
         suspend fun create(ctx: LagrangeContext, raw: PushMsgBody): LagrangePrivateIncomingMessage? {
