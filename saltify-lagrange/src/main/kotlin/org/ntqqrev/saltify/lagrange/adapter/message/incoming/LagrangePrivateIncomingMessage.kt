@@ -31,6 +31,7 @@ class LagrangePrivateIncomingMessage(
             LagrangeTextSegment.Companion,
             LagrangeFaceSegment.Companion,
             LagrangeImageSegment.Companion,
+            LagrangeReplySegment.Companion,
             LagrangeRecordSegment.Companion,
         )
 

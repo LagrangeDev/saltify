@@ -8,6 +8,7 @@ import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeFac
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeImageSegment
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeMentionSegment
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeRecordSegment
+import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeReplySegment
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.LagrangeTextSegment
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroup
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroupMember
@@ -31,6 +32,7 @@ class LagrangeGroupIncomingMessage(
             LagrangeMentionSegment.Companion,
             LagrangeFaceSegment.Companion,
             LagrangeImageSegment.Companion,
+            LagrangeReplySegment.Companion,
             LagrangeRecordSegment.Companion,
         )
 

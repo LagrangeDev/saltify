@@ -24,8 +24,8 @@ class LagrangeImageSegment(message: IncomingMessage, resourceId: String, subType
                     it.serviceType == 48 && (it.businessType == 20 || it.businessType == 10)
                 } ?: false -> {
                     val msgInfo = element.common!!.pbElem.pb<MsgInfo>()
-                    val uuid =
-                        msgInfo.msgInfoBody.getOrNull(0)?.index?.fileUuid ?: return reader.pushBackAndReturnNull()
+                    val uuid = msgInfo.msgInfoBody.getOrNull(0)?.index?.fileUuid
+                        ?: return reader.pushBackAndReturnNull()
                     val subType = when (msgInfo.extBizInfo?.pic?.bizType) {
                         1 -> ImageSubType.STICKER
                         else -> ImageSubType.NORMAL
@@ -34,7 +34,7 @@ class LagrangeImageSegment(message: IncomingMessage, resourceId: String, subType
                         reader.message,
                         uuid,
                         subType,
-                        msgInfo.extBizInfo?.pic?.textSummary?.takeIf { it.isNotEmpty() }
+                        msgInfo.extBizInfo?.pic?.textSummary?.takeIf { it.isNotBlank() }
                             ?: when (subType) {
                                 ImageSubType.NORMAL -> "[图片]"
                                 ImageSubType.STICKER -> "[动画表情]"
@@ -53,7 +53,7 @@ class LagrangeImageSegment(message: IncomingMessage, resourceId: String, subType
                         "url:" + (if (notOnlineImage.origUrl?.contains("&fileid=") ?: false) NT_BASE_URL
                         else LEGACY_BASE_URL) + notOnlineImage.origUrl!!,
                         subType,
-                        notOnlineImage.pbRes?.summary?.takeIf { it.isNotEmpty() }
+                        notOnlineImage.pbRes?.summary?.takeIf { it.isNotBlank() }
                             ?: when (subType) {
                                 ImageSubType.NORMAL -> "[图片]"
                                 ImageSubType.STICKER -> "[动画表情]"
@@ -72,7 +72,7 @@ class LagrangeImageSegment(message: IncomingMessage, resourceId: String, subType
                         "url:" + (if (customFace.origUrl?.contains("&fileid=") ?: false) NT_BASE_URL
                         else LEGACY_BASE_URL) + customFace.origUrl!!,
                         subType,
-                        customFace.pbReserve?.summary?.takeIf { it.isNotEmpty() }
+                        customFace.pbReserve?.summary?.takeIf { it.isNotBlank() }
                             ?: when (subType) {
                                 ImageSubType.NORMAL -> "[图片]"
                                 ImageSubType.STICKER -> "[动画表情]"
