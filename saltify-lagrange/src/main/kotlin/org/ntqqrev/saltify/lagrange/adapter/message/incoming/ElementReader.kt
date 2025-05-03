@@ -15,6 +15,11 @@ class ElementReader(
         return elements[index++]
     }
 
+    fun peek(): MessageElement? {
+        if (index >= elements.size) return null
+        return elements[index]
+    }
+
     fun pushBack() {
         if (index > 0) index--
     }
