@@ -12,7 +12,7 @@ class LagrangeTextSegment(message: IncomingMessage, text: String) : TextSegment(
                 ?.takeUnless { it.attr6Buf?.isNotEmpty() ?: false }
                 ?: return reader.pushBackAndReturnNull()
 
-            return LagrangeTextSegment(reader.message, textElement.str ?: "")
+            return LagrangeTextSegment(reader.message, textElement.str)
         }
     }
 

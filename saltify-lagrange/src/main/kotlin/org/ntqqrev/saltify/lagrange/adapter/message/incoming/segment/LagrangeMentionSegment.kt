@@ -16,7 +16,7 @@ class LagrangeMentionSegment(message: IncomingMessage, uin: Long, name: String) 
             return LagrangeMentionSegment(
                 reader.message,
                 element.mentionExtra!!.uin,
-                element.str ?: ""
+                element.str
             )
         }
     }
