@@ -8,8 +8,6 @@ import org.ntqqrev.saltify.lagrange.adapter.message.incoming.LagrangeSegmentFact
 import java.util.zip.InflaterInputStream
 import javax.xml.stream.XMLInputFactory
 
-private val logger = KotlinLogging.logger { }
-
 class LagrangeForwardSegment(message: IncomingMessage, forwardId: String) : ForwardSegment(message, forwardId) {
     companion object : LagrangeSegmentFactory<ForwardSegment> {
         private val xmlInputFactory = XMLInputFactory.newInstance()
