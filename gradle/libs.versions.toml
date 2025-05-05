@@ -1,17 +1,6 @@
-# Version catalog is a central place for you to declare and version dependencies
-# https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
-# https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
-
 [versions]
 kotlin = "2.1.20"
 ktor = "3.1.2"
-kotlinxDatetime = "0.6.1"
-kotlinxSerialization = "1.8.1"
-kotlinxCoroutines = "1.9.0"
-kotlinLogging = "7.0.7"
-logbackClassic = "1.5.18"
-saltifyApi = "0.1.0"
-saltifyProtobuf = "0.1.0"
 
 [libraries]
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -23,17 +12,16 @@ ktorClientSerialization = { module = "io.ktor:ktor-client-serialization", versio
 ktorClientContentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktorSerializationKotlinxJSON = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
-kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
-kotlinxSerializationJSON = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
-kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.6.1" }
+kotlinxSerializationJSON = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.8.1" }
+kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.9.0" }
 
-kotlinLogging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlinLogging" }
-logbackClassic = { module = "ch.qos.logback:logback-classic", version.ref = "logbackClassic" }
+kotlinLogging = { module = "io.github.oshai:kotlin-logging-jvm", version = "7.0.7" }
+logbackClassic = { module = "ch.qos.logback:logback-classic", version = "1.5.18" }
 
-saltifyApi = { module = "org.ntqqrev.saltify:saltify-api", version.ref = "saltifyApi" }
-saltifyProtobuf = { module = "org.ntqqrev.saltify:saltify-protobuf", version.ref = "saltifyProtobuf" }
+saltifyApi = { module = "org.ntqqrev.saltify:saltify-api", version = "0.1.0" }
+saltifyProtobuf = { module = "org.ntqqrev.saltify:saltify-protobuf", version = "0.1.0" }
 
-# Libraries can be bundled together for easier import
 [bundles]
 ktorEcosystem = [
     "ktorClientCore",
