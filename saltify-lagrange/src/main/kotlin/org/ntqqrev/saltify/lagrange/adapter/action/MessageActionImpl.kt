@@ -1,5 +1,7 @@
 package org.ntqqrev.saltify.lagrange.adapter.action
 
+import kotlinx.datetime.Instant
+import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.action.MessageAction
 import org.ntqqrev.saltify.api.context.message.incoming.ForwardedIncomingMessage
 import org.ntqqrev.saltify.api.context.message.incoming.GroupIncomingMessage
@@ -9,12 +11,17 @@ import org.ntqqrev.saltify.api.context.message.outgoing.GroupMessageBuilder
 import org.ntqqrev.saltify.api.context.message.outgoing.MessageSendResult
 import org.ntqqrev.saltify.api.context.message.outgoing.PrivateMessageBuilder
 import org.ntqqrev.saltify.lagrange.BotContext
+import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
+import org.ntqqrev.saltify.lagrange.adapter.message.encodeMessageId
+import org.ntqqrev.saltify.lagrange.adapter.message.outgoing.LagrangeGroupMessageBuilder
 import org.ntqqrev.saltify.lagrange.operation.highway.*
+import org.ntqqrev.saltify.lagrange.operation.message.SendMessage
 import org.ntqqrev.saltify.lagrange.packet.highway.FileId
 import org.ntqqrev.saltify.lagrange.packet.highway.IndexNode
 import org.ntqqrev.saltify.lagrange.util.binary.pb
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
+import kotlin.random.Random
 
 class MessageActionImpl(val lagrange: BotContext) : AbstractImplementation(), MessageAction {
     override suspend fun sendPrivateMessage(
@@ -28,7 +35,24 @@ class MessageActionImpl(val lagrange: BotContext) : AbstractImplementation(), Me
         groupUin: Long,
         builder: GroupMessageBuilder.() -> Unit
     ): MessageSendResult {
-        TODO("Not yet implemented")
+        val builder = LagrangeGroupMessageBuilder(
+            outerContext,
+            groupUin,
+            clientSequence = Random.nextInt(10000, 99999),
+            random = Random.nextInt(100000, Int.MAX_VALUE)
+        )
+        builder.builder()
+        val message = builder.build()
+        val result = lagrange.callOperation(SendMessage, message)
+        return SendResult(
+            messageId = encodeMessageId(
+                MessageType.GROUP,
+                groupUin,
+                result.sequence,
+            ),
+            time = Instant.fromEpochSeconds(result.timestamp),
+            ctx = outerContext,
+        )
     }
 
     override suspend fun getMessageById(messageId: String): IncomingMessage {
@@ -107,4 +131,10 @@ class MessageActionImpl(val lagrange: BotContext) : AbstractImplementation(), Me
     ) {
         TODO("Not yet implemented")
     }
+
+    class SendResult(
+        override val messageId: String,
+        override val time: Instant,
+        override val ctx: Context
+    ) : MessageSendResult
 }

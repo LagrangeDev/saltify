@@ -9,10 +9,12 @@ import org.ntqqrev.saltify.lagrange.packet.message.MessageElement
 import org.ntqqrev.saltify.lagrange.packet.message.PbSendMsg
 import org.ntqqrev.saltify.lagrange.packet.message.element.TextElement
 
-abstract class AbstractMessageBuilder(override val ctx: LagrangeContext) :
-    Entity,
-    TextFeature {
-    val deferredElements = mutableListOf<Deferred<MessageElement>>()
+abstract class LagrangeMessageBuilder(
+    override val ctx: LagrangeContext,
+    val clientSequence: Int,
+    val random: Int,
+) : Entity, TextFeature {
+    protected val deferredElements = mutableListOf<Deferred<MessageElement>>()
 
     override fun text(text: String) {
         deferredElements.add(ctx.env.scope.async {
