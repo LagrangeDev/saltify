@@ -6,7 +6,7 @@ import org.ntqqrev.saltify.api.context.model.group.FileSystemEntry
 import org.ntqqrev.saltify.lagrange.BotContext
 import java.io.InputStream
 
-class FileActionImpl(val lagrange: BotContext) : FileAction {
+class FileActionImpl(val lagrange: BotContext) : AbstractImplementation(), FileAction {
     override suspend fun uploadPrivateFile(userUin: Long, file: InputStream): String {
         TODO("Not yet implemented")
     }

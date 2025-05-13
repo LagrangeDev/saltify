@@ -16,7 +16,7 @@ import org.ntqqrev.saltify.lagrange.util.binary.pb
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-class MessageActionImpl(val lagrange: BotContext) : MessageAction {
+class MessageActionImpl(val lagrange: BotContext) : AbstractImplementation(), MessageAction {
     override suspend fun sendPrivateMessage(
         userUin: Long,
         builder: PrivateMessageBuilder.() -> Unit

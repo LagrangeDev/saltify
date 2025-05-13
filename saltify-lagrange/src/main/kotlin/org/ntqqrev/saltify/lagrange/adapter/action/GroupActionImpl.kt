@@ -5,7 +5,7 @@ import org.ntqqrev.saltify.api.context.model.group.Announcement
 import org.ntqqrev.saltify.lagrange.BotContext
 import java.io.InputStream
 
-class GroupActionImpl(val lagrange: BotContext) : GroupAction {
+class GroupActionImpl(val lagrange: BotContext) : AbstractImplementation(), GroupAction {
     override suspend fun getGroupAnnouncements(groupUin: Long): List<Announcement> {
         TODO("Not yet implemented")
     }

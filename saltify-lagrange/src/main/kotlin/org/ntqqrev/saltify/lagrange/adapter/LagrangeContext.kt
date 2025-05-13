@@ -10,6 +10,7 @@ import org.ntqqrev.saltify.api.context.Context
 import org.ntqqrev.saltify.api.context.action.*
 import org.ntqqrev.saltify.api.context.event.Event
 import org.ntqqrev.saltify.lagrange.BotContext
+import org.ntqqrev.saltify.lagrange.adapter.action.*
 import org.ntqqrev.saltify.lagrange.adapter.cache.FriendCacheService
 import org.ntqqrev.saltify.lagrange.adapter.cache.GroupCacheService
 import org.ntqqrev.saltify.lagrange.adapter.event.MessagePushEventProcessor
@@ -32,14 +33,21 @@ class LagrangeContext(
     val init: LagrangeInit,
     val env: Environment,
     val channel: MutableSharedFlow<Event>,
-    messageActionImpl: MessageAction,
-    userActionImpl: UserAction,
-    groupActionImpl: GroupAction,
-    requestActionImpl: RequestAction,
-    fileActionImpl: FileAction
+    messageActionImpl: MessageActionImpl,
+    userActionImpl: UserActionImpl,
+    groupActionImpl: GroupActionImpl,
+    requestActionImpl: RequestActionImpl,
+    fileActionImpl: FileActionImpl
 ) : Context, MessageAction by messageActionImpl, UserAction by userActionImpl, GroupAction by groupActionImpl,
     RequestAction by requestActionImpl, FileAction by fileActionImpl {
 
+    init {
+        messageActionImpl.outerContext = this
+        userActionImpl.outerContext = this
+        groupActionImpl.outerContext = this
+        requestActionImpl.outerContext = this
+        fileActionImpl.outerContext = this
+    }
     private var instanceUin = 0L
     private var instanceState = Context.State.NEWLY_CREATED
 
