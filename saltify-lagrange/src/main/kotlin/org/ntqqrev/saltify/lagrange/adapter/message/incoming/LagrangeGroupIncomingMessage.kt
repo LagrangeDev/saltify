@@ -3,7 +3,6 @@ package org.ntqqrev.saltify.lagrange.adapter.message.incoming
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.ntqqrev.saltify.api.context.message.incoming.GroupIncomingMessage
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
-import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.*
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroup
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeGroupMember
@@ -18,8 +17,7 @@ class LagrangeGroupIncomingMessage(
     override val group: LagrangeGroup,
     override val sender: LagrangeGroupMember,
 ) : LagrangeIncomingMessage(
-    ctx, raw, MessageType.GROUP,
-    group.uin, raw.contentHead.sequence ?: 0L,
+    ctx, raw, raw.contentHead.sequence ?: 0L,
 ), GroupIncomingMessage {
     companion object {
         val factories = listOf<LagrangeSegmentFactory<*>>(

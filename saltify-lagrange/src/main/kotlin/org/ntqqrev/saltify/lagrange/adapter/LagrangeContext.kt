@@ -133,6 +133,8 @@ class LagrangeContext(
         }
     }
 
+    override suspend fun getLoginInfo(): Pair<Long, String> = Pair(uin, "" /* TODO */)
+
     override suspend fun getAllFriends(cacheFirst: Boolean): Iterable<LagrangeFriend> =
         friendCacheService.getAll(cacheFirst)
 

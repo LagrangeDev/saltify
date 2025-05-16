@@ -3,7 +3,6 @@ package org.ntqqrev.saltify.lagrange.adapter.message.incoming
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.ntqqrev.saltify.api.context.message.incoming.PrivateIncomingMessage
 import org.ntqqrev.saltify.lagrange.adapter.LagrangeContext
-import org.ntqqrev.saltify.lagrange.adapter.message.MessageType
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.segment.*
 import org.ntqqrev.saltify.lagrange.adapter.model.LagrangeFriend
 import org.ntqqrev.saltify.lagrange.packet.message.PushMsgBody
@@ -17,8 +16,7 @@ class LagrangePrivateIncomingMessage(
     override val peer: LagrangeFriend,
     override val isSelf: Boolean
 ) : LagrangeIncomingMessage(
-    ctx, raw, MessageType.PRIVATE,
-    peer.uin, raw.contentHead.ntMsgSeq ?: 0L
+    ctx, raw, raw.contentHead.ntMsgSeq ?: 0L
 ), PrivateIncomingMessage {
     val clientSequence: Long = raw.contentHead.sequence ?: 0L
 

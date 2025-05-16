@@ -42,7 +42,7 @@ class LagrangeGroupMessageBuilder(
         TODO("Not yet implemented")
     }
 
-    override fun reply(messageId: String) {
+    override fun reply(sequence: Long) {
         TODO("Not yet implemented")
     }
 

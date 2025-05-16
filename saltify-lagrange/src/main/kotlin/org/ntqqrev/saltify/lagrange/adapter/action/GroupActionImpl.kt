@@ -57,4 +57,17 @@ class GroupActionImpl(val lagrange: BotContext) : AbstractImplementation(), Grou
     override suspend fun quitGroup(groupUin: Long) {
         TODO("Not yet implemented")
     }
+
+    override suspend fun sendGroupPoke(groupUin: Long, memberUin: Long) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun setMessageFaceReaction(
+        groupUin: Long,
+        sequence: Long,
+        reactionId: String,
+        isAdd: Boolean
+    ) {
+        TODO("Not yet implemented")
+    }
 }

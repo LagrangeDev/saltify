@@ -8,14 +8,7 @@ import org.ntqqrev.saltify.lagrange.adapter.message.incoming.LagrangeIncomingMes
 import org.ntqqrev.saltify.lagrange.adapter.message.incoming.LagrangeSegmentFactory
 
 class LagrangeReplySegment(message: LagrangeIncomingMessage, repliedSequence: Long) :
-    ReplySegment(
-        message,
-        encodeMessageId(
-            message.messageType,
-            message.peerUin,
-            repliedSequence
-        )
-    ) {
+    ReplySegment(message, repliedSequence) {
     companion object : LagrangeSegmentFactory<ReplySegment> {
         override fun tryParse(reader: ElementReader): ReplySegment? {
             val srcMsg = reader.next()?.srcMsg

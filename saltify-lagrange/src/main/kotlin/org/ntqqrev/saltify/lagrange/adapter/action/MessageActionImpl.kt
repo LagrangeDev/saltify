@@ -45,32 +45,24 @@ class MessageActionImpl(val lagrange: BotContext) : AbstractImplementation(), Me
         val message = builder.build()
         val result = lagrange.callOperation(SendMessage, message)
         return SendResult(
-            messageId = encodeMessageId(
-                MessageType.GROUP,
-                groupUin,
-                result.sequence,
-            ),
+            sequence = result.sequence,
             time = Instant.fromEpochSeconds(result.timestamp),
             ctx = outerContext,
         )
     }
 
-    override suspend fun getMessageById(messageId: String): IncomingMessage {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getHistoryPrivateMessage(
+    override suspend fun queryPrivateMessage(
         userUin: Long,
-        startId: String,
-        count: Int
+        beginSequence: Long,
+        endSequence: Long
     ): List<PrivateIncomingMessage> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getHistoryGroupMessage(
+    override suspend fun queryGroupMessage(
         groupUin: Long,
-        startId: String,
-        count: Int
+        beginSequence: Long,
+        endSequence: Long
     ): List<GroupIncomingMessage> {
         TODO("Not yet implemented")
     }
@@ -116,25 +108,9 @@ class MessageActionImpl(val lagrange: BotContext) : AbstractImplementation(), Me
         TODO("Not yet implemented")
     }
 
-    override suspend fun sendPrivatePoke(userUin: Long) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun sendGroupPoke(groupUin: Long, memberUin: Long) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun setMessageFaceReaction(
-        messageId: String,
-        reactionId: String,
-        isAdd: Boolean
-    ) {
-        TODO("Not yet implemented")
-    }
-
     class SendResult(
-        override val messageId: String,
+        override val sequence: Long,
         override val time: Instant,
-        override val ctx: Context
+        override val ctx: Context,
     ) : MessageSendResult
 }
